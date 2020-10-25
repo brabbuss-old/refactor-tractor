@@ -1,10 +1,10 @@
 import './css/base.scss';
 import './css/styles.scss';
 
-import userData from './data/users';
-import activityData from './data/activity';
-import sleepData from './data/sleep';
-import hydrationData from './data/hydration';
+// // import userData from './data/users';
+// // import activityData from './data/activity';
+// import sleepData from './data/sleep';
+// import hydrationData from './data/hydration';
 
 import UserRepository from './UserRepository';
 import User from './User';
@@ -12,26 +12,73 @@ import Activity from './Activity';
 import Hydration from './Hydration';
 import Sleep from './Sleep';
 
-
-
 let userRepository = new UserRepository();
 
-userData.forEach(user => {
-  user = new User(user);
-  userRepository.users.push(user)
-});
+const userPromise = fetch("https://fe-apps.herokuapp.com/api/v1/fitlit/1908/users/userData")
+  .then(resp => resp.json())
+  // .then(data => {
+  //   let userData = data.userData;
+  //   getUsers(userData);
+  // })
 
-activityData.forEach(activity => {
-  activity = new Activity(activity, userRepository);
-});
+const activityPromise = fetch("https://fe-apps.herokuapp.com/api/v1/fitlit/1908/activity/activityData")
+  .then(resp => resp.json())
+  // .then(data => {
+  //   let activityData = data.activityData;
+  //   getActivities(activityData);
+  // })
 
-hydrationData.forEach(hydration => {
-  hydration = new Hydration(hydration, userRepository);
-});
+const hydrationPromise = fetch("https://fe-apps.herokuapp.com/api/v1/fitlit/1908/hydration/hydrationData")
+  .then(resp => resp.json())
+  // .then(data => {
+  //   let hydrationData = data.hydrationData;
+  //   getHydration(hydrationData);
+  // })
 
-sleepData.forEach(sleep => {
-  sleep = new Sleep(sleep, userRepository);
-});
+const sleepPromise = fetch("https://fe-apps.herokuapp.com/api/v1/fitlit/1908/sleep/sleepData")
+  .then(resp => resp.json())
+  // .then(data => {
+  //   let sleepData = data.sleepData;
+  //   getSleep(sleepData);
+  // })
+
+Promise.all([userPromise, activityPromise, hydrationPromise, sleepPromise])
+  .then(data => {
+    let userData = data[0].userData;
+    getUsers(userData);
+    let activityData = data[1].activityData;
+    getActivities(activityData);
+    let hydrationData = data[2].hydrationData;
+    getHydration(hydrationData);
+    let sleepData = data[3].sleepData;
+    getSleep(sleepData);
+  })
+
+
+const getUsers = data => {
+  data.forEach(user => {
+    user = new User(user);
+    userRepository.users.push(user);
+  });
+}
+
+const getActivities = data => {
+  data.forEach(activity => {
+    activity = new Activity(activity, userRepository);
+  });
+}
+
+const getHydration = data => {
+  data.forEach(hydration => {
+    hydration = new Hydration(hydration, userRepository);
+  });
+}
+
+const getSleep = data => {
+  data.forEach(sleep => {
+    sleep = new Sleep(sleep, userRepository);
+  });
+}
 
 let user = userRepository.users[0];
 let todayDate = "2019/09/22";
