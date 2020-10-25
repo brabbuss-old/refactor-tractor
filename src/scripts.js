@@ -15,9 +15,14 @@ import Activity from './Activity';
 import Hydration from './Hydration';
 import Sleep from './Sleep';
 
-let userRepository = new UserRepository();
-let user = userRepository.users[0];
-let todayDate = "2019/09/22";
+//  <----        non-DOM vars        ---->   //
+
+const userRepository = new UserRepository();
+const user = Math.round(Math.random() * userRepository.users.length); // randomizes user
+const todayDate = (function() {
+  let date = new Date()
+  return date.getFullYear()+'/' + (date.getMonth()+1) + '/'+date.getDate();
+})();
 
 const userPromise = fetch("https://fe-apps.herokuapp.com/api/v1/fitlit/1908/users/userData")
   .then(resp => resp.json())
