@@ -1,24 +1,12 @@
 import { expect } from 'chai';
 
 import User from '../src/User';
+import {sleepSampleData, hydrationSampleData, userSampleData, activitySampleData} from "./test-sample-data"
 
-
-describe('User', function() {
+describe.only('User', function() {
   let user;
   beforeEach(() => {
-    user = new User({
-      'id': 1,
-      'name': 'Luisa Hane',
-      'address': '15195 Nakia Tunnel, Erdmanport VA 19901-1697',
-      'email': 'Diana.Hayes1@hotmail.com',
-      'strideLength': 4.3,
-      'dailyStepGoal': 10000,
-      'friends': [
-        16,
-        4,
-        8
-      ]
-    })
+    user = new User(userSampleData[0])
   })
   it('should be a function', function() {
     expect(User).to.be.a('function');
@@ -27,25 +15,25 @@ describe('User', function() {
     expect(user).to.be.an.instanceof(User);
   });
   it('should have an id', function() {
-    expect(user.id).to.equal(1);
+    expect(user.id).to.equal(33);
   });
   it('should have a name', function() {
-    expect(user.name).to.equal('Luisa Hane');
+    expect(user.name).to.equal('Scott Brabson');
   });
   it('should have an address', function() {
-    expect(user.address).to.equal('15195 Nakia Tunnel, Erdmanport VA 19901-1697');
+    expect(user.address).to.equal('555 Zuni st, Arvada, CO 80003');
   });
   it('should have an email address', function() {
-    expect(user.email).to.equal('Diana.Hayes1@hotmail.com');
+    expect(user.email).to.equal('scotty.crackalackin@yahoo.com');
   });
   it('should have a stride length', function() {
-    expect(user.strideLength).to.equal(4.3);
+    expect(user.strideLength).to.equal(6.6);
   });
   it('should have a daily step goal', function() {
-    expect(user.dailyStepGoal).to.equal(10000);
+    expect(user.dailyStepGoal).to.equal(15000);
   });
   it('should have friends', function() {
-    expect(user.friends).to.deep.equal([16, 4, 8])
+    expect(user.friends).to.deep.equal([29, 13, 9])
   });
   it('should have a default ouncesAverage of 0', function() {
     expect(user.ouncesAverage).to.equal(0);
@@ -78,15 +66,15 @@ describe('User', function() {
     expect(user.trendingStairsDays).to.deep.equal([]);
   });
   it('getFirstName should return the first name of the user', function () {
-    expect(user.getFirstName()).to.equal('LUISA');
+    expect(user.getFirstName()).to.equal('SCOTT');
   });
   it('addDailyOunces should show the last week of water', function() {
     user.ouncesRecord = [
-      {"2019/06/15": 1},
-      {"2019/06/15": 1},
-      {"2019/06/16": 4}
+      {"2019/06/15": 37},
+      {"2020/06/14": 75},
+      {"2020/06/15": 85}
     ]
-    expect(user.addDailyOunces("2019/06/15")).to.equal(2);
+    expect(user.addDailyOunces("2020/06/15")).to.equal(85);
   });
   describe('updateSleep', function() {
     beforeEach(() => {
@@ -135,20 +123,27 @@ describe('User', function() {
 
   it('updateAccomplishedDays should create an array of good days', function() {
     user.updateActivities({
-      "userID": 1,
+      "userID": 33,
       "date": "2019/06/15",
-      "numSteps": 3684,
+      "numSteps": 20000,
       "minutesActive": 140,
       "flightsOfStairs": 16
     });
     user.updateActivities({
-      "userID": 1,
-      "date": "2019/06/15",
-      "numSteps": 14684,
-      "minutesActive": 140,
-      "flightsOfStairs": 16
+      "userID": 33,
+      "date": "2019/07/15",
+      "numSteps": 15000,
+      "minutesActive": 300,
+      "flightsOfStairs": 54
     });
-    expect(user.accomplishedDays.length).to.equal(1);
+    user.updateActivities({
+      "userID": 33,
+      "date": "2020/07/15",
+      "numSteps": 11301,
+      "minutesActive": 130,
+      "flightsOfStairs": 11
+    });
+    expect(user.accomplishedDays.length).to.equal(2);
   })
   it('findTrendingStepDays should find 3+ days with positive trend', function() {
     user.activityRecord = [{
@@ -193,13 +188,10 @@ describe('User', function() {
       'id': 4,
       'name': 'John Firth',
     })
-    let user4 = new User({
-      'id': 8,
-      'name': 'Nick Adams',
-    })
+    let user4 = new User(userSampleData[1])
     let users = [user2, user3, user4];
     user.findFriendsNames(users);
-    expect(user.friendsNames).to.deep.equal(['BEN', 'JOHN', 'NICK']);
+    expect(user.friendsNames).to.deep.equal(['BRUCE']);
   });
   it('calculateTotalStepsThisWeek should add users steps for week', function() {
     user.activityRecord = [{
@@ -220,58 +212,38 @@ describe('User', function() {
   });
   it('findFriendsTotalStepsForWeek should find friends\' total steps', function() {
     let user2 = new User({
-      'id': 16,
-      'name': 'Ben Nist',
+      'id': 9,
+      'name': 'Bob N Forapples',
     })
     let user3 = new User({
-      'id': 4,
-      'name': 'John Firth',
+      'id': 13,
+      'name': 'Bruce Gordyman',
     })
     let user4 = new User({
-      'id': 8,
-      'name': 'Nick Adams',
+      'id': 29,
+      'name': 'Estelle Hoffenhoffer',
     })
-    user2.activityRecord = [{
-    "date": "2019/06/29", "steps": 25},
+  user2.activityRecord = [{
+    "date": "2019/06/29", "steps": 1},
     {"date": "2019/06/28", "steps": 1},
-    {"date": "2019/06/27", "steps": 43},
-    {"date": "2019/06/26", "steps": 35},
-    {"date": "2019/06/25", "steps": 1},
-    {"date": "2019/06/24", "steps": 132},
-    {"date": "2019/06/23", "steps": 11},
-    {"date": "2019/06/22", "steps": 1025},
-    {"date": "2019/06/21", "steps": 9},
-    {"date": "2019/06/20", "steps": 85},
-    {"date": "2019/06/19", "steps": 11},
-    {"date": "2019/06/18", "steps": 10}];
+    {"date": "2019/06/27", "steps": 1},
+    {"date": "2019/06/26", "steps": 1},
+    {"date": "2019/06/25", "steps": 1}];
   user3.activityRecord = [{
-    "date": "2019/06/29", "steps": 2},
-    {"date": "2019/06/28", "steps": 21},
-    {"date": "2019/06/27", "steps": 24},
-    {"date": "2019/06/26", "steps": 23},
-    {"date": "2019/06/25", "steps": 31},
-    {"date": "2019/06/24", "steps": 512},
-    {"date": "2019/06/23", "steps": 121},
-    {"date": "2019/06/22", "steps": 120},
-    {"date": "2019/06/21", "steps": 92},
-    {"date": "2019/06/20", "steps": 82},
-    {"date": "2019/06/19", "steps": 141},
-    {"date": "2019/06/18", "steps": 10}];
+    "date": "2019/06/29", "steps": 20},
+    {"date": "2019/06/28", "steps": 20},
+    {"date": "2019/06/27", "steps": 20},
+    {"date": "2019/06/26", "steps": 20},
+    {"date": "2019/06/25", "steps": 20}];
   user4.activityRecord = [{
-    "date": "2019/06/29", "steps": 2},
-    {"date": "2019/06/28", "steps": 1},
-    {"date": "2019/06/27", "steps": 4},
-    {"date": "2019/06/26", "steps": 3},
-    {"date": "2019/06/25", "steps": 1},
-    {"date": "2019/06/24", "steps": 12},
-    {"date": "2019/06/23", "steps": 11},
-    {"date": "2019/06/22", "steps": 10},
-    {"date": "2019/06/21", "steps": 9},
-    {"date": "2019/06/20", "steps": 8},
-    {"date": "2019/06/19", "steps": 11},
-    {"date": "2019/06/18", "steps": 10}];
+    "date": "2019/06/29", "steps": 5},
+    {"date": "2019/06/28", "steps": 5},
+    {"date": "2019/06/27", "steps": 5},
+    {"date": "2019/06/26", "steps": 5},
+    {"date": "2019/06/25", "steps": 5}];
+
     let users = [user2, user3, user4];
     user.findFriendsTotalStepsForWeek(users, '2019/06/29');
-    expect(user.friendsActivityRecords).to.deep.equal([{"id": 4, "totalWeeklySteps": 734}, {"id": 16, "totalWeeklySteps": 248}, {"id": 8, "totalWeeklySteps": 34}]);
+    expect(user.friendsActivityRecords).to.deep.equal([{"id": 13, "firstName": "BRUCE", "totalWeeklySteps": 100}, {"id": 29, "firstName": "ESTELLE", "totalWeeklySteps": 25}, {"id": 9, "firstName": "BOB", "totalWeeklySteps": 5}]);
   });
 });
