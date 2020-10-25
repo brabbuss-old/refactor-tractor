@@ -2,6 +2,8 @@ import { expect } from 'chai'
 import Activity from '../src/Activity';
 import UserRepository from '../src/UserRepository';
 import User from '../src/User';
+import {sleepSampleData, hydrationSampleData, userSampleData, activitySampleData} from "./test-sample-data"
+
 
 describe('Activity', function() {
   let activity;
