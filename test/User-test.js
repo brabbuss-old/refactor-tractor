@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import User from '../src/User';
 import {sleepSampleData, hydrationSampleData, userSampleData, activitySampleData} from "./test-sample-data"
 
-describe.only('User', function() {
+describe('User', function() {
   let user;
   beforeEach(() => {
     user = new User(userSampleData[0])
