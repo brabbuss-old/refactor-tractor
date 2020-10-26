@@ -7,6 +7,9 @@ import {sleepSampleData, hydrationSampleData, userSampleData, activitySampleData
 
 describe('Sleep', function() {
   let sleep;
+  let sleep1;
+  let sleep2;
+  let sleep3;
   let user1;
   let user2;
   let userRepository;
