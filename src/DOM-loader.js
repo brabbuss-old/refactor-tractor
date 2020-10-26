@@ -1,0 +1,64 @@
+export const dailyOz = document.querySelectorAll('.daily-oz');
+export const dropdownEmail = document.querySelector('#dropdown-email');
+export const dropdownFriendsStepsContainer = document.querySelector('#dropdown-friends-steps-container');
+export const dropdownGoal = document.querySelector('#dropdown-goal');
+export const dropdownName = document.querySelector('#dropdown-name');
+export const headerName = document.querySelector('#header-name');
+export const hydrationCalendarCard = document.querySelector('#hydration-calendar-card');
+export const hydrationFriendOuncesToday = document.querySelector('#hydration-friend-ounces-today');
+export const hydrationFriendsCard = document.querySelector('#hydration-friends-card');
+export const hydrationInfoCard = document.querySelector('#hydration-info-card');
+export const hydrationInfoGlassesToday = document.querySelector('#hydration-info-glasses-today');
+export const hydrationMainCard = document.querySelector('#hydration-main-card');
+export const hydrationUserOuncesToday = document.querySelector('#hydration-user-ounces-today');
+export const mainPage = document.querySelector('main');
+export const profileButton = document.querySelector('#profile-button');
+export const sleepCalendarCard = document.querySelector('#sleep-calendar-card');
+export const sleepCalendarHoursAverageWeekly = document.querySelector('#sleep-calendar-hours-average-weekly');
+export const sleepCalendarQualityAverageWeekly = document.querySelector('#sleep-calendar-quality-average-weekly');
+export const sleepFriendLongestSleeper = document.querySelector('#sleep-friend-longest-sleeper');
+export const sleepFriendsCard = document.querySelector('#sleep-friends-card');
+export const sleepFriendWorstSleeper = document.querySelector('#sleep-friend-worst-sleeper');
+export const sleepInfoCard = document.querySelector('#sleep-info-card');
+export const sleepInfoHoursAverageAlltime = document.querySelector('#sleep-info-hours-average-alltime');
+export const sleepInfoQualityAverageAlltime = document.querySelector('#sleep-info-quality-average-alltime');
+export const sleepInfoQualityToday = document.querySelector('#sleep-info-quality-today');
+export const sleepMainCard = document.querySelector('#sleep-main-card');
+export const sleepUserHoursToday = document.querySelector('#sleep-user-hours-today');
+export const sortedHydrationDataByDate = user.ouncesRecord.sort((a, b) => {
+  if (Object.keys(a)[0] > Object.keys(b)[0]) {
+    return -1;
+  }
+  if (Object.keys(a)[0] < Object.keys(b)[0]) {
+    return 1;
+  }
+  return 0;
+});
+export const stairsCalendarCard = document.querySelector('#stairs-calendar-card');
+export const stairsCalendarFlightsAverageWeekly = document.querySelector('#stairs-calendar-flights-average-weekly');
+export const stairsCalendarStairsAverageWeekly = document.querySelector('#stairs-calendar-stairs-average-weekly');
+export const stepsMainCard = document.querySelector('#steps-main-card');
+export const stepsInfoCard = document.querySelector('#steps-info-card');
+export const stepsFriendsCard = document.querySelector('#steps-friends-card');
+export const stepsTrendingCard = document.querySelector('#steps-trending-card');
+export const stepsCalendarCard = document.querySelector('#steps-calendar-card');
+export const stairsFriendFlightsAverageToday = document.querySelector('#stairs-friend-flights-average-today');
+export const stairsFriendsCard = document.querySelector('#stairs-friends-card');
+export const stairsInfoCard = document.querySelector('#stairs-info-card');
+export const stairsInfoFlightsToday = document.querySelector('#stairs-info-flights-today');
+export const stairsMainCard = document.querySelector('#stairs-main-card');
+export const stairsTrendingButton = document.querySelector('.stairs-trending-button');
+export const stairsTrendingCard = document.querySelector('#stairs-trending-card');
+export const stairsUserStairsToday = document.querySelector('#stairs-user-stairs-today');
+export const stepsCalendarTotalActiveMinutesWeekly = document.querySelector('#steps-calendar-total-active-minutes-weekly');
+export const stepsCalendarTotalStepsWeekly = document.querySelector('#steps-calendar-total-steps-weekly');
+export const stepsFriendAverageStepGoal = document.querySelector('#steps-friend-average-step-goal');
+export const stepsInfoActiveMinutesToday = document.querySelector('#steps-info-active-minutes-today');
+export const stepsInfoMilesWalkedToday = document.querySelector('#steps-info-miles-walked-today');
+export const stepsFriendActiveMinutesAverageToday = document.querySelector('#steps-friend-active-minutes-average-today');
+export const stepsFriendStepsAverageToday = document.querySelector('#steps-friend-steps-average-today');
+export const stepsTrendingButton = document.querySelector('.steps-trending-button');
+export const stepsUserStepsToday = document.querySelector('#steps-user-steps-today');
+export const trendingStepsPhraseContainer = document.querySelector('.trending-steps-phrase-container');
+export const trendingStairsPhraseContainer = document.querySelector('.trending-stairs-phrase-container');
+export const userInfoDropdown = document.querySelector('#user-info-dropdown');

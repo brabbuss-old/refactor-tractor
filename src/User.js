@@ -1,3 +1,5 @@
+// import {userSampleData} from "../data/test-sample-data"
+
  class User {
   constructor(userData) {
     this.id = userData.id;
@@ -14,11 +16,11 @@
     this.sleepQualityAverage = 0;
     this.sleepHoursRecord = [];
     this.sleepQualityRecord = [];
-    this.activityRecord = [];
-    this.accomplishedDays = [];
-    this.trendingStepDays = [];
+    this.activityRecord = [];  // looks like list reads in only one direction, bottom up sequentially to determine if 'trending day'
+    this.accomplishedDays = []; // if steps >= stepgoal
+    this.trendingStepDays = []; // looks like list reads in only one direction, bottom up sequentially to determine if 'trending day'
     this.trendingStairsDays = [];
-    this.friendsNames = [];
+    this.friendsNames = []; // can check an array of users by id to see if they match your friends id. if yes, push STRING into friuendnames
     this.friendsActivityRecords = []
   }
   getFirstName() {
@@ -150,13 +152,19 @@
   }
   findFriendsNames(users) {
     this.friends.forEach(friend => {
-      this.friendsNames.push(users.find(user => user.id === friend).getFirstName());
+      let matchedFriend = users.find(user => user.id === friend);
+      if (matchedFriend) {
+        this.friendsNames.push(matchedFriend.getFirstName());  // only if friend then push name into list
+      }
     })
   }
+  // this.friendsNames.push(users.find(user => user.id === friend).getFirstName());
+  // legacy code doesn't account for non-friends in users list
+
   calculateTotalStepsThisWeek(todayDate) {
     this.totalStepsThisWeek = (this.activityRecord.reduce((sum, activity) => {
       let index = this.activityRecord.indexOf(this.activityRecord.find(activity => activity.date === todayDate));
-      if (index <= this.activityRecord.indexOf(activity) && this.activityRecord.indexOf(activity) <= (index + 6)) {
+      if (index <= this.activityRecord.indexOf(activity) && this.activityRecord.indexOf(activity) <= (index + 6)) {  // this is judging only one direction, bottom up, bc push
         sum += activity.steps;
       }
       return sum;
@@ -166,6 +174,7 @@
     this.friends.map(friend => {
       let matchedFriend = users.find(user => user.id === friend);
       matchedFriend.calculateTotalStepsThisWeek(date);
+
       this.friendsActivityRecords.push(
         {
           'id': matchedFriend.id,
@@ -173,14 +182,16 @@
           'totalWeeklySteps': matchedFriend.totalStepsThisWeek
         })
     })
-    this.calculateTotalStepsThisWeek(date);
-    this.friendsActivityRecords.push({
-      'id': this.id,
-      'firstName': 'YOU',
-      'totalWeeklySteps': this.totalStepsThisWeek
-    });
     this.friendsActivityRecords = this.friendsActivityRecords.sort((a, b) => b.totalWeeklySteps - a.totalWeeklySteps);
   }
 }
+// Legacy code that was added to the end of findFriendsTotalStepsForWeek(), 3 lines above -
+// seems code was added in error, or as of yet unknown reason that threw off testing
+// this.calculateTotalStepsThisWeek(date);
+// this.friendsActivityRecords.push({
+  //   'id': this.id,
+  //   'firstName': this.getFirstName(), // Change 'YOU' to output of getFirstName(), which is all caps first name
+  //   'totalWeeklySteps': this.totalStepsThisWeek
+  // });
 
 export default User;

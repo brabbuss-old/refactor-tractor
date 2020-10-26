@@ -3,9 +3,13 @@ import { expect } from 'chai';
 import Sleep from '../src/Sleep';
 import UserRepository from '../src/UserRepository';
 import User from '../src/User';
+import {sleepSampleData, hydrationSampleData, userSampleData, activitySampleData} from "./test-sample-data"
 
 describe('Sleep', function() {
   let sleep;
+  let sleep1;
+  let sleep2;
+  let sleep3;
   let user1;
   let user2;
   let userRepository;
