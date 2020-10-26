@@ -3,12 +3,17 @@ import { expect } from 'chai';
 import UserRepository from '../src/UserRepository';
 import User from '../src/User';
 import Sleep from '../src/Sleep';
+import {sleepSampleData, hydrationSampleData, userSampleData, activitySampleData} from "./test-sample-data"
 
 describe('UserRepository', function() {
+  let sleep1;
+  let sleep2;
+  let sleep3;
   let user1;
   let user2;
   let user3;
   let userRepository;
+  let sleepData;
   beforeEach(() => {
     user1 = new User({
       'id': 1,
@@ -92,7 +97,7 @@ describe('UserRepository', function() {
       {"2019/06/15": 1},
       {"2019/06/16": 4}
     ]
-    expect(userRepository.calculateAverageDailyWater("2019/06/16")).to.equal(5)
+    expect(userRepository.calculateAverageDailyWater("2019/06/16")).to.equal(6)
   });
   it('should have a method that finds the best sleepers', function() {
     sleep1 = new Sleep({
@@ -116,42 +121,46 @@ describe('UserRepository', function() {
     expect(userRepository.findBestSleepers("2019/06/16")).to.deep.equal([user1, user2]);
   });
   it('should have a method that finds the longest sleepers', function() {
-    sleepData = [{
+    sleep1 = new Sleep({
       "userID": 1,
-      "date": "2019/06/15",
-      "hoursSlept": 6.1,
-      "sleepQuality": 100
-    }, {
+      "date": "2019/06/16",
+      "hoursSlept": 10.1,
+      "sleepQuality": 1000
+    }, userRepository);
+    sleep2 = new Sleep({
       "userID": 2,
       "date": "2019/06/15",
-      "hoursSlept": 7.3,
-      "sleepQuality": 1500
-    }, {
+      "hoursSlept": 17.3,
+      "sleepQuality": 500
+    }, userRepository);
+    sleep3 = new Sleep({
       "userID": 3,
       "date": "2019/06/15",
       "hoursSlept": 9.3,
       "sleepQuality": 1.4
-    }];
-    expect(userRepository.getLongestSleepers("2019/06/15")).to.equal(3);
+    }, userRepository);
+    expect(userRepository.getLongestSleepers("2019/06/15")).to.equal(2);
   });
   it('should have a method that finds the worst sleepers', function() {
-    sleepData = [{
+    sleep1 = new Sleep({
       "userID": 1,
-      "date": "2019/06/15",
-      "hoursSlept": 6.1,
+      "date": "2019/06/16",
+      "hoursSlept": 10.1,
       "sleepQuality": 1000
-    }, {
+    }, userRepository);
+    sleep2 = new Sleep({
       "userID": 2,
       "date": "2019/06/15",
       "hoursSlept": 7.3,
       "sleepQuality": 500
-    }, {
+    }, userRepository);
+    sleep3 = new Sleep({
       "userID": 3,
       "date": "2019/06/15",
       "hoursSlept": 9.3,
       "sleepQuality": 1.4
-    }];
-    expect(userRepository.getWorstSleepers("2019/06/15")).to.equal(1);
+    }, userRepository);
+    expect(userRepository.getWorstSleepers("2019/06/15")).to.equal(2);
   });
   it('should have a method that calculates average number of stairs for users', function() {
     user1.activityRecord = [{date: "2019/09/17", flightsOfStairs: 10}, {date: "2019/09/17", flightsOfStairs: 15}];
