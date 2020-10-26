@@ -90,20 +90,8 @@ const loadApp = () => {
 }
 
 const updateText = () => {
-  console.log("dailyOz", dailyOz);
-  console.log("hydration",(sortedHydrationDataByDate));
-  updateDailyOz();
-  // for (var i = 0; i < dailyOz.length; i++) {
-  //   dailyOz[i].innerText = user.addDailyOunces(Object.keys(sortedHydrationDataByDate[i])[0])
-  // }
-
-  dropdownGoal.innerText = `DAILY STEP GOAL | ${user.dailyStepGoal}`;
-
-  dropdownEmail.innerText = `EMAIL | ${user.email}`;
-
-  dropdownName.innerText = user.name.toUpperCase();
-
-  headerName.innerText = `${user.getFirstName()}'S `;
+  displayDailyOz();
+  displayUserInfo();
 
   hydrationUserOuncesToday.innerText = hydrationData.find(hydration => {
     return hydration.userID === user.id && hydration.date === todayDate;
@@ -212,11 +200,18 @@ const updateText = () => {
   });
 }
 
-const updateDailyOz = () => {
+const displayDailyOz = () => {
   dailyOz.forEach((day, i) => {
     console.log(i);
     day.innerText = user.addDailyOunces(Object.keys(sortedHydrationDataByDate[i])[0])
   })
+}
+
+const displayUserInfo = () => {
+dropdownGoal.innerText = `DAILY STEP GOAL | ${user.dailyStepGoal}`;
+dropdownEmail.innerText = `EMAIL | ${user.email}`;
+dropdownName.innerText = user.name.toUpperCase();
+headerName.innerText = `${user.getFirstName()}'S `;
 }
 
 let dailyOz = document.querySelectorAll('.daily-oz');
