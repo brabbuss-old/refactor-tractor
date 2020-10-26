@@ -181,6 +181,7 @@ main {
 .info-button {
   background-position: center;
   background-size: 3.4vw;
+  background-color: transparent;
   border: none;
   display: inline;
   height: 3.4vw;
@@ -191,6 +192,7 @@ main {
 .friends-button {
   background-position: center;
   background-size: 3.4vw;
+  background-color: transparent;
   border: none;
   display: inline;
   height: 3.4vw;
@@ -201,6 +203,7 @@ main {
 .calendar-button {
   background-position: center;
   background-size: 3.4vw;
+  background-color: transparent;
   border: none;
   display: inline;
   float: right;
@@ -212,6 +215,7 @@ main {
 .trending-button {
   background-position: center;
   background-size: 3.4vw;
+  background-color: transparent;
   border: none;
   height: 3.4vw;
   margin-left: 1vw;
@@ -221,6 +225,7 @@ main {
 .go-back-button {
   background-position: center;
   background-size: 3.4vw;
+  background-color: transparent;
   border: none;
   height: 3.4vw;
   margin-left: 1vw;
@@ -231,8 +236,9 @@ main {
   background-image: url(../images/steps-goback.png);
 }
 
-.steps-info-button {
-  background-image: url(../images/steps-info.png);
+.steps-info-button{
+  background-image: url(../images/info.svg);
+  // background-image: url(../images/steps-info.png);
 }
 
 .steps-friends-button {
@@ -248,7 +254,8 @@ main {
 }
 
 .hydration-info-button {
-  background-image: url(../images/hydration-info.png);
+  background-image: url(../images/info.svg)
+//   background-image: url(../images/hydration-info.png);
 }
 
 .hydration-friends-button {
@@ -264,7 +271,8 @@ main {
 }
 
 .stairs-info-button {
-  background-image: url(../images/stairs-info.png);
+  background-image: url(../images/info.svg)
+//   background-image: url(../images/stairs-info.png);
 }
 
 .stairs-friends-button {
@@ -280,7 +288,8 @@ main {
 }
 
 .sleep-info-button {
-  background-image: url(../images/sleep-info.png);
+  background-image: url(../images/info.svg)
+//   background-image: url(../images/sleep-info.png);
 }
 
 .sleep-friends-button {
