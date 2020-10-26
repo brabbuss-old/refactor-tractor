@@ -6,8 +6,10 @@ import {sleepSampleData, hydrationSampleData, userSampleData, activitySampleData
 
 
 describe('Activity', function() {
-  let activity;
-  let user;
+  let activity1;
+  let activity2;
+  let user1;
+  let user2;
   let userRepository;
   beforeEach(() => {
     user1 = new User({
