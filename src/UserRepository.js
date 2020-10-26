@@ -1,5 +1,3 @@
-import sleepData from './data/sleep';
-
 class UserRepository {
   constructor() {
     this.users = [];
@@ -75,26 +73,44 @@ class UserRepository {
     let sumDrankOnDate = todaysDrinkers.reduce((sum, drinker) => {
       return sum += drinker.addDailyOunces(date);
     }, 0)
-    return Math.floor(sumDrankOnDate / todaysDrinkers.length);
+    return Math.round(sumDrankOnDate / todaysDrinkers.length); // change Math.floor() to Math.round() - seems to make more sense
   }
   findBestSleepers(date) {
     return this.users.filter(user => {
       return user.calculateAverageQualityThisWeek(date) > 3;
     })
   }
-  getLongestSleepers(date) {
-    return sleepData.filter(sleep => {
-      return sleep.date === date;
-    }).sort((a, b) => {
-      return b.hoursSlept - a.hoursSlept;
-    })[0].userID;
+
+  getLongestSleepers(date) {    // TODO combine longest and worst sleepers into one function
+    let sleepList = [];
+    this.users.forEach(user => {
+      user.sleepHoursRecord.forEach(sleep => {
+        let sleepValues = Object.values(sleep);
+        if (sleepValues[0] === date) {
+          let sleepObject = {id: user.id, date: sleepValues[0], hours: sleepValues[1]};
+          sleepList.push(sleepObject)
+        }
+      })
+    })
+    return sleepList.sort((a, b) => {
+      return b.hours - a.hours;
+    })[0].id;
   }
+
   getWorstSleepers(date) {
-    return sleepData.filter(sleep => {
-      return sleep.date === date;
-    }).sort((a, b) => {
-      return a.hoursSlept - b.hoursSlept;
-    })[0].userID;
+    let sleepList = [];
+    this.users.forEach(user => {
+      user.sleepHoursRecord.forEach(sleep => {
+        let sleepValues = Object.values(sleep);
+        if (sleepValues[0] === date) {
+          let sleepObject = {id: user.id, date: sleepValues[0], hours: sleepValues[1]};
+          sleepList.push(sleepObject)
+        }
+      })
+    })
+    return sleepList.sort((a, b) => {
+      return a.hours - b.hours;
+    })[0].id;
   }
 }
 
