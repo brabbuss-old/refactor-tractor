@@ -1,11 +1,14 @@
+import User from '../src/User';
+
 class UserRepository {
   constructor(usersArray) {
     this.users = this.parseUserData(usersArray)
     this.allUsersStepGoal = 0;
   }
   parseUserData(usersArray) {
+    console.log(Array.isArray(usersArray));
     return usersArray.reduce((parsedUsers, user) => {
-      parsedUsers.push(user)
+      parsedUsers.push(new User(user))
       return parsedUsers
     }, [])
   }
@@ -21,7 +24,7 @@ class UserRepository {
     }, 0)
     return globalStepGoalTotal / this.users.length
   }
-  
+
   calculateAverageSleepQuality() {
     let totalSleepQuality = this.users.reduce((sum, user) => {
       sum += user.sleepQualityAverage;

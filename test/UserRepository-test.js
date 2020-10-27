@@ -65,12 +65,12 @@ describe.only('UserRepository', function() {
   it('should be an instance of user repository', function() {
     expect(userRepository).to.be.an.instanceof(UserRepository);
   });
-  it('should hold an array of users', function() {
+  it('should hold an array of user objects', function() {
     expect(userRepository.users).to.deep.equal([user1, user2, user3]);
     expect(userRepository.users.length).to.equal(3);
   });
   it('getUserObject should return user object when given a user id', function() {
-    expect(userRepository.getUserObject(2)).to.equal(user2);
+    expect(userRepository.getUserObject(2).id).to.equal(user2.id);
   })
   it('globalStepGoal should return average step goal for all users', function() {
     expect(userRepository.globalStepGoal()).to.equal(10000);
