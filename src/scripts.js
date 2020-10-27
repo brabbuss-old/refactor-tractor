@@ -95,7 +95,6 @@ const defineHydrationByDate = () => {
     }
     return 0;
   });
-  console.log(sortedHydrationDataByDate)
 }
 
 const updateText = () => {
