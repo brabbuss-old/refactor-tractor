@@ -62,12 +62,12 @@ h1 {
   letter-spacing: .2em;
 }
 
-h2 {
+h3 {
   font-size: 7vw;
   letter-spacing: .1em;
 }
 
-h3 {
+h2 {
   display: inline;
   font-family: 'Work Sans', sans-serif;
   font-size: 3vw;
@@ -127,13 +127,13 @@ main {
 }
 
 #steps-card-container {
-  background-color: #F5634B;
+  background-color: #E66100;
   grid-area: steps;
   margin: .5vw;
 }
 
 #hydration-card-container {
-  background-color: #54C6BE;
+  background-color: #0C7BDC;
   grid-area: hydration;
   margin: .5vw;
 }
@@ -145,7 +145,7 @@ main {
 }
 
 #sleep-card-container {
-  background-color: #FBD089;
+  background-color: #23879f;;
   grid-area: sleep;
   margin: .5vw;
 }
@@ -181,6 +181,7 @@ main {
 .info-button {
   background-position: center;
   background-size: 3.4vw;
+  background-color: transparent;
   border: none;
   display: inline;
   height: 3.4vw;
@@ -191,6 +192,7 @@ main {
 .friends-button {
   background-position: center;
   background-size: 3.4vw;
+  background-color: transparent;
   border: none;
   display: inline;
   height: 3.4vw;
@@ -201,6 +203,7 @@ main {
 .calendar-button {
   background-position: center;
   background-size: 3.4vw;
+  background-color: transparent;
   border: none;
   display: inline;
   float: right;
@@ -212,6 +215,7 @@ main {
 .trending-button {
   background-position: center;
   background-size: 3.4vw;
+  background-color: transparent;
   border: none;
   height: 3.4vw;
   margin-left: 1vw;
@@ -221,6 +225,7 @@ main {
 .go-back-button {
   background-position: center;
   background-size: 3.4vw;
+  background-color: transparent;
   border: none;
   height: 3.4vw;
   margin-left: 1vw;
@@ -228,76 +233,76 @@ main {
 }
 
 .steps-go-back-button {
-  background-image: url(../images/steps-goback.png);
+  background-image: url(../images/goback.svg);
 }
 
-.steps-info-button {
-  background-image: url(../images/steps-info.png);
+.steps-info-button{
+  background-image: url(../images/info.svg);
 }
 
 .steps-friends-button {
-  background-image: url(../images/steps-friends.png);
+  background-image: url(../images/friends.svg);
 }
 
 .steps-calendar-button {
-  background-image: url(../images/steps-calendar.png);
+  background-image: url(../images/calendar.svg);
 }
 
 .hydration-go-back-button {
-  background-image: url(../images/hydration-goback.png);
+  background-image: url(../images/goback.svg);
 }
 
 .hydration-info-button {
-  background-image: url(../images/hydration-info.png);
+  background-image: url(../images/info.svg);
 }
 
 .hydration-friends-button {
-  background-image: url(../images/hydration-friends.png);
+  background-image: url(../images/friends.svg);
 }
 
 .hydration-calendar-button {
-  background-image: url(../images/hydration-calendar.png);
+  background-image: url(../images/calendar.svg);
 }
 
 .stairs-go-back-button {
-  background-image: url(../images/stairs-goback.png);
+  background-image: url(../images/goback.svg);
 }
 
 .stairs-info-button {
-  background-image: url(../images/stairs-info.png);
+  background-image: url(../images/info.svg);
 }
 
 .stairs-friends-button {
-  background-image: url(../images/stairs-friends.png);
+  background-image: url(../images/friends.svg);
 }
 
 .stairs-calendar-button {
-  background-image: url(../images/stairs-calendar.png);
+  background-image: url(../images/calendar.svg);
 }
 
 .sleep-go-back-button {
-  background-image: url(../images/sleep-goback.png);
+  background-image: url(../images/goback.svg);
 }
 
 .sleep-info-button {
-  background-image: url(../images/sleep-info.png);
+  background-image: url(../images/info.svg)
 }
 
 .sleep-friends-button {
-  background-image: url(../images/sleep-friends.png);
+  background-image: url(../images/friends.svg);
 }
 
 .sleep-calendar-button {
-  background-image: url(../images/sleep-calendar.png);
+  background-image: url(../images/calendar.svg);
 }
 
 
 .steps-trending-button {
-  background-image: url(../images/steps-trending.png);
+  background-image: url(../images/trending.svg);
 }
 
 .stairs-trending-button {
-  background-image: url(../images/stairs-trending.png);
+  background-image: url(../images/trending.svg);
 }
 
 /* CHANGING CLASSES */
