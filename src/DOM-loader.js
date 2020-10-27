@@ -25,15 +25,6 @@ export const sleepInfoQualityAverageAlltime = document.querySelector('#sleep-inf
 export const sleepInfoQualityToday = document.querySelector('#sleep-info-quality-today');
 export const sleepMainCard = document.querySelector('#sleep-main-card');
 export const sleepUserHoursToday = document.querySelector('#sleep-user-hours-today');
-export const sortedHydrationDataByDate = user.ouncesRecord.sort((a, b) => {
-  if (Object.keys(a)[0] > Object.keys(b)[0]) {
-    return -1;
-  }
-  if (Object.keys(a)[0] < Object.keys(b)[0]) {
-    return 1;
-  }
-  return 0;
-});
 export const stairsCalendarCard = document.querySelector('#stairs-calendar-card');
 export const stairsCalendarFlightsAverageWeekly = document.querySelector('#stairs-calendar-flights-average-weekly');
 export const stairsCalendarStairsAverageWeekly = document.querySelector('#stairs-calendar-stairs-average-weekly');

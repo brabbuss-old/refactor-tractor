@@ -3,7 +3,7 @@ import './css/styles.scss';
 
 import {dailyOz, dropdownEmail,dropdownFriendsStepsContainer,dropdownGoal,dropdownName,headerName,hydrationCalendarCard,hydrationFriendOuncesToday,hydrationFriendsCard,
 hydrationInfoCard,hydrationInfoGlassesToday,hydrationMainCard,hydrationUserOuncesToday,mainPage,profileButton,sleepCalendarCard,sleepCalendarHoursAverageWeekly,sleepCalendarQualityAverageWeekly,sleepFriendLongestSleeper,
-sleepFriendsCard,sleepFriendWorstSleeper,sleepInfoCard,sleepInfoHoursAverageAlltime,sleepInfoQualityAverageAlltime,sleepInfoQualityToday,sleepMainCard,sleepUserHoursToday,sortedHydrationDataByDate,stairsCalendarCard,stairsCalendarFlightsAverageWeekly,
+sleepFriendsCard,sleepFriendWorstSleeper,sleepInfoCard,sleepInfoHoursAverageAlltime,sleepInfoQualityAverageAlltime,sleepInfoQualityToday,sleepMainCard,sleepUserHoursToday,stairsCalendarCard,stairsCalendarFlightsAverageWeekly,
 stairsCalendarStairsAverageWeekly,stepsMainCard,stepsInfoCard,stepsFriendsCard,stepsTrendingCard,stepsCalendarCard,stairsFriendFlightsAverageToday,stairsFriendsCard,stairsInfoCard,stairsInfoFlightsToday,stairsMainCard,stairsTrendingButton,
 stairsTrendingCard,stairsUserStairsToday,stepsCalendarTotalActiveMinutesWeekly,stepsCalendarTotalStepsWeekly,stepsFriendAverageStepGoal,stepsInfoActiveMinutesToday,stepsInfoMilesWalkedToday,stepsFriendActiveMinutesAverageToday,stepsFriendStepsAverageToday,
 stepsTrendingButton,stepsUserStepsToday,trendingStepsPhraseContainer,trendingStairsPhraseContainer,
@@ -16,13 +16,15 @@ import Hydration from './Hydration';
 import Sleep from './Sleep';
 
 //  <----        non-DOM vars        ---->   //
+let userData;
+let activityData;
+let hydrationData;
+let sleepData;
+let user;
+let sortedHydrationDataByDate;
 
 const userRepository = new UserRepository();
-const user = Math.round(Math.random() * userRepository.users.length); // randomizes user
-const todayDate = (function() {
-  let date = new Date()
-  return date.getFullYear()+'/' + (date.getMonth()+1) + '/'+date.getDate();
-})();
+const todayDate = "2020/01/22"
 
 const userPromise = fetch("https://fe-apps.herokuapp.com/api/v1/fitlit/1908/users/userData")
   .then(resp => resp.json())
@@ -76,6 +78,13 @@ const getSleep = data => {
   });
 }
 
+const loadApp = () => {
+  user = userRepository.users[Math.round(Math.random() * userRepository.users.length)];
+  user.findFriendsNames(userRepository.users);
+  defineHydrationByDate();
+  updateText();
+}
+
 const defineHydrationByDate = () => {
   sortedHydrationDataByDate = user.ouncesRecord.sort((a, b) => {
     if (Object.keys(a)[0] > Object.keys(b)[0]) {
@@ -86,13 +95,7 @@ const defineHydrationByDate = () => {
     }
     return 0;
   });
-}
-
-const loadApp = () => {
-  user = userRepository.users[0];
-  user.findFriendsNames(userRepository.users);
-  defineHydrationByDate();
-  updateText();
+  console.log(sortedHydrationDataByDate)
 }
 
 const updateText = () => {
@@ -118,9 +121,10 @@ const displayUserInfo = () => {
 }
 
 const displayHydrationInfo = () => {
-  hydrationUserOuncesToday.innerText = hydrationData.find(hydration => {
+  let hydroNum = hydrationData.find(hydration => {
     return hydration.userID === user.id && hydration.date === todayDate;
   }).numOunces;
+  hydrationUserOuncesToday.innerText =
   hydrationFriendOuncesToday.innerText = userRepository.calculateAverageDailyWater(todayDate);
   hydrationInfoGlassesToday.innerText = hydrationData.find(hydration => {
     return hydration.userID === user.id && hydration.date === todayDate;
