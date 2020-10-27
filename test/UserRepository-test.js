@@ -5,7 +5,7 @@ import User from '../src/User';
 import Sleep from '../src/Sleep';
 import {sleepSampleData, hydrationSampleData, userSampleData, activitySampleData} from "./test-sample-data"
 
-describe('UserRepository', function() {
+describe.only('UserRepository', function() {
   let sleep1;
   let sleep2;
   let sleep3;
@@ -56,8 +56,8 @@ describe('UserRepository', function() {
         33
       ]
     })
-    userRepository = new UserRepository();
-    userRepository.users.push(user1, user2, user3);
+    userRepository = new UserRepository([user1, user2, user3]);
+    // userRepository.users.push(user1, user2, user3);
   })
   it('should be a function', function() {
     expect(UserRepository).to.be.a('function');
@@ -69,11 +69,11 @@ describe('UserRepository', function() {
     expect(userRepository.users).to.deep.equal([user1, user2, user3]);
     expect(userRepository.users.length).to.equal(3);
   });
-  it('getUser should return user object when given a user id', function() {
-    expect(userRepository.getUser(2)).to.equal(user2);
+  it('getUserObject should return user object when given a user id', function() {
+    expect(userRepository.getUserObject(2)).to.equal(user2);
   })
-  it('calculateAverageStepGoal should return average step goal for all users', function() {
-    expect(userRepository.calculateAverageStepGoal()).to.equal(10000);
+  it('globalStepGoal should return average step goal for all users', function() {
+    expect(userRepository.globalStepGoal()).to.equal(10000);
   })
   it('calculateAverageSleepQuality should return average sleep quality for all users', function() {
     user1.sleepQualityAverage = 3.3;

@@ -1,22 +1,27 @@
 class UserRepository {
-  constructor() {
-    this.users = [];
+  constructor(usersArray) {
+    this.users = this.parseUserData(usersArray)
+    this.allUsersStepGoal = 0;
   }
-  getUser(id) {
+  parseUserData(usersArray) {
+    return usersArray.reduce((parsedUsers, user) => {
+      parsedUsers.push(user)
+      return parsedUsers
+    }, [])
+  }
+  getUserObject(id) {
     return this.users.find(function(user) {
       return user.id === id;
     })
   }
-  calculateAverageStepGoal() {
-    let goals = this.users.map(function(user) {
-      return user.dailyStepGoal;
-    });
-    let total = goals.reduce(function(sum, goal) {
-      sum += goal;
-      return sum;
-    }, 0);
-    return total / this.users.length;
+  globalStepGoal() {
+    let globalStepGoalTotal = this.users.reduce((stepGoalTotal, user) => {
+      stepGoalTotal += user.dailyStepGoal;
+      return stepGoalTotal;
+    }, 0)
+    return globalStepGoalTotal / this.users.length
   }
+  
   calculateAverageSleepQuality() {
     let totalSleepQuality = this.users.reduce((sum, user) => {
       sum += user.sleepQualityAverage;
