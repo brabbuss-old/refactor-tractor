@@ -1,12 +1,11 @@
 import { expect } from 'chai';
 
-import SleepRepository from '../src/SleepRepository';
-import Sleep from '../src/Sleep';
-// import User from '../src/User';
+import SleepRepository from '../src/classes/SleepRepository';
+import Sleep from '../src/classes/data-classes/Sleep';
 
-import {sleepSampleData, hydrationSampleData, userSampleData, activitySampleData} from "./test-sample-data"
+import {sleepSampleData, hydrationSampleData, userSampleData, activitySampleData} from "../src/data/test-sample-data"
 
-describe.only('SleepRepository', function() {
+describe('SleepRepository', function() {
   let sleepData1;
   let sleepData2;
   let sleepData3;
