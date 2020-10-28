@@ -1,7 +1,9 @@
-// import {userSampleData} from "../data/test-sample-data"
+import User from '../src/User';
+import SleepRepository from '../src/SleepRepository';
+import Activity from '../src/Activity';
 
  class User {
-  constructor(userData) {
+  constructor(userData, sleepData) {
     this.id = userData.id;
     this.name = userData.name;
     this.address = userData.address;
@@ -10,22 +12,50 @@
     this.dailyStepGoal = userData.dailyStepGoal;
     this.totalStepsThisWeek = 0;
     this.friends = userData.friends;
+
     this.ouncesAverage = 0;
     this.ouncesRecord = [];
+
     this.hoursSleptAverage = 0;
     this.sleepQualityAverage = 0;
-    this.sleepHoursRecord = [];
-    this.sleepQualityRecord = [];
+    this.sleepRepository = new SleepRepository(sleepData, this);
+
     this.activityRecord = [];  // looks like list reads in only one direction, bottom up sequentially to determine if 'trending day'
     this.accomplishedDays = []; // if steps >= stepgoal
     this.trendingStepDays = []; // looks like list reads in only one direction, bottom up sequentially to determine if 'trending day'
     this.trendingStairsDays = [];
+
     this.friendsNames = []; // can check an array of users by id to see if they match your friends id. if yes, push STRING into friuendnames
     this.friendsActivityRecords = []
   }
+
+//TODO make sure it belongs to this user
+//do we want a sleep repository that can calculate things?
+  // parseSleepData(sleepDataArray) {
+  //   return sleepDataArray.reduce((parsedSleepData, sleepObject) => {
+  //     if (sleepObject.userID === this.id) {
+  //       parsedSleepData.push(new SleepRepository(sleepObject))
+  //     }
+  //     return parsedSleepData
+  //   }, [])
+  // }
+  // addSleep(sleepDataArray) {
+  //   this.sleepRecord = new SleepRepository()
+  // }
+
+    // in case wanted two arrays of sleep data like above by default
+    // sleepDataArray.forEach(sleepObject => {
+    //   if (sleepObject.userID === this.id) {
+    //     this.sleepHoursRecord.push(new SleepRepository(sleepObject))
+    //   }
+    // })
+
+
+
+
   getFirstName() {
-    var names = this.name.split(' ');
-    return names[0].toUpperCase();
+    let parsedName = this.name.split(' ');
+    return parsedName[0].toUpperCase();
   }
   updateHydration(date, amount) {
     this.ouncesRecord.unshift({[date]: amount});
@@ -44,44 +74,47 @@
       return sum
     }, 0)
   }
-  updateSleep(date, hours, quality) {
-    this.sleepHoursRecord.unshift({
-      'date': date,
-      'hours': hours
-    });
-    this.sleepQualityRecord.unshift({
-      'date': date,
-      'quality': quality
-    });
-    if(this.sleepHoursRecord.length) {
-      this.hoursSleptAverage = ((hours + (this.hoursSleptAverage * (this.sleepHoursRecord.length - 1))) / this.sleepHoursRecord.length).toFixed(1);
-    } else {
-      this.hoursSleptAverage = hours;
-    }
-    if (this.sleepQualityRecord.length) {
-      this.sleepQualityAverage = ((quality + (this.sleepQualityAverage * (this.sleepQualityRecord.length - 1))) / this.sleepQualityRecord.length).toFixed(1);
-    } else {
-      this.sleepQualityAverage = quality;
-    }
-  }
-  calculateAverageHoursThisWeek(todayDate) {
-    return (this.sleepHoursRecord.reduce((sum, sleepAct) => {
-      let index = this.sleepHoursRecord.indexOf(this.sleepHoursRecord.find(sleep => sleep.date === todayDate));
-      if (index <= this.sleepHoursRecord.indexOf(sleepAct) && this.sleepHoursRecord.indexOf(sleepAct) <= (index + 6)) {
-        sum += sleepAct.hours;
-      }
-      return sum;
-    }, 0) / 7).toFixed(1);
-  }
-  calculateAverageQualityThisWeek(todayDate) {
-    return (this.sleepQualityRecord.reduce((sum, sleepAct) => {
-      let index = this.sleepQualityRecord.indexOf(this.sleepQualityRecord.find(sleep => sleep.date === todayDate));
-      if (index <= this.sleepQualityRecord.indexOf(sleepAct) && this.sleepQualityRecord.indexOf(sleepAct) <= (index + 6)) {
-        sum += sleepAct.quality;
-      }
-      return sum;
-    }, 0) / 7).toFixed(1);
-  }
+
+  // Moved these functions into sleep
+
+  // updateSleep(date, hours, quality) {
+  //   this.sleepHoursRecord.unshift({
+  //     'date': date,
+  //     'hours': hours
+  //   });
+  //   this.sleepQualityRecord.unshift({
+  //     'date': date,
+  //     'quality': quality
+  //   });
+  //   if(this.sleepHoursRecord.length) {
+  //     this.hoursSleptAverage = ((hours + (this.hoursSleptAverage * (this.sleepHoursRecord.length - 1))) / this.sleepHoursRecord.length).toFixed(1);
+  //   } else {
+  //     this.hoursSleptAverage = hours;
+  //   }
+  //   if (this.sleepQualityRecord.length) {
+  //     this.sleepQualityAverage = ((quality + (this.sleepQualityAverage * (this.sleepQualityRecord.length - 1))) / this.sleepQualityRecord.length).toFixed(1);
+  //   } else {
+  //     this.sleepQualityAverage = quality;
+  //   }
+  // }
+  // calculateAverageHoursThisWeek(todayDate) {
+  //   return (this.sleepHoursRecord.reduce((sum, sleepAct) => {
+  //     let index = this.sleepHoursRecord.indexOf(this.sleepHoursRecord.find(sleep => sleep.date === todayDate));
+  //     if (index <= this.sleepHoursRecord.indexOf(sleepAct) && this.sleepHoursRecord.indexOf(sleepAct) <= (index + 6)) {
+  //       sum += sleepAct.hours;
+  //     }
+  //     return sum;
+  //   }, 0) / 7).toFixed(1);
+  // }
+  // calculateAverageQualityThisWeek(todayDate) {
+  //   return (this.sleepQualityRecord.reduce((sum, sleepAct) => {
+  //     let index = this.sleepQualityRecord.indexOf(this.sleepQualityRecord.find(sleep => sleep.date === todayDate));
+  //     if (index <= this.sleepQualityRecord.indexOf(sleepAct) && this.sleepQualityRecord.indexOf(sleepAct) <= (index + 6)) {
+  //       sum += sleepAct.quality;
+  //     }
+  //     return sum;
+  //   }, 0) / 7).toFixed(1);
+  // }
   updateActivities(activity) {
     this.activityRecord.unshift(activity);
     if (activity.numSteps >= this.dailyStepGoal) {
