@@ -1,57 +1,20 @@
-import Activity from './data-classes/Activity';
 import ClassChooser from './ClassChooser';
+import ParentRepository from './ParentRepository';
 
-class ActivityRepository {
-  constructor(fetchedData, user) {
-    this.dataClass = 'activities';
-    this.classChooser = new ClassChooser(this.dataClass)
-    this.userID = user.id;
+export default class ActivityRepository extends ParentRepository {
+  constructor(fetchedData, user, dataClass) {
+    super(fetchedData, user, dataClass)
     this.strideLength = user.strideLength;
     this.dailyStepGoal = user.dailyStepGoal;
-    this.dataObjectArray = this.parseData(fetchedData);
   }
-  parseData(fetchedData) {  //TODO this is part of parent class
-    return fetchedData.reduce((parsedData, dataObject) => {
-      if (dataObject.userID === this.userID) {
-        parsedData.push(this.classChooser.instantiateClass(dataObject))
-      }
-      return parsedData
-    }, [])
-  }
-  addNewDataObject(dataObject) {
-    this.dataObjectArray.push(this.classChooser.instantiateClass(dataObject));
-  }
-  findDataObjectByDate(date) {
-    return this.dataObjectArray.find(dataObject => dataObject.date === date);
-  }
-  getPastWeekData(date) {
-    let index = this.dataObjectArray.indexOf(this.findDataObjectByDate(date))
-    return this.dataObjectArray.slice(index - 6, index + 1)
-  }
-  getDataByDateAndKey(date, dataObjectKey) {
-    return this.findDataObjectByDate(date)[dataObjectKey];
-  }
-  getAverageDataByWeekAndKey(date, dataObjectKey) {
-    return Math.round(this.getPastWeekData(date).reduce((dataTotal, dataObject) => {
-      dataTotal += dataObject[dataObjectKey];
-      return dataTotal;
-    }, 0)/7);
-  }
-  getHighLowDataPointByKey(dataObjectKey, highOrLow) {
-    let sortedData = this.dataObjectArray.sort((a, b) => {
-      return highOrLow === 'low' ? a[dataObjectKey] - b[dataObjectKey] : b[dataObjectKey] - a[dataObjectKey];
-    })
-    return sortedData[0]
-  }
-
-  //      Class Specific Methods
-  addNewActivityData(date, steps, minutes, stairs) {  // this is for the input forms
+  //      this is for the input forms
+  addNewActivityData(date, steps, minutes, stairs) {
     let activityDataObject = {
-    "userID": this.userID,
-    "date": date,
-    "numSteps": steps,
-    "minutesActive": minutes,
-    "flightsOfStairs": stairs
+      "userID": this.userID,
+      "date": date,
+      "numSteps": steps,
+      "minutesActive": minutes,
+      "flightsOfStairs": stairs
     }
     this.addNewDataObject(activityDataObject)
   }
@@ -73,5 +36,3 @@ class ActivityRepository {
     return {date: bestDay.date, flightsOfStairs: bestDay.flightsOfStairs}
   }
 }
-
-export default ActivityRepository;

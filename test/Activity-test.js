@@ -2,7 +2,7 @@ import { expect } from 'chai'
 import Activity from '../src/classes/data-classes/Activity';
 import User from '../src/classes/User';
 
-describe.only('Activity', function() {
+describe('Activity', function() {
   let activity1;
   let activity2;
   let user1;
@@ -65,39 +65,4 @@ describe.only('Activity', function() {
   it('should hold flights of stairs', function() {
     expect(activity2.flightsOfStairs).to.equal(22);
   });
-  it('should have a default value of 0 for miles walked', function() {
-    expect(activity2.milesWalked).to.equal(0);
-  });
-  it('should have a default value of null for reached step goal', function() {
-    expect(activity2.reachedStepGoal).to.equal(null);
-  });
-  it('should have a method that calculate miles walked', function() {
-    expect(activity1.calculateMiles(userRepository)).to.equal('3.0');
-  });
 });
-
-
-// describe('compareStepGoal', function() {
-  //   it('should return false if goal isn\'t met', function() {
-    //     activity1.compareStepGoal(userRepository);
-    //     expect(activity1.reachedStepGoal).to.equal(false);
-    //   });
-    //   it('should return true if goal is met', function() {
-      //     activity2.compareStepGoal(userRepository);
-      //     expect(activity2.reachedStepGoal).to.equal(true);
-      //   });
-      // });
-
-// it('doActivity should add activities to user record', function() {
-  //   expect(user1.activityRecord.length).to.equal(1);
-  // });
-
-
-  // Remove bc inheritance
-  //
-  // it('should hold a userID', function() {
-  //   expect(activity2.userID).to.equal(2);
-  // });
-  // it('should hold a date', function() {
-  //   expect(activity1.date).to.equal("2019/06/15");
-  // });

@@ -5,7 +5,7 @@ import Activity from '../src/classes/data-classes/Activity';
 
 import {sleepSampleData, hydrationSampleData, userSampleData, activitySampleData} from "../src/data/test-sample-data"
 
-describe.only('ActivityRepository', function() {
+describe('ActivityRepository', function() {
   let activityDataObject1;
   let activityDataObject2;
   let activityDataObject3;
@@ -119,7 +119,7 @@ describe.only('ActivityRepository', function() {
     activityDataObject9
   ]
 
-  activityRepository = new ActivityRepository(activityArray, user)
+  activityRepository = new ActivityRepository(activityArray, user, 'activities')
 
   });
   it('should be a function', function() {
