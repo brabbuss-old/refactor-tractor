@@ -28,10 +28,21 @@ class ActivityRepository {
     let index = this.dataObjectArray.indexOf(this.findDataObjectByDate(date))
     return this.dataObjectArray.slice(index - 6, index + 1)
   }
-  getDataByDateAndKey(date, dataType) {
-    return this.findDataObjectByDate(date)[dataType];
+  getDataByDateAndKey(date, dataObjectKey) {
+    return this.findDataObjectByDate(date)[dataObjectKey];
   }
-
+  getAverageDataByWeekAndKey(date, dataObjectKey) {
+    return Math.round(this.getPastWeekData(date).reduce((dataTotal, dataObject) => {
+      dataTotal += dataObject[dataObjectKey];
+      return dataTotal;
+    }, 0)/7);
+  }
+  getHighLowDataPointByKey(dataObjectKey, highOrLow) {
+    let sortedData = this.dataObjectArray.sort((a, b) => {
+      return highOrLow === 'low' ? a[dataObjectKey] - b[dataObjectKey] : b[dataObjectKey] - a[dataObjectKey];
+    })
+    return sortedData[0]
+  }
 
   //      Class Specific Methods
   addNewActivityData(date, steps, minutes, stairs) {  // this is for the input forms
@@ -49,89 +60,18 @@ class ActivityRepository {
     let result = ((activityObject.numSteps * this.strideLength) / 5280).toFixed(1)
     return Number(result)
   }
-  getAverageTimeActiveByWeek(date) {
-    return Math.round(this.getPastWeekData(date).reduce((totalTime, activityObject) => {
-      totalTime += activityObject.minutesActive;
-      return totalTime;
-    }, 0)/7);
+  checkStepGoal(date) {
+    return this.findDataObjectByDate(date).numSteps >= this.dailyStepGoal ? true : false;
+  }
+  getGoalReachedDays() {
+    return this.dataObjectArray.filter(dataObject => {
+      return dataObject.numSteps >= this.dailyStepGoal;
+    })
+  }
+  getBestStairDay() {
+    let bestDay = this.getHighLowDataPointByKey('flightsOfStairs', 'high')
+    return {date: bestDay.date, flightsOfStairs: bestDay.flightsOfStairs}
   }
 }
-
-
-//
-//   addNewSleepData(date, hours, quality) {  // this is for the input forms
-//     let sleepObject = {
-//     "userID": this.userID,
-//     "date": date,
-//     "hoursSlept": hours,
-//     "sleepQuality": quality
-//     }
-//     this.sleepRecord.push(new Sleep(sleepObject));
-//     // potential spot for POST helper method (if separate)
-//   }
-//   getSleepHoursByDate(date) {
-//     let sleepObject = this.sleepRecord.find(sleepObject => sleepObject.date === date);
-//     return sleepObject.hoursSlept;
-//   }
-//   getSleepQualityByDate(date) {
-//     let sleepObject = this.sleepRecord.find(sleepObject => sleepObject.date === date);
-//     return sleepObject.sleepQuality;
-//   }
-//   getDailyAverageSleepHours() {
-//     if(this.sleepRecord.length) {
-//       let averageHoursSlept = this.sleepRecord.reduce((averageHoursSlept, sleepObject) => {
-//         averageHoursSlept += sleepObject.hoursSlept;
-//         return averageHoursSlept
-//       }, 0);
-//       return Number((averageHoursSlept / this.sleepRecord.length).toFixed(1));
-//     }
-//   }
-//   getDailyAverageSleepQuality() {
-//     if(this.sleepRecord.length) {
-//       let averageSleepQuality = this.sleepRecord.reduce((averageSleepQuality, sleepObject) => {
-//         averageSleepQuality += sleepObject.sleepQuality;
-//         return averageSleepQuality;
-//       }, 0);
-//       return Number((averageSleepQuality / this.sleepRecord.length).toFixed(1));
-//     }
-//   }
-//
-//   getDayByDaySleepHours(date) {
-//     let matchedSleep = this.sleepRecord.find(sleepObject => sleepObject.date === date)
-//     let index = this.sleepRecord.indexOf(matchedSleep);
-//     let matchedArray = this.sleepRecord.slice(index - 6, index + 1)
-//     return matchedArray.map(sleepObject => {
-//       return {date: [sleepObject.date], sleepHours: sleepObject.hoursSlept}
-//     })
-//   }
-//
-//   getDayByDaySleepQuality(date) {
-//     let matchedSleep = this.sleepRecord.find(sleepObject => sleepObject.date === date)
-//     let index = this.sleepRecord.indexOf(matchedSleep);
-//     let matchedArray = this.sleepRecord.slice(index - 6, index + 1)
-//     return matchedArray.map(sleepObject => {
-//       return {date: [sleepObject.date], sleepQuality: sleepObject.sleepQuality}
-//     })
-//   }
-//
-//   getWeeklyAverageSleepQuality(date) {
-//     let totalQuality = this.getDayByDaySleepQuality(date).reduce((totalQuality, sleepObject) => {
-//       totalQuality += sleepObject.sleepQuality
-//       return totalQuality
-//     }, 0)
-//     return Number((totalQuality / 7).toFixed(1));
-//   }
-// }
-
-// getWeeklyAverageSleepQuality(date) {
-//   return (this.sleepRecord.reduce((sum, sleepObject) => {
-//     let index = this.sleepRecord.indexOf(this.sleepRecord.find(sleep => sleep.date === date));
-//     if (index <= this.sleepRecord.indexOf(sleepObject) && this.sleepRecord.indexOf(sleepObject) <= (index + 6)) {
-//       sum += sleepObject.quality;
-//     }
-//     return sum;
-//   }, 0) / 7).toFixed(1);
-// }
-
 
 export default ActivityRepository;

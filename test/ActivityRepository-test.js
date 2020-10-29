@@ -150,7 +150,7 @@ describe.only('ActivityRepository', function() {
   });
   it('should be able to get average time active per day over one week', function() {
 
-    expect(activityRepository.getAverageTimeActiveByWeek("2019/07/09")).to.equal(144);
+    expect(activityRepository.getAverageDataByWeekAndKey("2019/07/09", 'minutesActive')).to.equal(144);
   });
   it('should be able to return minutes active for specific date', function() {
     expect(activityRepository.getDataByDateAndKey("2019/07/02", 'minutesActive')).to.equal(210);
@@ -162,20 +162,17 @@ describe.only('ActivityRepository', function() {
     expect(activityRepository.getMilesWalked("2019/07/07")).to.equal(9.6);
   });
   it('should be able to tell if user reached step goal on a given day', function() {
-    expect(activityRepository.getMilesWalked("2019/07/01")).to.equal(9.6);
+    expect(activityRepository.checkStepGoal("2019/07/01")).to.equal(false);
+    expect(activityRepository.checkStepGoal("2019/07/02")).to.equal(true);
   });
-  // it('should be able to find all days where user met or exceeded step goal', function() {
-  //   expect(activityRepository.getMilesWalked("2019/07/07")).to.equal(9.6);
-  // });
-  // it('should be able to number of stairs climbed on a specific date', function() {
-  //   expect(activityRepository.getMilesWalked("2019/07/07")).to.equal(9.6);
-  // });
-  // it('should be able to return best stair climbing day', function() {
-  //   expect(activityRepository.getMilesWalked("2019/07/07")).to.equal(9.6);
-  // });
-  // it('should be able to find all days where user met or exceeded step goal', function() {
-  //   expect(activityRepository.getMilesWalked("2019/07/07")).to.equal(9.6);
-  // });
-
-
+  it('should be able to find all days where user met or exceeded step goal', function() {
+    expect(activityRepository.getGoalReachedDays().length).to.equal(4);
+    expect(activityRepository.getGoalReachedDays()[0].numSteps).to.equal(11373);
+  });
+  it('should be able to return number of stairs climbed on a specific date', function() {
+    expect(activityRepository.getDataByDateAndKey("2019/07/02", 'flightsOfStairs')).to.equal(2);
+  });
+  it('should be able to return best stair climbing day', function() {
+    expect(activityRepository.getBestStairDay()).to.deep.equal({date: "2019/07/03", flightsOfStairs: 47});
+  });
 })
