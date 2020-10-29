@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 import Sleep from '../src/classes/data-classes/Sleep';
 
-describe.only('Sleep', function() {
+describe('Sleep', function() {
   let sleep1;
   let sleep2;
   let sleep3;
