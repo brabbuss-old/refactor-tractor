@@ -179,6 +179,17 @@ main {
   width: 20vw;
 }
 
+.input-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 1vh;
+}
+
+:focus.input-form {
+  outline: 7px solid #F8BA00;
+  border-color: transparent;
+}
 /* BUTTONS */
 .info-button {
   background-position: center;
@@ -243,6 +254,25 @@ main {
   margin-left: 1vw;
   margin-top: 1vw;
   width: 3.4vw;
+}
+
+.submit-button {
+  font-family: 'Work Sans', sans-serif;
+  font-size: 3vw;
+  font-weight: 700;
+  letter-spacing: .2em;
+  background-color: #000000;
+  color:#ffffff;
+  border: none;
+  height: 6vw;
+  margin-top: 2vw;
+  margin-bottom: 2vw;
+  width: 35.4vw;
+}
+
+:focus.submit-button {
+  outline: 2px solid #FFFFFF;
+  border-color: transparent;
 }
 
 .steps-go-back-button {
@@ -322,7 +352,25 @@ main {
   background-image: url(../images/newinput.svg);
 }
 
+/* FORMS */ 
 
+label {
+  font-size: 6vh;
+
+}
+
+input {
+  text-align: center;
+  margin-left: 1vw;
+  height: 6vh;
+  padding: 1vw;
+  font-size: 3vh;
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+}
 
 /* CHANGING CLASSES */
 .hide {

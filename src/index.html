@@ -78,7 +78,7 @@
           </div>
         </section>
         <section class='steps-new-input-card hide' id='new-input-card'>
-          <button type='button' name='button' class='go-back-button steps-go-back-button' aria-label="steps-go-back-button"></button>
+          <button type='button' name='button' class='go-back-button steps-go-back-button' aria-label="steps-input-go-back-button"></button>
           <div class='card-data-line'>
             <p>NEW STEPS INPUT START:</p>
             <h4 id='steps-calendar-total-active-minutes-weekly'></h4>
@@ -145,7 +145,7 @@
           </div>
         </section>
         <section class='hydration-new-input-card hide' id='new-input-card'>
-          <button type='button' name='button' class='go-back-button hydration-go-back-button' aria-label="hydration-go-back-button"></button>
+          <button type='button' name='button' class='go-back-button hydration-go-back-button' aria-label="hydration-input-go-back-button"></button>
           <div class='hydration-data-line'>
             <p>NEW HYDRATION INPUT START:</p>
             <h4 id='steps-calendar-total-active-minutes-weekly'></h4>
@@ -203,7 +203,7 @@
           </div>
         </section>
         <section class='stairs-new-input-card hide' id='stairs-calendar-card'>
-          <button type='button' name='button' class='go-back-button stairs-go-back-button' aria-label="stairs-go-back-button"></button>
+          <button type='button' name='button' class='go-back-button stairs-go-back-button' aria-label="stairs-input-go-back-button"></button>
           <div class='card-data-line'>
             <p>NEW STAIRS INPUT START</p>
             <h4 id='stairs-calendar-flights-average-weekly'></h4>
@@ -267,15 +267,20 @@
           </div>
         </section>
         <section class='sleep-new-input-card hide' id='sleep-calendar-card'>
-          <button type='button' name='button' class='go-back-button sleep-go-back-button' aria-label="sleep-go-back-button"></button>
-          <div class='card-data-line'>
-            <p>NEW SLEEP INPUT START</p>
-            <h4 id='sleep-calendar-hours-average-weekly'></h4>
-          </div>
-          <div class='card-data-line'>
-            <p>NEW SLEEP INPUT END</p>
-            <h4 id='sleep-calendar-quality-average-weekly'></h4>
-          </div>
+          <button type='button' name='button' class='go-back-button sleep-go-back-button' aria-label="sleep-input-go-back-button"></button>
+          <form class="input-form" action="" method="post" aria-label="sleep-input-form">
+            <div class='input-container'>
+              <label for= "hours slept">HOURS SLEPT:</label>
+              <input id="hours-slept" type="number" min="0" max="24" required aria-required="true"></input>
+              <h4 id='sleep-calendar-hours-average-weekly'></h4>
+            </div>
+            <div class='input-container'>
+              <label for="sleep quality">SLEEP QUALITY:</label>
+              <input id="sleep-quality" type="number" min="0" max="5" required aria-required="true"></input>
+              <h4 id='sleep-calendar-quality-average-weekly'></h4>
+            </div>
+              <button type='button' name='button' class='submit-button sleep-submit-button' aria-label="sleep-submit-button">SUBMIT</button>
+          </form>
         </section>
       </section>
     </main>
