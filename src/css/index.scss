@@ -48,8 +48,7 @@ button:active {
 
 .dropdown-p {
   @include font-style(1.5vw, normal, 300);
-  padding-bottom: 1vw;
-  padding-top: 0;
+  padding: 0 0 1vw 0;
   text-align: center;
   width: 100%;
 }
@@ -141,7 +140,7 @@ main {
 
 .card-data-line {
   @include display(center);
-  margin-bottom: 2vw;
+  margin: -4vw 0 2vw 0;
 }
 
 .hydration-weekly-label {
@@ -200,7 +199,7 @@ main {
 
 .go-back-button {
   @include main-button-style($go-back);
-  margin: 1vw;
+  margin: 1.8vw;
   &:hover {
     @include button-hover();
   }
