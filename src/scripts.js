@@ -1,5 +1,5 @@
 import './css/base.scss';
-import './css/styles.scss';
+import './css/index.scss'
 
 import {dailyOz, dropdownEmail,dropdownFriendsStepsContainer,dropdownGoal,dropdownName,headerName,hydrationCalendarCard,hydrationFriendOuncesToday,hydrationFriendsCard,
 hydrationInfoCard,hydrationInfoGlassesToday,hydrationMainCard,hydrationUserOuncesToday,mainPage,profileButton,sleepCalendarCard,sleepCalendarHoursAverageWeekly,sleepCalendarQualityAverageWeekly,sleepFriendLongestSleeper,
@@ -64,7 +64,6 @@ const defineHydrationByDate = () => {
     }
     return 0;
   });
-  console.log(sortedHydrationDataByDate)
 }
 
 const updateText = () => {
