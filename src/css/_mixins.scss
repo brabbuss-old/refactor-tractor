@@ -1,0 +1,29 @@
+//border
+@mixin no-border($value) {
+  border: $value;
+  outline: $value;
+}
+
+//buttons
+@mixin main-button-style() {
+  background-position: center;
+  background-size: 3.4vw;
+  background-color: transparent;
+  border: none;
+  display: inline;
+  height: 3.4vw;
+  width: 3.4vw;
+}
+
+@mixin profile-button() {
+  background-image: url(../images/profile.png);
+  background-position: center;
+  background-size: 5.6vw;
+  border: none;
+  display: inline;
+  float: right;
+  height: 5.6vw;
+  margin-right: .5vw;
+  margin-top: 1.6vw;
+  width: 5.6vw;
+}
