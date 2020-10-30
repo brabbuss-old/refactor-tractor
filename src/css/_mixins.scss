@@ -12,9 +12,10 @@
 }
 
 //@font-face
-@mixin font-style($size, $spacing) {
+@mixin font-style($size, $spacing, $weight) {
   font-size: $size;
   letter-spacing: $spacing;
+  font-weight: $weight;
 }
 
 //display
@@ -33,7 +34,12 @@
   height: 3.4vw;
   width: 3.4vw;
   background-image: $image;
+}
 
+@mixin button-hover() {
+  -webkit-transform: scale(1.3);
+  -ms-transform: scale(1.3);
+  transform: scale(1.3);
 }
 
 @mixin profile-button() {

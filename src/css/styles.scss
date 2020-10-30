@@ -7,7 +7,6 @@
 box-sizing: border-box;
 margin: 0;
 padding: 0;
-border: 1px solid red;
 }
 
 body {
@@ -27,21 +26,28 @@ button:active {
 
 #profile-button {
   @include profile-button();
+  &:hover {
+    @include button-hover();
+  }
 }
 
 #user-info-dropdown {
   background-color: $black;
   color: white;
-  margin-left: 60%;
-  margin-top: -1.2%;
+  margin: -1.2% 0 0 60%;
   position: relative;
   text-align: center;
   z-index: 100;
+  border: 2px solid white;
+}
+
+#dropdown-name {
+  text-align: left;
+  margin-left: 1vw;
 }
 
 .dropdown-p {
-  font-size: 1.2vw;
-  font-weight: 300;
+  @include font-style(1.5vw, normal, 300);
   padding-bottom: 1vw;
   padding-top: 0;
   text-align: center;
@@ -52,19 +58,19 @@ button:active {
 h1 {
   color: #fff;
   display: inline;
-  @include font-style(5.4vw, .2em);
-}
-
-h3 {
-  @include font-style(7vw, .1em);
+  @include font-style(5.4vw, .2em, normal);
 }
 
 h2 {
   display: inline;
   font-family: $main-box-font-family;
-  @include font-style(3vw, .2em);
-  font-weight: 700;
+  @include font-style(3vw, .2em, 700);
 }
+
+h3 {
+  @include font-style(7vw, .1em, bold);
+}
+
 
 h4 {
   font-size: 6vw;
@@ -78,8 +84,7 @@ h5 {
 
 p {
   font-family: $main-box-font-family;
-  @include font-style(1.2vw, .2vw);
-  font-weight: 600;
+  @include font-style(1.2vw, .2vw, 600);
   margin-right: 1vw;
   padding-top: 2vw;
   text-align: right;
@@ -97,15 +102,15 @@ main {
 }
 
 .main-card {
-  align-items: center;
   @include display(center);
+  align-items: center;
   flex-direction: column;
   height: 20vw;
 }
 
 .main-card-top-row {
-  align-items: center;
   @include display(space-between);
+  align-items: center;
   width: 100%;
 }
 
@@ -155,35 +160,50 @@ main {
 
 .trend-line {
   font-size: 2vw;
-  text-align: center;
   width: 20vw;
+  text-align: center;
 }
 
 /* BUTTONS */
 .info-button {
   @include main-button-style($info);
   margin-left: 1vw;
+  &:hover {
+    @include button-hover();
+  }
 }
 
 .friends-button {
   @include main-button-style($friends-button);
   margin-right: 1vw;
+  &:hover {
+    @include button-hover();
+  }
 }
 
 .calendar-button {
   @include main-button-style($calendar);
   margin-right: 1vw;
   float: right;
+  &:hover {
+    @include button-hover();
+  }
 }
 
 .trending-button {
   @include main-button-style($trending-button);
   margin-left: 1vw;
+  &:hover {
+    @include button-hover();
+  }
 }
 
 .go-back-button {
   @include main-button-style($go-back);
   margin: 1vw;
+  &:hover {
+    @include button-hover();
+  }
 }
 
 /* CHANGING CLASSES */
