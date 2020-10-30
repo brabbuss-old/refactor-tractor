@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset='UTF-8'>
-    <title>Trisha & Kayla's FitLit</title>
+    <title>Scott, Bruce & Estelle's FitLit</title>
     <link href="https://fonts.googleapis.com/css?family=Oswald:400,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,700&display=swap" rel="stylesheet">
   </head>
@@ -30,6 +30,7 @@
           <h3 id='steps-user-steps-today'>X</h3>
           <div class='main-card-top-row'>
             <button type='button' name='button' class='trending-button steps-trending-button' aria-label="steps-trending-button"></button>
+            <button type='button' name='button' class='new-input-button steps-new-input-button' aria-label="steps-new-input-button"></button>
             <h2>STEPS TODAY</h2>
             <button type='button' name='button' class='calendar-button steps-calendar-button' aria-label="steps-calendar-button"></button>
           </div>
@@ -76,6 +77,17 @@
             <h4 id='steps-calendar-total-steps-weekly'></h4>
           </div>
         </section>
+        <section class='new-input-card hide' id='new-input-card'>
+          <button type='button' name='button' class='go-back-button steps-go-back-button' aria-label="steps-go-back-button"></button>
+          <div class='card-data-line'>
+            <p>ADD NEW STEPS INPUT START:</p>
+            <h4 id='steps-calendar-total-active-minutes-weekly'></h4>
+          </div>
+          <div class='card-data-line'>
+            <p>ADD NEW STEPS INPUT END:</p>
+            <h4 id='steps-calendar-total-steps-weekly'></h4>
+          </div>
+        </section>
       </section>
       <section class='card-container' id='hydration-card-container'>
         <section class='main-card' id='hydration-main-card'>
@@ -86,6 +98,7 @@
           </div>
           <h3 id='hydration-user-ounces-today'></h3>
           <div class='main-card-bottom-row'>
+            <button type='button' name='button' class='new-input-button hydration-new-input-button' aria-label="hydration-new-input-button"></button>
             <h2>OZ OF WATER TODAY</h2>
             <button type='button' name='button' class='calendar-button hydration-calendar-button' aria-label="hydration-calendar-button"></button>
           </div>
@@ -142,6 +155,8 @@
           <h3 id='stairs-user-stairs-today'></h3>
           <div class='main-card-top-row'>
             <button type='button' name='button' class='trending-button stairs-trending-button' aria-label="stairs-trending-button"></button>
+            <button type='button' name='button' class='new-input-button stairs-new-input-button' aria-label="stairs-new-input-button"></button>
+
             <h2>STAIRS TODAY</h2>
             <button type='button' name='button' class='calendar-button stairs-calendar-button'aria-label="stairs-calendar-button"></button>
           </div>
@@ -186,6 +201,8 @@
           </div>
           <h3 id='sleep-user-hours-today'></h3>
           <div class='main-card-bottom-row'>
+            <button type='button' name='button' class='new-input-button sleep-new-input-button' aria-label="sleep-new-input-button"></button>
+
             <h2>HOURS LAST NIGHT</h2>
             <button type='button' name='button' class='calendar-button sleep-calendar-button' aria-label="sleep-calendar-button"></button>
           </div>

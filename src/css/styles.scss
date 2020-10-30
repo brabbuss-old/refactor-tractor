@@ -123,6 +123,8 @@ main {
 
 .main-card-bottom-row {
   text-align: center;
+  display: flex;
+  justify-content: space-between;
   width: 100%;
 }
 
@@ -222,6 +224,16 @@ main {
   width: 3.4vw;
 }
 
+.new-input-button {
+  background-position: center;
+  background-size: 3.4vw;
+  background-color: transparent;
+  border: none;
+  height: 3.4vw;
+  margin-left: 1vw;
+  width: 3.4vw;
+}
+
 .go-back-button {
   background-position: center;
   background-size: 3.4vw;
@@ -229,6 +241,7 @@ main {
   border: none;
   height: 3.4vw;
   margin-left: 1vw;
+  margin-top: 1vw;
   width: 3.4vw;
 }
 
@@ -304,6 +317,12 @@ main {
 .stairs-trending-button {
   background-image: url(../images/trending.svg);
 }
+
+.new-input-button {
+  background-image: url(../images/newinput.svg);
+}
+
+
 
 /* CHANGING CLASSES */
 .hide {
