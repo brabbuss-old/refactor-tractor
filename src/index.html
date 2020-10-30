@@ -2,9 +2,9 @@
 <html lang="en">
   <head>
     <meta charset='UTF-8'>
-    <title>Trisha & Kayla's FitLit</title>
+    <title>Scott, Bruce & Estelle's FitLit</title>
     <link href="https://fonts.googleapis.com/css?family=Oswald:400,700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,600,700&display=swap" rel="stylesheet">
   </head>
   <body>
     <header>
@@ -30,6 +30,7 @@
           <h3 id='steps-user-steps-today'>X</h3>
           <div class='main-card-top-row'>
             <button type='button' name='button' class='trending-button steps-trending-button' aria-label="steps-trending-button"></button>
+            <button type='button' name='button' class='new-input-button steps-new-input-button' aria-label="steps-new-input-button"></button>
             <h2>STEPS TODAY</h2>
             <button type='button' name='button' class='calendar-button steps-calendar-button' aria-label="steps-calendar-button"></button>
           </div>
@@ -76,6 +77,30 @@
             <h4 id='steps-calendar-total-steps-weekly'></h4>
           </div>
         </section>
+        <section class='steps-new-input-card hide' id='new-input-card'>
+          <button type='button' name='button' class='go-back-button steps-go-back-button' aria-label="steps-input-go-back-button"></button>
+          <form class="input-form" action="" method="post" aria-label="steps-input-form">
+            <div class='input-container'>
+              <label for="date">DATE:</label>
+              <input id="steps-input-date" type="date" required aria-required="true"
+                aria-label="select a date with month, day and year"></input>
+            </div>
+            <div class='input-container'>
+              <label for="">STEPS:</label>
+              <input id="steps-input" type="number" min="0" max="999" required aria-required="true" aria-label="steps-input-field"></input>
+            </div>
+            <div class='input-container'>
+              <label for="">ACTIVE MINUTES:</label>
+              <input id="total-active-minutes-input" type="number" min="0" max="999" required aria-required="true" aria-label="total-active-minutes-input-field"></input>
+            </div>
+            <div class='input-container'>
+              <label for="">MILES:</label>
+              <input id="total-miles-input" type="number" min="0" max="999" required aria-required="true" aria-label="total-miles-input-field"></input>
+            </div>
+            <button type='button' name='button' class='submit-button steps-submit-button'
+              aria-label="steps-submit-button">SUBMIT</button>
+          </form>
+        </section>
       </section>
       <section class='card-container' id='hydration-card-container'>
         <section class='main-card' id='hydration-main-card'>
@@ -86,6 +111,7 @@
           </div>
           <h3 id='hydration-user-ounces-today'></h3>
           <div class='main-card-bottom-row'>
+            <button type='button' name='button' class='new-input-button hydration-new-input-button' aria-label="hydration-new-input-button"></button>
             <h2>OZ OF WATER TODAY</h2>
             <button type='button' name='button' class='calendar-button hydration-calendar-button' aria-label="hydration-calendar-button"></button>
           </div>
@@ -131,6 +157,22 @@
             <h4 class='hydration-weekly-amount'><span class='daily-oz' id='hydration-calendar-ounces-6day'></span> oz</h4>
           </div>
         </section>
+        <section class='hydration-new-input-card hide' id='new-input-card'>
+          <button type='button' name='button' class='go-back-button hydration-go-back-button' aria-label="hydration-input-go-back-button"></button>
+          <form class="input-form" action="" method="post" aria-label="hydration-input-form">
+            <div class='input-container'>
+              <label for="date">DATE:</label>
+              <input id="hydration-input-date" type="date" required aria-required="true"
+                aria-label="select a date with month, day and year"></input>
+            </div>
+            <div class='input-container'>
+              <label for="">OZ:</label>
+              <input id="hydration-ozs" type="number" min="0" max="999" required aria-required="true" aria-label="hydration input field"></input>
+            </div>
+            <button type='button' name='button' class='submit-button hydration-submit-button'
+              aria-label="hydration-submit-button">SUBMIT</button>
+          </form>
+        </section>
       </section>
       <section class='card-container' id='stairs-card-container'>
         <section class='main-card' id='stairs-main-card'>
@@ -142,6 +184,8 @@
           <h3 id='stairs-user-stairs-today'></h3>
           <div class='main-card-top-row'>
             <button type='button' name='button' class='trending-button stairs-trending-button' aria-label="stairs-trending-button"></button>
+            <button type='button' name='button' class='new-input-button stairs-new-input-button' aria-label="stairs-new-input-button"></button>
+
             <h2>STAIRS TODAY</h2>
             <button type='button' name='button' class='calendar-button stairs-calendar-button'aria-label="stairs-calendar-button"></button>
           </div>
@@ -176,6 +220,21 @@
             <h4 id='stairs-calendar-stairs-average-weekly'></h4>
           </div>
         </section>
+        <section class='stairs-new-input-card hide' id='stairs-calendar-card'>
+          <button type='button' name='button' class='go-back-button stairs-go-back-button' aria-label="stairs-input-go-back-button"></button>
+          <form class="input-form" action="" method="post" aria-label="stairs-input-form">
+            <div class='input-container'>
+              <label for="date">DATE:</label>
+              <input id="stairs-input-date" type="date" required aria-required="true" aria-label="select a date with month, day and year"></input>
+            </div>
+            <div class='input-container'>
+              <label for="flights of stairs">FLIGHTS OF STAIRS:</label>
+              <input id="flight-stairs" type="number" min="0" max="999" required aria-required="true" aria-label="flights of stairs input field"></input>
+            </div>
+            <button type='button' name='button' class='submit-button stairs-submit-button'
+              aria-label="stairs-submit-button">SUBMIT</button>
+          </form>
+        </section>
       </section>
       <section class='card-container' id='sleep-card-container'>
         <section class='main-card' id='sleep-main-card'>
@@ -186,6 +245,8 @@
           </div>
           <h3 id='sleep-user-hours-today'></h3>
           <div class='main-card-bottom-row'>
+            <button type='button' name='button' class='new-input-button sleep-new-input-button' aria-label="sleep-new-input-button"></button>
+
             <h2>HOURS LAST NIGHT</h2>
             <button type='button' name='button' class='calendar-button sleep-calendar-button' aria-label="sleep-calendar-button"></button>
           </div>
@@ -226,6 +287,26 @@
             <p>LAST WEEK'S QUALITY AVERAGE</p>
             <h4 id='sleep-calendar-quality-average-weekly'></h4>
           </div>
+        </section>
+        <section class='sleep-new-input-card hide' id='sleep-calendar-card'>
+          <button type='button' name='button' class='go-back-button sleep-go-back-button' aria-label="sleep-input-go-back-button"></button>
+          <form class="input-form" action="" method="post" aria-label="sleep-input-form">
+            <div class='input-container'>
+              <label for="date">DATE:</label>
+              <input id="sleep-input-date" type="date" required aria-required="true"></input>
+            </div>
+            <div class='input-container'>
+              <label for= "hours slept">HOURS SLEPT:</label>
+              <input id="hours-slept" type="number" min="0" max="24" required aria-required="true" aria-label="hours-slept-input-field"></input>
+              <h4 id='sleep-calendar-hours-average-weekly'></h4>
+            </div>
+            <div class='input-container'>
+              <label for="sleep quality">SLEEP QUALITY:</label>
+              <input id="sleep-quality" type="number" min="0" max="5" required aria-required="true" aria-label="quality-of-sleep-input-field"></input>
+              <h4 id='sleep-calendar-quality-average-weekly'></h4>
+            </div>
+              <button type='button' name='button' class='submit-button sleep-submit-button' aria-label="sleep-submit-button">SUBMIT</button>
+          </form>
         </section>
       </section>
     </main>
