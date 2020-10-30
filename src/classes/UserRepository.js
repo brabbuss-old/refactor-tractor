@@ -1,27 +1,36 @@
+// import ClassChooser from './ClassChooser';
 import User from './User';
-import ClassChooser from './ClassChooser';
 
-class UserRepository {
-  constructor(userData, activityData, hydrationData, sleepData) { // other data types passed in here
-    this.dataClass = 'user';
-    this.classChooser;
-    this.dataObjectArray = this.parseData(userData);
+export default class UserRepository {
+  constructor(userData, activityData, hydrationData, sleepData, date) { // other data types passed in here
+    this.date = date;
+    // this.dataClass = 'users';
+    // this.classChooser;
+    // this.dataObjectArray = this.parseData(userData);
+    this.dataObjectArray = this.parseData(userData, activityData, hydrationData, sleepData)
     this.globalStepGoal = this.getGlobalStepGoal();
     this.globalSleepQuality = 0;
     this.randomUser = this.getRandomUser()
-  } 
+  }
   getUserObject(id) {
     return this.dataObjectArray.find(user => user.id === id)
   }
-  parseData(fetchedData) {
-    this.classChooser = new ClassChooser(this.dataClass)
-    return fetchedData.reduce((parsedData, dataObject) => {
-      if (dataObject.userID === this.userID) {
-        parsedData.push(this.classChooser.instantiateClass(dataObject))
-      }
-      return parsedData
+  parseData(userData, activityData, hydrationData, sleepData) {
+    return userData.reduce((parsedUsers, userObject) => {
+      parsedUsers.push(new User(userObject, activityData, hydrationData, sleepData, this.date))
+      return parsedUsers
     }, [])
   }
+
+  // parseData(fetchedData) {
+  //   this.classChooser = new ClassChooser(this.dataClass, this.date, this.userArray, this.activityArray, this.hydrationArray, this.sleepArray)
+  //   return fetchedData.reduce((parsedData, dataObject) => {
+  //     if (dataObject.userID === this.userID) {
+  //       parsedData.push(this.classChooser.instantiateClass(dataObject))
+  //     }
+  //     return parsedData
+  //   }, [])
+  // }
   getRandomUser() {
     return this.dataObjectArray[Math.round(Math.random() * this.dataObjectArray.length)];
   }
@@ -138,7 +147,4 @@ class UserRepository {
     }, 0)
     return Math.round(sumDrankOnDate / todaysDrinkers.length); // change Math.floor() to Math.round() - seems to make more sense
   }
-
 }
-
-export default UserRepository;

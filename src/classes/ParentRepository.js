@@ -1,9 +1,10 @@
 import ClassChooser from './ClassChooser';
 
 export default class ParentRepository {
-  constructor(fetchedData, user, dataClass) {
+  constructor(fetchedData, user, dataClass, date) {
+    this.date = date;
     this.dataClass = dataClass;
-    this.classChooser = new ClassChooser(this.dataClass)
+    this.classChooser = new ClassChooser(this.dataClass, date)
     this.userID = user.id;
     this.dataObjectArray = this.parseData(fetchedData);
   }
@@ -53,5 +54,26 @@ export default class ParentRepository {
       return highOrLow === 'low' ? a[dataObjectKey] - b[dataObjectKey] : b[dataObjectKey] - a[dataObjectKey];
     })
     return sortedData[0]
+  }
+  getAllDataObjectsOnDate(date) {
+    return this.dataObjectArray.filter(dataObject => {
+      return dataObject.date === date;
+    })
+  }
+  getTotalByDateAndKey(date, key) {
+    let matchedData = this.getAllDataObjectsOnDate(date);
+    if (matchedData) {
+      return matchedData.reduce((total, dataObject) => {
+        total += dataObject[key]
+        return total
+      }, 0)
+    }
+  }
+  getWeeklyTotalByDateAndKey(date, key) {
+    console.log(date,key);
+    return this.getPastWeekData(date).reduce((dataTotal, dataObject) => {
+      dataTotal += dataObject[key];
+      return dataTotal;
+    }, 0)
   }
 }

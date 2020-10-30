@@ -175,4 +175,8 @@ describe('ActivityRepository', function() {
   it('should be able to return best stair climbing day', function() {
     expect(activityRepository.getBestStairDay()).to.deep.equal({date: "2019/07/03", flightsOfStairs: 47});
   });
+  it('should be able to return total steps in a week', function() {
+    expect(activityRepository.getBestStairDay()).to.deep.equal({date: "2019/07/03", flightsOfStairs: 47});
+  });
+
 })

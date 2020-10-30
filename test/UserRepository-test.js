@@ -5,7 +5,7 @@ import SleepRepository from '../src/classes/SleepRepository';
 import User from '../src/classes/User';
 import {sleepSampleData, hydrationSampleData, userSampleData, activitySampleData} from "../src/data/test-sample-data"
 
-describe.only('UserRepository', function() {
+describe('UserRepository', function() {
   let sleep1;
   let sleep2;
   let sleep3;
