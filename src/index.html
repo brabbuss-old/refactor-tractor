@@ -4,7 +4,7 @@
     <meta charset='UTF-8'>
     <title>Scott, Bruce & Estelle's FitLit</title>
     <link href="https://fonts.googleapis.com/css?family=Oswald:400,700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,600,700&display=swap" rel="stylesheet">
   </head>
   <body>
     <header>
@@ -79,14 +79,27 @@
         </section>
         <section class='steps-new-input-card hide' id='new-input-card'>
           <button type='button' name='button' class='go-back-button steps-go-back-button' aria-label="steps-input-go-back-button"></button>
-          <div class='card-data-line'>
-            <p>NEW STEPS INPUT START:</p>
-            <h4 id='steps-calendar-total-active-minutes-weekly'></h4>
-          </div>
-          <div class='card-data-line'>
-            <p>NEW STEPS INPUT END:</p>
-            <h4 id='steps-calendar-total-steps-weekly'></h4>
-          </div>
+          <form class="input-form" action="" method="post" aria-label="steps-input-form">
+            <div class='input-container'>
+              <label for="date">DATE:</label>
+              <input id="steps-input-date" type="date" required aria-required="true"
+                aria-label="select a date with month, day and year"></input>
+            </div>
+            <div class='input-container'>
+              <label for="">STEPS:</label>
+              <input id="steps-input" type="number" min="0" max="999" required aria-required="true" aria-label="steps-input-field"></input>
+            </div>
+            <div class='input-container'>
+              <label for="">ACTIVE MINUTES:</label>
+              <input id="total-active-minutes-input" type="number" min="0" max="999" required aria-required="true" aria-label="total-active-minutes-input-field"></input>
+            </div>
+            <div class='input-container'>
+              <label for="">MILES:</label>
+              <input id="total-miles-input" type="number" min="0" max="999" required aria-required="true" aria-label="total-miles-input-field"></input>
+            </div>
+            <button type='button' name='button' class='submit-button steps-submit-button'
+              aria-label="steps-submit-button">SUBMIT</button>
+          </form>
         </section>
       </section>
       <section class='card-container' id='hydration-card-container'>
@@ -146,14 +159,19 @@
         </section>
         <section class='hydration-new-input-card hide' id='new-input-card'>
           <button type='button' name='button' class='go-back-button hydration-go-back-button' aria-label="hydration-input-go-back-button"></button>
-          <div class='hydration-data-line'>
-            <p>NEW HYDRATION INPUT START:</p>
-            <h4 id='steps-calendar-total-active-minutes-weekly'></h4>
-          </div>
-          <div class='hydration-data-line'>
-            <p>NEW HYDRATION INPUT END:</p>
-            <h4 id='steps-calendar-total-steps-weekly'></h4>
-          </div>
+          <form class="input-form" action="" method="post" aria-label="hydration-input-form">
+            <div class='input-container'>
+              <label for="date">DATE:</label>
+              <input id="hydration-input-date" type="date" required aria-required="true"
+                aria-label="select a date with month, day and year"></input>
+            </div>
+            <div class='input-container'>
+              <label for="">OZ:</label>
+              <input id="hydration-ozs" type="number" min="0" max="999" required aria-required="true" aria-label="hydration input field"></input>
+            </div>
+            <button type='button' name='button' class='submit-button hydration-submit-button'
+              aria-label="hydration-submit-button">SUBMIT</button>
+          </form>
         </section>
       </section>
       <section class='card-container' id='stairs-card-container'>
@@ -204,14 +222,18 @@
         </section>
         <section class='stairs-new-input-card hide' id='stairs-calendar-card'>
           <button type='button' name='button' class='go-back-button stairs-go-back-button' aria-label="stairs-input-go-back-button"></button>
-          <div class='card-data-line'>
-            <p>NEW STAIRS INPUT START</p>
-            <h4 id='stairs-calendar-flights-average-weekly'></h4>
-          </div>
-          <div class='card-data-line'>
-            <p>NEW STAIRS INPUT END</p>
-            <h4 id='stairs-calendar-stairs-average-weekly'></h4>
-          </div>
+          <form class="input-form" action="" method="post" aria-label="stairs-input-form">
+            <div class='input-container'>
+              <label for="date">DATE:</label>
+              <input id="stairs-input-date" type="date" required aria-required="true" aria-label="select a date with month, day and year"></input>
+            </div>
+            <div class='input-container'>
+              <label for="flights of stairs">FLIGHTS OF STAIRS:</label>
+              <input id="flight-stairs" type="number" min="0" max="999" required aria-required="true" aria-label="flights of stairs input field"></input>
+            </div>
+            <button type='button' name='button' class='submit-button stairs-submit-button'
+              aria-label="stairs-submit-button">SUBMIT</button>
+          </form>
         </section>
       </section>
       <section class='card-container' id='sleep-card-container'>
@@ -270,13 +292,17 @@
           <button type='button' name='button' class='go-back-button sleep-go-back-button' aria-label="sleep-input-go-back-button"></button>
           <form class="input-form" action="" method="post" aria-label="sleep-input-form">
             <div class='input-container'>
+              <label for="date">DATE:</label>
+              <input id="sleep-input-date" type="date" required aria-required="true"></input>
+            </div>
+            <div class='input-container'>
               <label for= "hours slept">HOURS SLEPT:</label>
-              <input id="hours-slept" type="number" min="0" max="24" required aria-required="true"></input>
+              <input id="hours-slept" type="number" min="0" max="24" required aria-required="true" aria-label="hours-slept-input-field"></input>
               <h4 id='sleep-calendar-hours-average-weekly'></h4>
             </div>
             <div class='input-container'>
               <label for="sleep quality">SLEEP QUALITY:</label>
-              <input id="sleep-quality" type="number" min="0" max="5" required aria-required="true"></input>
+              <input id="sleep-quality" type="number" min="0" max="5" required aria-required="true" aria-label="quality-of-sleep-input-field"></input>
               <h4 id='sleep-calendar-quality-average-weekly'></h4>
             </div>
               <button type='button' name='button' class='submit-button sleep-submit-button' aria-label="sleep-submit-button">SUBMIT</button>
