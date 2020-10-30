@@ -1,5 +1,4 @@
 import './css/base.scss';
-import './css/styles.scss';
 import './css/index.scss'
 
 import {dailyOz, dropdownEmail,dropdownFriendsStepsContainer,dropdownGoal,dropdownName,headerName,hydrationCalendarCard,hydrationFriendOuncesToday,hydrationFriendsCard,
