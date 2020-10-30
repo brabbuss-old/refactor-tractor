@@ -1,9 +1,9 @@
 import { expect } from 'chai';
 
-import UserRepository from '../src/UserRepository';
-import User from '../src/User';
-import Sleep from '../src/Sleep';
-import {sleepSampleData, hydrationSampleData, userSampleData, activitySampleData} from "./test-sample-data"
+import UserRepository from '../src/classes/UserRepository';
+import SleepRepository from '../src/classes/SleepRepository';
+import User from '../src/classes/User';
+import {sleepSampleData, hydrationSampleData, userSampleData, activitySampleData} from "../src/data/test-sample-data"
 
 describe.only('UserRepository', function() {
   let sleep1;
@@ -66,15 +66,20 @@ describe.only('UserRepository', function() {
     expect(userRepository).to.be.an.instanceof(UserRepository);
   });
   it('should hold an array of user objects', function() {
-    expect(userRepository.users).to.deep.equal([user1, user2, user3]);
-    expect(userRepository.users.length).to.equal(3);
+    expect(userRepository.usersRecord).to.deep.equal([user1, user2, user3]);
+    expect(userRepository.usersRecord.length).to.equal(3);
   });
   it('getUserObject should return user object when given a user id', function() {
     expect(userRepository.getUserObject(2).id).to.equal(user2.id);
   })
-  it('globalStepGoal should return average step goal for all users', function() {
-    expect(userRepository.globalStepGoal()).to.equal(10000);
+  it('getGlobalStepGoal should return average step goal for all users', function() {
+    expect(userRepository.getGlobalStepGoal()).to.equal(10000);
   })
+
+// TODO begin tearing here - this should be a function of the users Sleep object array
+// From there the user can call a method to calculate user's avg sleep
+// this class can get the avg by using that method on every user in a reduce function
+
   it('calculateAverageSleepQuality should return average sleep quality for all users', function() {
     user1.sleepQualityAverage = 3.3;
     user2.sleepQualityAverage = 5;

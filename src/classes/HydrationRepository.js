@@ -15,21 +15,4 @@ export default class HydrationRepository extends ParentRepository {
     }
     this.addNewDataObject(activityDataObject)
   }
-  getMilesWalked(date) {
-    let activityObject = this.findDataObjectByDate(date);
-    let result = ((activityObject.numSteps * this.strideLength) / 5280).toFixed(1)
-    return Number(result)
-  }
-  checkStepGoal(date) {
-    return this.findDataObjectByDate(date).numSteps >= this.dailyStepGoal ? true : false;
-  }
-  getGoalReachedDays() {
-    return this.dataObjectArray.filter(dataObject => {
-      return dataObject.numSteps >= this.dailyStepGoal;
-    })
-  }
-  getBestStairDay() {
-    let bestDay = this.getHighLowDataPointByKey('flightsOfStairs', 'high')
-    return {date: bestDay.date, flightsOfStairs: bestDay.flightsOfStairs}
-  }
 }

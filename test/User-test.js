@@ -1,12 +1,12 @@
 import { expect } from 'chai';
 
-import User from '../src/User';
-import {sleepSampleData, hydrationSampleData, userSampleData, activitySampleData} from "./test-sample-data"
+import User from '../src/classes/User';
+import {sleepSampleData, hydrationSampleData, userSampleData, activitySampleData} from "../src/data/test-sample-data"
 
 describe('User', function() {
   let user;
   beforeEach(() => {
-    user = new User(userSampleData[0])
+    user = new User(userSampleData[0], sleepSampleData)
   })
   it('should be a function', function() {
     expect(User).to.be.a('function');
@@ -47,12 +47,12 @@ describe('User', function() {
   it('should have a default sleepQualityAverage of 0', function() {
     expect(user.sleepQualityAverage).to.equal(0);
   });
-  it('should have a default sleepHoursRecord of []', function() {
-    expect(user.sleepHoursRecord).to.deep.equal([]);
+  it('should have a default sleepRepository of []', function() {
+    expect(user.sleepRepository).to.deep.equal([]);
   });
-  it('should have a default sleepQualityRecord of []', function() {
-    expect(user.sleepQualityRecord).to.deep.equal([]);
-  });
+  // it('should have a default sleepQualityRecord of []', function() {
+  //   expect(user.sleepQualityRecord).to.deep.equal([]);
+  // });
   it('should have a default activityRecord of []', function() {
     expect(user.activityRecord).to.deep.equal([]);
   });
@@ -76,30 +76,33 @@ describe('User', function() {
     ]
     expect(user.addDailyOunces("2020/06/15")).to.equal(85);
   });
-  describe('updateSleep', function() {
-    beforeEach(() => {
-      user.updateSleep("2019/06/15", 7, 4.7);
-      user.updateSleep("2019/07/14", 6, 4);
-      user.updateSleep("2019/08/04", 8, 5.4);
-    })
-    it('should update user\'s quality of sleep record', function() {
-      expect(user.sleepQualityRecord.length).to.equal(3);
-    });
-    it('should update user\'s average hours of sleep', function() {
-      expect(user.hoursSleptAverage).to.equal('7.0');
-    });
-    it('should update user\'s average quality of sleep', function() {
-      expect(user.sleepQualityAverage).to.equal('4.7');
-    });
-  })
-  it('calculateAverageHoursThisWeek should calculate average sleep hours for week before given date', function() {
-    user.sleepHoursRecord = [{date: "2019/09/22", hours: 9.6}, {date: "2019/09/21", hours: 8.2}, {date: "2019/09/20", hours: 9.9}, {date: "2019/09/19", hours: 4.2}, {date: "2019/09/18", hours: 9.5}, {date: "2019/09/17", hours: 7.8}, {date: "2019/09/16", hours: 10.2}, {date: "2019/09/15", hours: 5.7}, {date: "2019/09/14", hours: 8.8}, {date: "2019/09/13", hours: 4.6}, {date: "2019/09/12", hours: 5.3}];
-    expect(user.calculateAverageHoursThisWeek('2019/09/21')).to.equal('7.9');
-  });
-  it('calculateAverageQualityThisWeek should calculate average quality of sleep for week before a given date', function() {
-    user.sleepQualityRecord = [{date: "2019/09/22", quality: 9.6}, {date: "2019/09/21", quality: 8.2}, {date: "2019/09/20", quality: 9.9}, {date: "2019/09/19", quality: 4.2}, {date: "2019/09/18", quality: 9.5}, {date: "2019/09/17", quality: 7.8}, {date: "2019/09/16", quality: 10.2}, {date: "2019/09/15", quality: 5.7}, {date: "2019/09/14", quality: 8.8}, {date: "2019/09/13", quality: 4.6}, {date: "2019/09/12", quality: 5.3}];
-    expect(user.calculateAverageQualityThisWeek('2019/09/22')).to.equal('8.5')
-  });
+//placed in sleep tests
+
+  // describe('updateSleep', function() {
+  //   beforeEach(() => {
+  //     user.updateSleep("2019/06/15", 7, 4.7);
+  //     user.updateSleep("2019/07/14", 6, 4);
+  //     user.updateSleep("2019/08/04", 8, 5.4);
+  //   })
+  //   it('should update user\'s quality of sleep record', function() {
+  //     expect(user.sleepQualityRecord.length).to.equal(3);
+  //   });
+  //   it('should update user\'s average hours of sleep', function() {
+  //     expect(user.hoursSleptAverage).to.equal('7.0');
+  //   });
+  //   it('should update user\'s average quality of sleep', function() {
+  //     expect(user.sleepQualityAverage).to.equal('4.7');
+  //   });
+  // })
+  // placed in sleep test
+  // it('calculateAverageHoursThisWeek should calculate average sleep hours for week before given date', function() {
+  //   user.sleepHoursRecord = [{date: "2019/09/22", hours: 9.6}, {date: "2019/09/21", hours: 8.2}, {date: "2019/09/20", hours: 9.9}, {date: "2019/09/19", hours: 4.2}, {date: "2019/09/18", hours: 9.5}, {date: "2019/09/17", hours: 7.8}, {date: "2019/09/16", hours: 10.2}, {date: "2019/09/15", hours: 5.7}, {date: "2019/09/14", hours: 8.8}, {date: "2019/09/13", hours: 4.6}, {date: "2019/09/12", hours: 5.3}];
+  //   expect(user.calculateAverageHoursThisWeek('2019/09/21')).to.equal('7.9');
+  // });
+  // it('calculateAverageQualityThisWeek should calculate average quality of sleep for week before a given date', function() {
+  //   user.sleepQualityRecord = [{date: "2019/09/22", quality: 9.6}, {date: "2019/09/21", quality: 8.2}, {date: "2019/09/20", quality: 9.9}, {date: "2019/09/19", quality: 4.2}, {date: "2019/09/18", quality: 9.5}, {date: "2019/09/17", quality: 7.8}, {date: "2019/09/16", quality: 10.2}, {date: "2019/09/15", quality: 5.7}, {date: "2019/09/14", quality: 8.8}, {date: "2019/09/13", quality: 4.6}, {date: "2019/09/12", quality: 5.3}];
+  //   expect(user.calculateAverageQualityThisWeek('2019/09/22')).to.equal('8.5')
+  // });
   it('should have a method that return the highest climbing record', function() {
     user.activityRecord = [{flightsOfStairs: 10}, {flightsOfStairs: 15}, {flightsOfStairs: 17}]
     expect(user.findClimbingRecord()).to.equal(17)

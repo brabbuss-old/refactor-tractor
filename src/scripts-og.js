@@ -9,7 +9,7 @@ stairsTrendingCard,stairsUserStairsToday,stepsCalendarTotalActiveMinutesWeekly,s
 stepsTrendingButton,stepsUserStepsToday,trendingStepsPhraseContainer,trendingStairsPhraseContainer,
 userInfoDropdown} from './DOM-loader'
 
-import UserRepository from '../src/classes/UserRepository';
+import UserRepository from './src/classes/UserRepository';
 
 //  <----        non-DOM vars        ---->   //
 let userData;
@@ -37,25 +37,54 @@ const sleepPromise = fetch("https://fe-apps.herokuapp.com/api/v1/fitlit/1908/sle
 
 Promise.all([userPromise, activityPromise, hydrationPromise, sleepPromise])
   .then(data => {
-    activityData = data[1].activityData;
-    hydrationData = data[2].hydrationData;
-    sleepData = data[3].sleepData;
     userData = data[0].userData;
-    userRepository = new UserRepository(userData, activityData, hydrationData, sleepData);
+    userRepository = new UserRepository(userData);
+    console.log(userRepository);
+    activityData = data[1].activityData;
+    getActivities(activityData);
+    hydrationData = data[2].hydrationData;
+    getHydration(hydrationData);
+    sleepData = data[3].sleepData;
+    getSleep(sleepData);
   })
   .then(() => {
     loadApp();
   })
 
+// const getUsers = data => {
+//   data.forEach(user => {
+//     user = new User(user);
+//     userRepository.users.push(user);
+//   });
+// }
+
+const getActivities = data => {
+  data.forEach(activity => {
+    activity = new Activity(activity, userRepository);
+  });
+}
+
+const getHydration = data => {
+  data.forEach(hydration => {
+    hydration = new Hydration(hydration, userRepository);
+  });
+}
+
+const getSleep = data => {
+  data.forEach(sleep => {
+    sleep = new Sleep(sleep, userRepository);
+  });
+}
+
 const loadApp = () => {
-  user = userRepository.getRandomUser()
-  user.findFriendsNames(userRepository.dataObjectArray); //TODO goes inside user as method
+  user = userRepository.users[Math.round(Math.random() * userRepository.users.length)];
+  user.findFriendsNames(userRepository.users);
   defineHydrationByDate();
   updateText();
 }
 
 const defineHydrationByDate = () => {
-  sortedHydrationDataByDate = user.ouncesRecord.sort((a, b) => { //TODO is the hydration lifetime
+  sortedHydrationDataByDate = user.ouncesRecord.sort((a, b) => {
     if (Object.keys(a)[0] > Object.keys(b)[0]) {
       return -1;
     }
