@@ -7,6 +7,7 @@
 box-sizing: border-box;
 margin: 0;
 padding: 0;
+border: 1px solid red;
 }
 
 body {
@@ -143,6 +144,10 @@ main {
   margin: .5vw;
 }
 
+.calendar-card {
+  padding-bottom: 10%;
+}
+
 .card-data-line {
   display: flex;
   justify-content: center;
@@ -161,6 +166,7 @@ main {
 .hydration-data-line {
   display: flex;
   justify-content: center;
+  align-content: center;
   margin-bottom: .2vw;
 }
 
@@ -199,10 +205,6 @@ main {
   background-image: $go-back;
 }
 
-// .steps-go-back-button {
-//   background-image: $go-back;
-// }
-
 .steps-info-button{
   background-image: $info;
 }
@@ -214,10 +216,6 @@ main {
 .steps-calendar-button {
   background-image: $calendar;
 }
-
-// .hydration-go-back-button {
-//   background-image: $go-back;
-// }
 
 .hydration-info-button {
   background-image: $info;
@@ -231,10 +229,6 @@ main {
   background-image: $calendar;
 }
 
-// .stairs-go-back-button {
-//   background-image: $go-back;
-// }
-
 .stairs-info-button {
   background-image: $info;
 }
@@ -246,10 +240,6 @@ main {
 .stairs-calendar-button {
   background-image: $calendar;
 }
-
-// .sleep-go-back-button {
-//   background-image: $go-back;
-// }
 
 .sleep-info-button {
   background-image: $info
