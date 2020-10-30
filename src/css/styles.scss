@@ -1,3 +1,6 @@
+@import 'variables';
+@import 'mixins';
+
 *,
 *:after,
 *:before {
@@ -7,7 +10,7 @@ padding: 0;
 }
 
 body {
-  background-color: #1F1F1F;
+  background-color: $black;
   font-family: 'Oswald', sans-serif;
 }
 
@@ -18,25 +21,15 @@ header {
 }
 
 button:active {
-  border: none;
-  outline: none;
+  @include no-border(none);
 }
 
 #profile-button {
-  background-image: url(../images/profile.png);
-  background-position: center;
-  background-size: 5.6vw;
-  border: none;
-  display: inline;
-  float: right;
-  height: 5.6vw;
-  margin-right: .5vw;
-  margin-top: 1.6vw;
-  width: 5.6vw;
+  @include profile-button();
 }
 
 #user-info-dropdown {
-  background-color: #1F1F1F;
+  background-color: $black;
   color: white;
   margin-left: 60%;
   margin-top: -1.2%;
@@ -69,7 +62,7 @@ h3 {
 
 h2 {
   display: inline;
-  font-family: 'Work Sans', sans-serif;
+  font-family: $main-box-font-family;
   font-size: 3vw;
   font-weight: 700;
   letter-spacing: .2em;
@@ -86,7 +79,7 @@ h5 {
 }
 
 p {
-  font-family: 'Work Sans', sans-serif;
+  font-family: $main-box-font-family;
   font-size: 1.2vw;
   font-weight: 600;
   letter-spacing: .2vw;
@@ -179,130 +172,104 @@ main {
 
 /* BUTTONS */
 .info-button {
-  background-position: center;
-  background-size: 3.4vw;
-  background-color: transparent;
-  border: none;
-  display: inline;
-  height: 3.4vw;
+  @include main-button-style();
   margin-left: 1vw;
-  width: 3.4vw;
+
 }
 
 .friends-button {
-  background-position: center;
-  background-size: 3.4vw;
-  background-color: transparent;
-  border: none;
-  display: inline;
-  height: 3.4vw;
+  @include main-button-style();
   margin-right: 1vw;
-  width: 3.4vw;
 }
 
 .calendar-button {
-  background-position: center;
-  background-size: 3.4vw;
-  background-color: transparent;
-  border: none;
-  display: inline;
-  float: right;
-  height: 3.4vw;
+  @include main-button-style();
   margin-right: 1vw;
-  width: 3.4vw;
+  float: right;
 }
 
 .trending-button {
-  background-position: center;
-  background-size: 3.4vw;
-  background-color: transparent;
-  border: none;
-  height: 3.4vw;
+  @include main-button-style();
   margin-left: 1vw;
-  width: 3.4vw;
 }
 
 .go-back-button {
-  background-position: center;
-  background-size: 3.4vw;
-  background-color: transparent;
-  border: none;
-  height: 3.4vw;
+  @include main-button-style();
   margin: 1vw;
-  width: 3.4vw;
+  background-image: $go-back;
 }
 
-.steps-go-back-button {
-  background-image: url(../images/goback.svg);
-}
+// .steps-go-back-button {
+//   background-image: $go-back;
+// }
 
 .steps-info-button{
-  background-image: url(../images/info.svg);
+  background-image: $info;
 }
 
 .steps-friends-button {
-  background-image: url(../images/friends.svg);
+  background-image: $friends-button;
 }
 
 .steps-calendar-button {
-  background-image: url(../images/calendar.svg);
+  background-image: $calendar;
 }
 
-.hydration-go-back-button {
-  background-image: url(../images/goback.svg);
-}
+// .hydration-go-back-button {
+//   background-image: $go-back;
+// }
 
 .hydration-info-button {
-  background-image: url(../images/info.svg);
+  background-image: $info;
 }
 
 .hydration-friends-button {
-  background-image: url(../images/friends.svg);
+  background-image: $friends-button;
 }
 
 .hydration-calendar-button {
-  background-image: url(../images/calendar.svg);
+  background-image: $calendar;
 }
 
-.stairs-go-back-button {
-  background-image: url(../images/goback.svg);
-}
+// .stairs-go-back-button {
+//   background-image: $go-back;
+// }
 
 .stairs-info-button {
-  background-image: url(../images/info.svg);
+  background-image: $info;
 }
 
 .stairs-friends-button {
-  background-image: url(../images/friends.svg);
+  background-image: $friends-button;
 }
 
 .stairs-calendar-button {
-  background-image: url(../images/calendar.svg);
+  background-image: $calendar;
 }
 
-.sleep-go-back-button {
-  background-image: url(../images/goback.svg);
-}
+// .sleep-go-back-button {
+//   background-image: $go-back;
+// }
 
 .sleep-info-button {
-  background-image: url(../images/info.svg)
+  background-image: $info
 }
 
 .sleep-friends-button {
-  background-image: url(../images/friends.svg);
+  background-image: $friends-button;
 }
 
 .sleep-calendar-button {
-  background-image: url(../images/calendar.svg);
+  background-image: $calendar;
 }
 
 
 .steps-trending-button {
-  background-image: url(../images/trending.svg);
+  background-image: $trending-button;
 }
 
 .stairs-trending-button {
-  background-image: url(../images/trending.svg);
+  background-image: $trending-button;
 }
 
 /* CHANGING CLASSES */
