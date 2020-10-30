@@ -1,69 +1,15 @@
 import './css/base.scss';
-import './css/index.scss'
+import './css/styles.scss';
 
-import {
-  dailyOz,
-  dropdownEmail,
-  dropdownFriendsStepsContainer,
-  dropdownGoal,
-  dropdownName,
-  headerName,
-  hydrationCalendarCard,
-  hydrationFriendOuncesToday,
-  hydrationFriendsCard,
-  hydrationInfoCard,
-  hydrationInfoGlassesToday,
-  hydrationMainCard,
-  hydrationUserOuncesToday,
-  hydrationNewInputCard,
-  mainPage,
-  profileButton,
-  sleepCalendarCard,
-  sleepCalendarHoursAverageWeekly,
-  sleepCalendarQualityAverageWeekly,
-  sleepFriendLongestSleeper,
-  sleepFriendsCard,
-  sleepFriendWorstSleeper,
-  sleepInfoCard,
-  sleepInfoHoursAverageAlltime,
-  sleepInfoQualityAverageAlltime,
-  sleepInfoQualityToday,
-  sleepMainCard,
-  sleepUserHoursToday,
-  sleepNewInputCard,
-  stairsCalendarCard,
-  stairsCalendarFlightsAverageWeekly,
-  stairsCalendarStairsAverageWeekly,
-  stepsMainCard,
-  stepsInfoCard,
-  stepsFriendsCard,
-  stepsTrendingCard,
-  stepsCalendarCard,
-  stepsNewInputCard,
-  stairsFriendFlightsAverageToday,
-  stairsFriendsCard,
-  stairsInfoCard,
-  stairsInfoFlightsToday,
-  stairsMainCard,
-  stairsTrendingButton,
-  stairsTrendingCard,
-  stairsUserStairsToday,
-  stairsNewInputCard,
-  stepsCalendarTotalActiveMinutesWeekly,
-  stepsCalendarTotalStepsWeekly,
-  stepsFriendAverageStepGoal,
-  stepsInfoActiveMinutesToday,
-  stepsInfoMilesWalkedToday,
-  stepsFriendActiveMinutesAverageToday,
-  stepsFriendStepsAverageToday,
-  stepsTrendingButton,
-  stepsUserStepsToday,
-  trendingStepsPhraseContainer,
-  trendingStairsPhraseContainer,
-  userInfoDropdown,
-} from "./DOM-loader";
+import {dailyOz, dropdownEmail,dropdownFriendsStepsContainer,dropdownGoal,dropdownName,headerName,hydrationCalendarCard,hydrationFriendOuncesToday,hydrationFriendsCard,
+hydrationInfoCard,hydrationInfoGlassesToday,hydrationMainCard,hydrationUserOuncesToday,mainPage,profileButton,sleepCalendarCard,sleepCalendarHoursAverageWeekly,sleepCalendarQualityAverageWeekly,sleepFriendLongestSleeper,
+sleepFriendsCard,sleepFriendWorstSleeper,sleepInfoCard,sleepInfoHoursAverageAlltime,sleepInfoQualityAverageAlltime,sleepInfoQualityToday,sleepMainCard,sleepUserHoursToday,stairsCalendarCard,stairsCalendarFlightsAverageWeekly,
+stairsCalendarStairsAverageWeekly,stepsMainCard,stepsInfoCard,stepsFriendsCard,stepsTrendingCard,stepsCalendarCard,stairsFriendFlightsAverageToday,stairsFriendsCard,stairsInfoCard,stairsInfoFlightsToday,stairsMainCard,stairsTrendingButton,
+stairsTrendingCard,stairsUserStairsToday,stepsCalendarTotalActiveMinutesWeekly,stepsCalendarTotalStepsWeekly,stepsFriendAverageStepGoal,stepsInfoActiveMinutesToday,stepsInfoMilesWalkedToday,stepsFriendActiveMinutesAverageToday,stepsFriendStepsAverageToday,
+stepsTrendingButton,stepsUserStepsToday,trendingStepsPhraseContainer,trendingStairsPhraseContainer,
+userInfoDropdown} from './DOM-loader'
 
-import UserRepository from '../src/classes/UserRepository';
+import UserRepository from './src/classes/UserRepository';
 
 //  <----        non-DOM vars        ---->   //
 let userData;
@@ -91,25 +37,54 @@ const sleepPromise = fetch("https://fe-apps.herokuapp.com/api/v1/fitlit/1908/sle
 
 Promise.all([userPromise, activityPromise, hydrationPromise, sleepPromise])
   .then(data => {
-    activityData = data[1].activityData;
-    hydrationData = data[2].hydrationData;
-    sleepData = data[3].sleepData;
     userData = data[0].userData;
-    userRepository = new UserRepository(userData, activityData, hydrationData, sleepData);
+    userRepository = new UserRepository(userData);
+    console.log(userRepository);
+    activityData = data[1].activityData;
+    getActivities(activityData);
+    hydrationData = data[2].hydrationData;
+    getHydration(hydrationData);
+    sleepData = data[3].sleepData;
+    getSleep(sleepData);
   })
   .then(() => {
     loadApp();
   })
 
+// const getUsers = data => {
+//   data.forEach(user => {
+//     user = new User(user);
+//     userRepository.users.push(user);
+//   });
+// }
+
+const getActivities = data => {
+  data.forEach(activity => {
+    activity = new Activity(activity, userRepository);
+  });
+}
+
+const getHydration = data => {
+  data.forEach(hydration => {
+    hydration = new Hydration(hydration, userRepository);
+  });
+}
+
+const getSleep = data => {
+  data.forEach(sleep => {
+    sleep = new Sleep(sleep, userRepository);
+  });
+}
+
 const loadApp = () => {
-  user = userRepository.getRandomUser()
-  user.findFriendsNames(userRepository.dataObjectArray); //TODO goes inside user as method
+  user = userRepository.users[Math.round(Math.random() * userRepository.users.length)];
+  user.findFriendsNames(userRepository.users);
   defineHydrationByDate();
   updateText();
 }
 
 const defineHydrationByDate = () => {
-  sortedHydrationDataByDate = user.ouncesRecord.sort((a, b) => { //TODO is the hydration lifetime
+  sortedHydrationDataByDate = user.ouncesRecord.sort((a, b) => {
     if (Object.keys(a)[0] > Object.keys(b)[0]) {
       return -1;
     }
@@ -118,6 +93,7 @@ const defineHydrationByDate = () => {
     }
     return 0;
   });
+  console.log(sortedHydrationDataByDate)
 }
 
 const updateText = () => {
@@ -282,9 +258,6 @@ function showInfo() {
   if (event.target.classList.contains('steps-calendar-button')) {
     flipCard(stepsMainCard, stepsCalendarCard);
   }
-  if (event.target.classList.contains("steps-new-input-button")) {
-    flipCard(stepsMainCard, stepsNewInputCard);
-  }
   if (event.target.classList.contains('hydration-info-button')) {
     flipCard(hydrationMainCard, hydrationInfoCard);
   }
@@ -294,9 +267,6 @@ function showInfo() {
   if (event.target.classList.contains('hydration-calendar-button')) {
     flipCard(hydrationMainCard, hydrationCalendarCard);
   }
-   if (event.target.classList.contains("hydration-new-input-button")) {
-     flipCard(hydrationMainCard, hydrationNewInputCard);
-   }
   if (event.target.classList.contains('stairs-info-button')) {
     flipCard(stairsMainCard, stairsInfoCard);
   }
@@ -309,9 +279,6 @@ function showInfo() {
   if (event.target.classList.contains('stairs-calendar-button')) {
     flipCard(stairsMainCard, stairsCalendarCard);
   }
-  if (event.target.classList.contains("stairs-new-input-button")) {
-    flipCard(stairsMainCard, stairsNewInputCard);
-  }
   if (event.target.classList.contains('sleep-info-button')) {
     flipCard(sleepMainCard, sleepInfoCard);
   }
@@ -320,9 +287,6 @@ function showInfo() {
   }
   if (event.target.classList.contains('sleep-calendar-button')) {
     flipCard(sleepMainCard, sleepCalendarCard);
-  }
-  if (event.target.classList.contains("sleep-new-input-button")) {
-    flipCard(sleepMainCard, sleepNewInputCard);
   }
   if (event.target.classList.contains('steps-go-back-button')) {
     flipCard(event.target.parentNode, stepsMainCard);
