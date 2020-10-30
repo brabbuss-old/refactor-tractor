@@ -52,21 +52,18 @@ button:active {
 h1 {
   color: #fff;
   display: inline;
-  font-size: 5.4vw;
-  letter-spacing: .2em;
+  @include font-style(5.4vw, .2em);
 }
 
 h3 {
-  font-size: 7vw;
-  letter-spacing: .1em;
+  @include font-style(7vw, .1em);
 }
 
 h2 {
   display: inline;
   font-family: $main-box-font-family;
-  font-size: 3vw;
+  @include font-style(3vw, .2em);
   font-weight: 700;
-  letter-spacing: .2em;
 }
 
 h4 {
@@ -81,9 +78,8 @@ h5 {
 
 p {
   font-family: $main-box-font-family;
-  font-size: 1.2vw;
+  @include font-style(1.2vw, .2vw);
   font-weight: 600;
-  letter-spacing: .2vw;
   margin-right: 1vw;
   padding-top: 2vw;
   text-align: right;
@@ -102,16 +98,14 @@ main {
 
 .main-card {
   align-items: center;
-  display: flex;
+  @include display(center);
   flex-direction: column;
   height: 20vw;
-  justify-content: center;
 }
 
 .main-card-top-row {
   align-items: center;
-  display: flex;
-  justify-content: space-between;
+  @include display(space-between);
   width: 100%;
 }
 
@@ -121,27 +115,19 @@ main {
 }
 
 #steps-card-container {
-  background-color: #E66100;
-  grid-area: steps;
-  margin: .5vw;
+  @include card-container(#E66100, steps);
 }
 
 #hydration-card-container {
-  background-color: #0C7BDC;
-  grid-area: hydration;
-  margin: .5vw;
+  @include card-container(#0C7BDC, hydration);
 }
 
 #stairs-card-container {
-  background-color: #8975B2;
-  grid-area: stairs;
-  margin: .5vw;
+  @include card-container(#8975B2, stairs);
 }
 
 #sleep-card-container {
-  background-color: #23879f;;
-  grid-area: sleep;
-  margin: .5vw;
+  @include card-container(#23879f, sleep);
 }
 
 .calendar-card {
@@ -149,8 +135,7 @@ main {
 }
 
 .card-data-line {
-  display: flex;
-  justify-content: center;
+  @include display(center);
   margin-bottom: 2vw;
 }
 
@@ -164,9 +149,7 @@ main {
 }
 
 .hydration-data-line {
-  display: flex;
-  justify-content: center;
-  align-content: center;
+  @include display(center);
   margin-bottom: .2vw;
 }
 
@@ -178,88 +161,29 @@ main {
 
 /* BUTTONS */
 .info-button {
-  @include main-button-style();
+  @include main-button-style($info);
   margin-left: 1vw;
-
 }
 
 .friends-button {
-  @include main-button-style();
+  @include main-button-style($friends-button);
   margin-right: 1vw;
 }
 
 .calendar-button {
-  @include main-button-style();
+  @include main-button-style($calendar);
   margin-right: 1vw;
   float: right;
 }
 
 .trending-button {
-  @include main-button-style();
+  @include main-button-style($trending-button);
   margin-left: 1vw;
 }
 
 .go-back-button {
-  @include main-button-style();
+  @include main-button-style($go-back);
   margin: 1vw;
-  background-image: $go-back;
-}
-
-.steps-info-button{
-  background-image: $info;
-}
-
-.steps-friends-button {
-  background-image: $friends-button;
-}
-
-.steps-calendar-button {
-  background-image: $calendar;
-}
-
-.hydration-info-button {
-  background-image: $info;
-}
-
-.hydration-friends-button {
-  background-image: $friends-button;
-}
-
-.hydration-calendar-button {
-  background-image: $calendar;
-}
-
-.stairs-info-button {
-  background-image: $info;
-}
-
-.stairs-friends-button {
-  background-image: $friends-button;
-}
-
-.stairs-calendar-button {
-  background-image: $calendar;
-}
-
-.sleep-info-button {
-  background-image: $info
-}
-
-.sleep-friends-button {
-  background-image: $friends-button;
-}
-
-.sleep-calendar-button {
-  background-image: $calendar;
-}
-
-
-.steps-trending-button {
-  background-image: $trending-button;
-}
-
-.stairs-trending-button {
-  background-image: $trending-button;
 }
 
 /* CHANGING CLASSES */

@@ -1,11 +1,30 @@
+//card container styling
+@mixin card-container($color, $data-type) {
+  background-color: $color;
+  grid-area: $data-type;
+  margin: .5vw;
+}
+
 //border
 @mixin no-border($value) {
   border: $value;
   outline: $value;
 }
 
+//@font-face
+@mixin font-style($size, $spacing) {
+  font-size: $size;
+  letter-spacing: $spacing;
+}
+
+//display
+@mixin display($justify) {
+  display: flex;
+  justify-content: $justify;
+}
+
 //buttons
-@mixin main-button-style() {
+@mixin main-button-style($image) {
   background-position: center;
   background-size: 3.4vw;
   background-color: transparent;
@@ -13,6 +32,8 @@
   display: inline;
   height: 3.4vw;
   width: 3.4vw;
+  background-image: $image;
+
 }
 
 @mixin profile-button() {
