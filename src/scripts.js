@@ -117,7 +117,7 @@ stepsSubmitButton.addEventListener("click", function () {
 
 hydrationSubmitbutton.addEventListener("click", function () {
   getHydrationInput(
-    hydrationInputDate.value, 
+    hydrationInputDate.value,
     numOuncesInput.value
   );
 });
@@ -251,7 +251,7 @@ Promise.all([userPromise, activityPromise, hydrationPromise, sleepPromise])
 
 const loadApp = () => {
   user = userRepository.getRandomUser();
-  user.getUserAverageData();
+  user.populateUserData();
   user.findFriendsNames(userRepository.dataObjectArray); //TODO goes inside user as method
   defineHydrationByDate();
   updateText();
