@@ -21,6 +21,7 @@ export default class ParentRepository {
       return parsedData
     }, [])
   }
+  
   addNewDataObject(dataObject) {
     this.dataObjectArray.push(this.classChooser.instantiateClass(dataObject));
   }

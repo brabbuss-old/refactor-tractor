@@ -150,15 +150,17 @@ const loadApp = () => {
 }
 
 const defineHydrationByDate = () => {
-  sortedHydrationDataByDate = user.ouncesRecord.sort((a, b) => { //TODO is the hydration lifetime
-    if (Object.keys(a)[0] > Object.keys(b)[0]) {
-      return -1;
-    }
-    if (Object.keys(a)[0] < Object.keys(b)[0]) {
-      return 1;
-    }
-    return 0;
-  });
+  console.log(user.ouncesRecord)
+  sortedHydrationDataByDate = user.ouncesRecord.dataObjectArray;
+  //user.ouncesRecord.sort((a, b) => { //TODO is the hydration lifetime
+  //   if (Object.keys(a)[0] > Object.keys(b)[0]) {
+  //     return -1;
+  //   }
+  //   if (Object.keys(a)[0] < Object.keys(b)[0]) {
+  //     return 1;
+  //   }
+  //   return 0;
+  // });
 }
 
 const updateText = () => {
@@ -188,30 +190,29 @@ const displayHydrationInfo = () => {
     return hydration.userID === user.id && hydration.date === date;
   }).numOunces;
   hydrationUserOuncesToday.innerText =
-  hydrationFriendOuncesToday.innerText = userRepository.calculateAverageDailyWater(date);
+  hydrationFriendOuncesToday.innerText = userRepository.getGlobalWaterAvgByDate(date);
   hydrationInfoGlassesToday.innerText = hydrationData.find(hydration => {
     return hydration.userID === user.id && hydration.date === date;
   }).numOunces / 8;
 }
 
 const displaySleepInfo = () => {
+
   sleepCalendarHoursAverageWeekly.innerText = user.calculateAverageHoursThisWeek(date);
 
   sleepCalendarQualityAverageWeekly.innerText = user.calculateAverageQualityThisWeek(date);
 
-  sleepFriendLongestSleeper.innerText = userRepository.users.find(user => {
+  sleepFriendLongestSleeper.innerText = userRepository.userObjectArray.find(user => {
     return user.id === userRepository.getLongestSleepers(date)
   }).getFirstName();
 
-  sleepFriendWorstSleeper.innerText = userRepository.users.find(user => {
+  sleepFriendWorstSleeper.innerText = userRepository.userObjectArray.find(user => {
     return user.id === userRepository.getWorstSleepers(date)
   }).getFirstName();
 
   sleepInfoHoursAverageAlltime.innerText = user.hoursSleptAverage;
 
-  stepsInfoMilesWalkedToday.innerText = user.activityRecord.find(activity => {
-    return (activity.date === date && activity.userId === user.id)
-  }).calculateMiles(userRepository);
+  stepsInfoMilesWalkedToday.innerText = user.activityRecord.getMilesWalked(date);
 
   sleepInfoQualityAverageAlltime.innerText = user.sleepQualityAverage;
 
