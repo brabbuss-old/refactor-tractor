@@ -7,11 +7,13 @@ export default class ParentRepository {
     this.classChooser = new ClassChooser(this.dataClass, date)
     this.userID = user.id;
     this.dataObjectArray = this.parseData(fetchedData);
+    // console.log(fetchedData);
   }
 
   // Methods to add to data array of given class objects
 
   parseData(fetchedData) {
+    // console.log(fetchedData);
     return fetchedData.reduce((parsedData, dataObject) => {
       if (dataObject.userID === this.userID) {
         parsedData.push(this.classChooser.instantiateClass(dataObject))
@@ -70,7 +72,6 @@ export default class ParentRepository {
     }
   }
   getWeeklyTotalByDateAndKey(date, key) {
-    console.log(date,key);
     return this.getPastWeekData(date).reduce((dataTotal, dataObject) => {
       dataTotal += dataObject[key];
       return dataTotal;

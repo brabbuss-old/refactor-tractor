@@ -140,11 +140,8 @@ import ParentRepository from './ParentRepository';
     return this.totalStepsThisWeek;
   }
   findFriendsNames(friends) {
-    this.friends.forEach(friend => {
-      let matchedFriend = friends.find(user => user.id === friend);
-      if (matchedFriend) {
-        this.friendsNames.push(matchedFriend.getFirstName());  // only if friend then push name into list
-      }
+    this.friendObjects.forEach(friend => {
+      this.friendsNames.push(friend.getFirstName());
     })
   }
   findFriendsTotalStepsForWeek(date) {
@@ -157,17 +154,6 @@ import ParentRepository from './ParentRepository';
     })
   }
 
-  // findTrendingStepDays() {
-  //   let positiveDays = [];
-  //   this.activityRecord.forEach((record,i) => {
-  //     if (this.activityRecord[i + 1] && this.activityRecord[i].steps > this.activityRecord[i + 1].steps) {
-  //       positiveDays.unshift(this.activityRecord[i].date);
-  //     } else if (positiveDays.length > 2) {
-  //       this.trendingStepDays.push(`Your most recent positive step streak was ${positiveDays[0]} - ${positiveDays[positiveDays.length - 1]}!`);
-  //       positiveDays = [];
-  //     }
-  //   })
-  // }
   findTrendingStairsDays() {
     let positiveDays = [];
     this.activityRecord.dataObjectArray.forEach((activityObject, i, record) => {

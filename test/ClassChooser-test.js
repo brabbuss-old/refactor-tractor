@@ -19,15 +19,14 @@ describe('ClassChooser', function() {
     expect(ClassChooser).to.be.a('function');
   });
   it('should be an instance of ClassChooser', function() {
-
     classChooser = new ClassChooser()
-
+    
     expect(classChooser).to.be.an.instanceof(ClassChooser);
   });
   it('should have a className', function() {
-    classChooser = new ClassChooser('users')
+    classChooser = new ClassChooser('users', '2020/10/31')
 
-    expect(classChooser.className).to.equal('users');
+    expect(classChooser.dataClassName).to.equal('users');
   });
   it('should instantiate Class objects', function() {
     classChooser1 = new ClassChooser('users');

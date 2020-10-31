@@ -19,10 +19,14 @@ export default class ActivityRepository extends ParentRepository {
     this.addNewDataObject(activityDataObject)
   }
   getStepsThisWeek(date) {
-    return this.getPastWeekData(date).reduce((stepsTotal, activity) => {
-      stepsTotal += activity.numSteps;
-      return stepsTotal;
-    }, 0);
+    if (this.getPastWeekData(date)) {
+      return this.getPastWeekData(date).reduce((stepsTotal, activity) => {
+        stepsTotal += activity.numSteps;
+        return stepsTotal;
+      }, 0);
+    } else {
+      return 'No data for this week'
+    }
   }
   getMilesWalked(date) {
     let activityObject = this.findDataObjectByDate(date);

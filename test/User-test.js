@@ -5,7 +5,7 @@ import Hydration from '../src/classes/data-classes/Hydration';
 import User from '../src/classes/User';
 import {sleepSampleData, hydrationSampleData, userSampleData, activitySampleData} from "../src/data/test-sample-data"
 
-describe.only('User', function() {
+describe('User', function() {
   let user, user2;
   let friend1
   let friend2
@@ -127,18 +127,6 @@ describe.only('User', function() {
     expect(user.sleepQualityAverage).to.equal(3.4)
     expect(user.accomplishedDays.length).to.equal(1)
   });
-
-
-  //
-  // it('should have friends', function() {
-  //   expect(user.friends).to.deep.equal()
-  // });
-  // it('should have friends', function() {
-  //   expect(user.friends).to.deep.equal()
-  // });
-
-
-
   it('should have a method that return the highest climbing record', function() {
     expect(user.findClimbingRecord()).to.equal(143)
   });
@@ -165,7 +153,7 @@ describe.only('User', function() {
   });
   it('findFriendsNames should find the first names of friends', function() {
     user.findFriendsNames(friends);
-    expect(user.friendsNames).to.deep.equal(['ESTELLE','BRUCE','BOB']);
+    expect(user.friendsNames).to.deep.equal([ 'BRUCE', 'ESTELLE', 'BOB' ]);
   });
   it('calculateTotalStepsThisWeek should add users steps for week', function() {
     user.getUserAverageData();
