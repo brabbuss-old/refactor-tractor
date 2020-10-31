@@ -1,16 +1,19 @@
 import ClassChooser from './ClassChooser';
 
 export default class ParentRepository {
-  constructor(fetchedData, user, dataClass) {
+  constructor(fetchedData, user, dataClass, date) {
+    this.date = date;
     this.dataClass = dataClass;
-    this.classChooser = new ClassChooser(this.dataClass)
+    this.classChooser = new ClassChooser(this.dataClass, date)
     this.userID = user.id;
     this.dataObjectArray = this.parseData(fetchedData);
+    // console.log(fetchedData);
   }
 
   // Methods to add to data array of given class objects
 
   parseData(fetchedData) {
+    // console.log(fetchedData);
     return fetchedData.reduce((parsedData, dataObject) => {
       if (dataObject.userID === this.userID) {
         parsedData.push(this.classChooser.instantiateClass(dataObject))
@@ -46,12 +49,32 @@ export default class ParentRepository {
       dataTotal += dataObject[dataObjectKey];
       return dataTotal;
     }, 0)/7);
-    return decimals ? Number(weeklyAverage.toFixed(decimals)) : Math.round(weeklyAverage);
+    return decimals ? Number(weeklyAverage.toFixed(decimals)) : Number(weeklyAverage.toFixed(0))
   }
   getHighLowDataPointByKey(dataObjectKey, highOrLow) {
     let sortedData = this.dataObjectArray.sort((a, b) => {
       return highOrLow === 'low' ? a[dataObjectKey] - b[dataObjectKey] : b[dataObjectKey] - a[dataObjectKey];
     })
     return sortedData[0]
+  }
+  getAllDataObjectsOnDate(date) {
+    return this.dataObjectArray.filter(dataObject => {
+      return dataObject.date === date;
+    })
+  }
+  getTotalByDateAndKey(date, key) {
+    let matchedData = this.getAllDataObjectsOnDate(date);
+    if (matchedData) {
+      return matchedData.reduce((total, dataObject) => {
+        total += dataObject[key]
+        return total
+      }, 0)
+    }
+  }
+  getWeeklyTotalByDateAndKey(date, key) {
+    return this.getPastWeekData(date).reduce((dataTotal, dataObject) => {
+      dataTotal += dataObject[key];
+      return dataTotal;
+    }, 0)
   }
 }

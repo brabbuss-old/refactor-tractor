@@ -1,4 +1,6 @@
-import { expect } from 'chai'
+import {
+  expect
+} from 'chai'
 import Activity from '../src/classes/data-classes/Activity';
 import User from '../src/classes/User';
 
