@@ -49,7 +49,7 @@ export default class ParentRepository {
       dataTotal += dataObject[dataObjectKey];
       return dataTotal;
     }, 0)/7);
-    return decimals ? Number(weeklyAverage.toFixed(decimals)) : Math.round(weeklyAverage);
+    return decimals ? Number(weeklyAverage.toFixed(decimals)) : Number(weeklyAverage.toFixed(0))
   }
   getHighLowDataPointByKey(dataObjectKey, highOrLow) {
     let sortedData = this.dataObjectArray.sort((a, b) => {

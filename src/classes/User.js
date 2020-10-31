@@ -6,6 +6,8 @@ import ParentRepository from './ParentRepository';
 
  export default class User {
   constructor(user, userData, activityData, hydrationData, sleepData, date) {
+    // this.activityData = activityData;
+
     this.date = date;
     this.id = user.id;
     this.name = user.name;
@@ -37,6 +39,7 @@ import ParentRepository from './ParentRepository';
   populateSleepData(sleepData) {
     if (sleepData) {
       this.sleepRecord = new SleepRepository(sleepData, this, 'sleep', this.date);
+      // console.log(this.sleepRecord);
     } else {
       return []
     }
@@ -119,10 +122,13 @@ import ParentRepository from './ParentRepository';
   sumDailyOunces(date) {
     return this.ouncesRecord.getTotalByDateAndKey(date, 'numOunces');
   }
+
   findClimbingRecord() {
     return this.activityRecord.getHighLowDataPointByKey('flightsOfStairs', 'high').flightsOfStairs
   }
-
+  getActivityDataByDate(date, dataType) {
+    return this.activityRecord.findDataObjectByDate(date)[dataType]
+  }
   calculateDailyCalories(date) {
     let totalMinutes = this.activityRecord.getTotalByDateAndKey(date, 'minutesActive')
     return Math.round(totalMinutes * 7.6);
@@ -139,6 +145,17 @@ import ParentRepository from './ParentRepository';
   calculateTotalStepsThisWeek(date) {
     return this.totalStepsThisWeek;
   }
+
+  // calculaTotalStepsAllTimeAverage() {
+  //   return this.activityRecord.reduce((totalSteps, activityObject) => {
+  //     totalSteps += activityObject.numSteps
+  //     return totalSteps
+  //   }, totalSteps)/this.activityRecord.length
+  // }
+  calculateAverageQualityThisWeek(date) {
+    return this.sleepRecord.getAverageDataByWeekAndKey(date, 'sleepQuality', 1)
+  }
+
   findFriendsNames(friends) {
     this.friendObjects.forEach(friend => {
       this.friendsNames.push(friend.getFirstName());
