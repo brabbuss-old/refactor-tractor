@@ -2,19 +2,19 @@ import ClassChooser from './ClassChooser';
 import ParentRepository from './ParentRepository';
 
 export default class SleepRepository extends ParentRepository {
-  constructor(fetchedData, user, dataClass) {
-    super(fetchedData, user, dataClass)
+  constructor(fetchedData, user, dataClass, date) {
+    super(fetchedData, user, dataClass, date)
     this.weeklySleepHours;
     this.weeklySleepQuality;
   }
   addNewSleepData(date, hours, quality) {
-    let activityDataObject = {
+    let sleepDataObject = {
       "userID": this.userID,
       "date": date,
       "hoursSlept": hours,
       "sleepQuality": quality
     }
-    this.addNewDataObject(activityDataObject)
+    this.addNewDataObject(sleepDataObject)
   }
   getDayByDayQualityOrHours(date, qualityOrHours) {
     return this.getPastWeekData(date).map(sleepObject => {

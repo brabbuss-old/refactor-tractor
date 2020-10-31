@@ -4,18 +4,19 @@ import Sleep from './data-classes/Sleep';
 import User from './User';
 
 class ClassChooser {
-  constructor(className) {
-    this.className = className;
+  constructor(dataClassName, date) {
+    this.dataClassName = dataClassName;
+    this.date = date;
   }
   instantiateClass(dataObject) {
-    if (this.className === 'activities') {
+    if (this.dataClassName === 'activities') {
       return new Activity(dataObject)
-    } else if (this.className === 'sleep') {
+    } else if (this.dataClassName === 'sleep') {
       return new Sleep(dataObject)
-    } else if (this.className === 'hydration') {
+    } else if (this.dataClassName === 'hydration') {
       return new Hydration(dataObject)
-    } else if (this.className === 'users') {
-      return new User(dataObject)
+    } else if (this.dataClassName === 'users') {
+      return new User(dataObject, this.date)
     }
   }
 }

@@ -2,8 +2,8 @@ import ClassChooser from './ClassChooser';
 import ParentRepository from './ParentRepository';
 
 export default class ActivityRepository extends ParentRepository {
-  constructor(fetchedData, user, dataClass) {
-    super(fetchedData, user, dataClass)
+  constructor(fetchedData, user, dataClass, date) {
+    super(fetchedData, user, dataClass, date)
     this.strideLength = user.strideLength;
     this.dailyStepGoal = user.dailyStepGoal;
   }
@@ -17,6 +17,16 @@ export default class ActivityRepository extends ParentRepository {
       "flightsOfStairs": stairs
     }
     this.addNewDataObject(activityDataObject)
+  }
+  getStepsThisWeek(date) {
+    if (this.getPastWeekData(date)) {
+      return this.getPastWeekData(date).reduce((stepsTotal, activity) => {
+        stepsTotal += activity.numSteps;
+        return stepsTotal;
+      }, 0);
+    } else {
+      return 'No data for this week'
+    }
   }
   getMilesWalked(date) {
     let activityObject = this.findDataObjectByDate(date);
