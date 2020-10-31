@@ -299,7 +299,7 @@ const displayHydrationInfo = () => {
   let hydroNum = hydrationData.find((hydration) => {
     return hydration.userID === user.id && hydration.date === date;
   }).numOunces;
-  hydrationUserOuncesToday.innerText = 50
+  hydrationUserOuncesToday.innerText = user.sumDailyOunces(date);
   hydrationAllUsersToday.innerText = userRepository.getGlobalWaterAvgByDate(date);
   hydrationInfoGlassesToday.innerText =
     hydrationData.find((hydration) => {
