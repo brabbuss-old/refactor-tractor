@@ -302,9 +302,9 @@ const displayHydrationInfo = () => {
   hydrationUserOuncesToday.innerText = user.sumDailyOunces(date);
   hydrationAllUsersToday.innerText = userRepository.getGlobalWaterAvgByDate(date);
   hydrationInfoGlassesToday.innerText =
-    hydrationData.find((hydration) => {
-      return hydration.userID === user.id && hydration.date === date;
-    }).numOunces / 8;
+    (hydrationData.find((hydration) => {
+      return hydration.userID === user.id && hydration.date === date
+    }).numOunces / 8).toFixed(1);
 };
 
 const displaySleepInfo = () => {
