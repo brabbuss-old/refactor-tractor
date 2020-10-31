@@ -258,7 +258,6 @@ const loadApp = () => {
 };
 
 const defineHydrationByDate = () => {
-  console.log(user.ouncesRecord);
   sortedHydrationDataByDate = user.ouncesRecord.dataObjectArray;
   //user.ouncesRecord.sort((a, b) => { //TODO is the hydration lifetime
   //   if (Object.keys(a)[0] > Object.keys(b)[0]) {
@@ -358,14 +357,10 @@ const displayStairsInfo = () => {
     userRepository.getGlobalStairAvgByDate(date) / 12
   ).toFixed(1);
 
-  stairsInfoFlightsToday.innerText = activityData.find((activity) => {
-    return activity.userID === user.id && activity.date === date;
-  }).flightsOfStairs;
+  stairsInfoFlightsToday.innerText = user.getActivityDataByDate(date, 'flightsOfStairs');
+  console.log(user.activityRecord.findDataObjectByDate(date));
 
-  stairsUserStairsToday.innerText =
-    activityData.find((activity) => {
-      return activity.userID === user.id && activity.date === date;
-    }).flightsOfStairs * 12;
+  stairsUserStairsToday.innerText = user.getActivityDataByDate(date, 'flightsOfStairs') * 12;
 
   stairsCalendarFlightsAverageWeekly.innerText = user.calculateAverageFlightsThisWeek(
     date
