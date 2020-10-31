@@ -9,7 +9,7 @@ import {
   dropdownName,
   headerName,
   hydrationCalendarCard,
-  hydrationFriendOuncesToday,
+  hydrationAllUsersToday,
   hydrationFriendsCard,
   hydrationInfoCard,
   hydrationInfoGlassesToday,
@@ -299,9 +299,8 @@ const displayHydrationInfo = () => {
   let hydroNum = hydrationData.find((hydration) => {
     return hydration.userID === user.id && hydration.date === date;
   }).numOunces;
-  hydrationUserOuncesToday.innerText = hydrationFriendOuncesToday.innerText = userRepository.getGlobalWaterAvgByDate(
-    date
-  );
+  hydrationUserOuncesToday.innerText = 50
+  hydrationAllUsersToday.innerText = userRepository.getGlobalWaterAvgByDate(date);
   hydrationInfoGlassesToday.innerText =
     hydrationData.find((hydration) => {
       return hydration.userID === user.id && hydration.date === date;
