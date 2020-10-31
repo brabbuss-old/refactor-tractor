@@ -143,6 +143,47 @@ main {
   margin: -4vw 0 2vw 0;
 }
 
+// Input
+label {
+  @include font-style(6vh, normal, 600);
+}
+
+input {
+  text-align: center;
+  margin-left: 1vw;
+  height: 6vh;
+  padding: 0.5vw;
+  font-size: 3vh;
+}
+
+.input-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 1vh;
+  margin: -4vw 0 4vw 0;
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+}
+
+.submit-button {
+  font-family: $main-box-font-family;
+  @include font-style(3vw, .2em, 700);
+  background-color: #000000;
+  color:#ffffff;
+  border: none;
+  height: 6vw;
+  margin-top: 2vw 0 2vw 0;
+  width: 35.4vw;
+  &:focus.submit-button {
+  outline: 2px solid #FFFFFF;
+  border-color: transparent;
+  }
+}
+
 .hydration-weekly-label {
   font-size: 1vw;
   padding-top: 1vw;
@@ -191,6 +232,14 @@ main {
 
 .trending-button {
   @include main-button-style($trending-button);
+  margin-left: 1vw;
+  &:hover {
+    @include button-hover();
+  }
+}
+
+.new-input-button {
+  @include main-button-style($input-button);
   margin-left: 1vw;
   &:hover {
     @include button-hover();
