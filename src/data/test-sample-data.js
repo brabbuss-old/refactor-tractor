@@ -319,7 +319,7 @@ export const activitySampleData = [
     "date": "2020/06/10",
     "numSteps": 2634,
     "minutesActive": 107,
-    "flightsOfStairs": 5
+    "flightsOfStairs": 33
   },
   {
     "userID": 9,
@@ -421,7 +421,7 @@ export const hydrationSampleData = [
   {
     "userID": 13,
     "date": "2020/06/15",
-    "numOunces": 42
+    "numOunces": 1
   },
   {
     "userID": 13,
@@ -456,7 +456,7 @@ export const hydrationSampleData = [
   {
     "userID": 13,
     "date": "2020/06/15",
-    "numOunces": 39
+    "numOunces": 1
   },
   {
     "userID": 29,
@@ -466,12 +466,12 @@ export const hydrationSampleData = [
   {
     "userID": 29,
     "date": "2020/06/15",
-    "numOunces": 75
+    "numOunces": 3
   },
   {
     "userID": 29,
     "date": "2020/06/15",
-    "numOunces": 47
+    "numOunces": 4
   },
   {
     "userID": 29,
@@ -501,17 +501,17 @@ export const hydrationSampleData = [
   {
     "userID": 29,
     "date": "2020/06/15",
-    "numOunces": 39
+    "numOunces": 4
   },
   {
     "userID": 29,
     "date": "2020/06/01",
-    "numOunces": 94
+    "numOunces": 77
   },
   {
     "userID": 29,
     "date": "2020/06/15",
-    "numOunces": 84
+    "numOunces": 847
   },
   {
     "userID": 29,
@@ -585,143 +585,143 @@ export const sleepSampleData = [
     "userID": 1,
     "date": "2020/06/01",
     "hoursSlept": 6,
-    "sleepQuality": 2.2
+    "sleepQuality": 0
   },
   {
     "userID": 1,
-    "date": "2020/10/16",
+    "date": "2020/06/02",
     "hoursSlept": 7,
-    "sleepQuality": 4.7
+    "sleepQuality": 0
   },
   {
     "userID": 1,
-    "date": "2020/10/17",
+    "date": "2020/06/03",
     "hoursSlept": 10.8,
     "sleepQuality": 4.7
   },
   {
     "userID": 1,
-    "date": "2020/06/01",
+    "date": "2020/06/04",
     "hoursSlept": 8.1,
     "sleepQuality": 3.5
   },
   {
     "userID": 1,
-    "date": "2020/06/02",
+    "date": "2020/06/05",
     "hoursSlept": 8.9,
     "sleepQuality": 2.2
   },
   {
     "userID": 1,
-    "date": "2020/07/03",
+    "date": "2020/06/06",
     "hoursSlept": 4.4,
     "sleepQuality": 1.6
   },
   {
     "userID": 1,
-    "date": "2020/06/01",
+    "date": "2020/06/07",
+    "hoursSlept": 4.6,
+    "sleepQuality": 0
+  },
+  {
+    "userID": 1,
+    "date": "2020/06/08",
+    "hoursSlept": 6.1,
+    "sleepQuality": 0
+  },
+  {
+    "userID": 1,
+    "date": "2020/06/09",
+    "hoursSlept": 4.7,
+    "sleepQuality": 0
+  },
+  {
+    "userID": 1,
+    "date": "2020/06/10",
     "hoursSlept": 4.6,
     "sleepQuality": 2.9
   },
   {
     "userID": 1,
-    "date": "2020/06/05",
+    "date": "2020/06/11",
     "hoursSlept": 6.1,
     "sleepQuality": 3.5
   },
   {
     "userID": 1,
-    "date": "2020/06/06",
-    "hoursSlept": 4.7,
-    "sleepQuality": 4
-  },
-  {
-    "userID": 1,
-    "date": "2020/06/01",
-    "hoursSlept": 4.6,
-    "sleepQuality": 2.9
-  },
-  {
-    "userID": 1,
-    "date": "2020/06/05",
-    "hoursSlept": 6.1,
-    "sleepQuality": 3.5
-  },
-  {
-    "userID": 1,
-    "date": "2020/06/06",
-    "hoursSlept": 4.7,
-    "sleepQuality": 4
+    "date": "2020/06/12",
+    "hoursSlept": 1.7,
+    "sleepQuality": 0
   },
   {
     "userID": 13,
     "date": "2020/06/01",
     "hoursSlept": 6,
-    "sleepQuality": 2.2
+    "sleepQuality": 0.2
   },
   {
     "userID": 13,
-    "date": "2020/10/16",
+    "date": "2020/06/02",
     "hoursSlept": 7,
     "sleepQuality": 4.7
   },
   {
     "userID": 13,
-    "date": "2020/10/17",
+    "date": "2020/06/03",
     "hoursSlept": 10.8,
     "sleepQuality": 4.7
   },
   {
     "userID": 13,
-    "date": "2020/06/01",
+    "date": "2020/06/04",
     "hoursSlept": 8.1,
     "sleepQuality": 3.5
   },
   {
     "userID": 13,
-    "date": "2020/06/02",
+    "date": "2020/06/05",
     "hoursSlept": 8.9,
     "sleepQuality": 2.2
   },
   {
     "userID": 13,
-    "date": "2020/07/03",
+    "date": "2020/06/06",
     "hoursSlept": 4.4,
     "sleepQuality": 1.6
   },
   {
     "userID": 13,
-    "date": "2020/06/01",
+    "date": "2020/06/07",
     "hoursSlept": 4.6,
-    "sleepQuality": 2.9
+    "sleepQuality": 0.9
   },
   {
     "userID": 13,
-    "date": "2020/06/05",
+    "date": "2020/06/08",
     "hoursSlept": 6.1,
-    "sleepQuality": 3.5
+    "sleepQuality": 0.5
   },
   {
     "userID": 13,
-    "date": "2020/06/06",
+    "date": "2020/06/09",
     "hoursSlept": 4.7,
     "sleepQuality": 4
   },
   {
     "userID": 13,
-    "date": "2020/06/01",
+    "date": "2020/06/10",
     "hoursSlept": 4.6,
     "sleepQuality": 2.9
   },
   {
     "userID": 13,
-    "date": "2020/06/05",
+    "date": "2020/06/11",
     "hoursSlept": 6.1,
     "sleepQuality": 3.5
   },
   {
     "userID": 13,
-    "date": "2020/06/06",
+    "date": "2020/06/12",
     "hoursSlept": 4.7,
     "sleepQuality": 4
   },
@@ -733,68 +733,68 @@ export const sleepSampleData = [
   },
   {
     "userID": 29,
-    "date": "2020/10/16",
+    "date": "2020/06/02",
     "hoursSlept": 7,
     "sleepQuality": 4.7
   },
   {
     "userID": 29,
-    "date": "2020/10/17",
+    "date": "2020/06/03",
     "hoursSlept": 10.8,
     "sleepQuality": 4.7
   },
   {
     "userID": 29,
-    "date": "2020/06/01",
+    "date": "2020/06/04",
     "hoursSlept": 8.1,
-    "sleepQuality": 3.5
-  },
-  {
-    "userID": 29,
-    "date": "2020/06/02",
-    "hoursSlept": 8.9,
-    "sleepQuality": 2.2
-  },
-  {
-    "userID": 29,
-    "date": "2020/07/03",
-    "hoursSlept": 4.4,
-    "sleepQuality": 1.6
-  },
-  {
-    "userID": 29,
-    "date": "2020/06/01",
-    "hoursSlept": 4.6,
-    "sleepQuality": 2.9
+    "sleepQuality": 4.5
   },
   {
     "userID": 29,
     "date": "2020/06/05",
-    "hoursSlept": 6.1,
-    "sleepQuality": 3.5
+    "hoursSlept": 8.9,
+    "sleepQuality": 4.2
   },
   {
     "userID": 29,
     "date": "2020/06/06",
+    "hoursSlept": 4.4,
+    "sleepQuality": 4.6
+  },
+  {
+    "userID": 29,
+    "date": "2020/06/07",
+    "hoursSlept": 4.6,
+    "sleepQuality": 4.9
+  },
+  {
+    "userID": 29,
+    "date": "2020/06/08",
+    "hoursSlept": 6.1,
+    "sleepQuality": 4.5
+  },
+  {
+    "userID": 29,
+    "date": "2020/06/09",
     "hoursSlept": 4.7,
     "sleepQuality": 4
   },
   {
     "userID": 29,
-    "date": "2020/06/01",
+    "date": "2020/06/10",
     "hoursSlept": 4.6,
     "sleepQuality": 2.9
   },
   {
     "userID": 29,
-    "date": "2020/06/05",
+    "date": "2020/06/11",
     "hoursSlept": 6.1,
     "sleepQuality": 3.5
   },
   {
     "userID": 29,
-    "date": "2020/06/06",
-    "hoursSlept": 4.7,
+    "date": "2020/06/12",
+    "hoursSlept": 6.7,
     "sleepQuality": 4
   },
   {
@@ -805,68 +805,68 @@ export const sleepSampleData = [
   },
   {
     "userID": 9,
-    "date": "2020/10/16",
+    "date": "2020/06/02",
     "hoursSlept": 7,
     "sleepQuality": 4.7
   },
   {
     "userID": 9,
-    "date": "2020/10/17",
+    "date": "2020/06/03",
     "hoursSlept": 10.8,
     "sleepQuality": 4.7
   },
   {
     "userID": 9,
-    "date": "2020/06/01",
+    "date": "2020/06/04",
     "hoursSlept": 8.1,
     "sleepQuality": 3.5
   },
   {
     "userID": 9,
-    "date": "2020/06/02",
+    "date": "2020/06/05",
     "hoursSlept": 8.9,
     "sleepQuality": 2.2
   },
   {
     "userID": 9,
-    "date": "2020/07/03",
+    "date": "2020/06/06",
     "hoursSlept": 4.4,
     "sleepQuality": 1.6
   },
   {
     "userID": 9,
-    "date": "2020/06/01",
+    "date": "2020/06/07",
     "hoursSlept": 4.6,
     "sleepQuality": 2.9
   },
   {
     "userID": 9,
-    "date": "2020/06/05",
+    "date": "2020/06/08",
     "hoursSlept": 6.1,
     "sleepQuality": 3.5
   },
   {
     "userID": 9,
-    "date": "2020/06/06",
+    "date": "2020/06/09",
     "hoursSlept": 4.7,
-    "sleepQuality": 4
+    "sleepQuality": 1
   },
   {
     "userID": 9,
-    "date": "2020/06/01",
+    "date": "2020/06/10",
     "hoursSlept": 4.6,
-    "sleepQuality": 2.9
+    "sleepQuality": 1.9
   },
   {
     "userID": 9,
-    "date": "2020/06/05",
+    "date": "2020/06/11",
     "hoursSlept": 6.1,
-    "sleepQuality": 3.5
+    "sleepQuality": 1.5
   },
   {
     "userID": 9,
-    "date": "2020/06/06",
-    "hoursSlept": 4.7,
+    "date": "2020/06/12",
+    "hoursSlept": 8.7,
     "sleepQuality": 4
   }
 ]

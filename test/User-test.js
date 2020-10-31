@@ -113,8 +113,8 @@ describe('User', function() {
   });
   it('should retrieve averages for sleep quality, hours, ounces, steps', function() {
     user.getUserAverageData()
-    expect(user.hoursSleptAverage).to.equal(6.3);
-    expect(user.sleepQualityAverage).to.equal(3.3);
+    expect(user.hoursSleptAverage).to.equal(6.1);
+    expect(user.sleepQualityAverage).to.equal(1.5);
     expect(user.ouncesAverage).to.equal(67.3);
     expect(user.totalStepsThisWeek).to.equal(21367);
   });
@@ -124,7 +124,7 @@ describe('User', function() {
     user.updateSleep('2020/10/31', 8, 5)
 
     expect(user.ouncesAverage).to.equal(66.4)
-    expect(user.sleepQualityAverage).to.equal(3.4)
+    expect(user.sleepQualityAverage).to.equal(1.8)
     expect(user.accomplishedDays.length).to.equal(1)
   });
   it('should have a method that return the highest climbing record', function() {
