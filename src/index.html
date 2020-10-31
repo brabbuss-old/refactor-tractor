@@ -18,19 +18,25 @@
         <p class='dropdown-p' id='dropdown-friends'>FRIENDS TOTAL STEPS THIS WEEK</p>
         <div id='dropdown-friends-steps-container'></div>
       </section>
-      <p class="input-feedback hide"></p>
     </header>
+    <div class="feedback-container">
+      <p class="input-feedback hide"></p>
+    </div>
     <main>
       <section class='card-container' id='steps-card-container'>
         <section class='main-card' id='steps-main-card'>
-          <div class='main-card-top-row'>
+          <div class='main-card-row'>
             <button type='button' name='button' class='info-button steps-info-button' aria-label="steps-info-button"></button>
             <h2>YOU HAVE WALKED</h2>
             <button type='button' name='button' class='friends-button steps-friends-button' aria-label="steps-friends-button"></button>
           </div>
-          <h3 id='steps-user-steps-today'>X</h3>
-          <div class='main-card-top-row'>
+          <div class="main-card-middle">
             <button type='button' name='button' class='trending-button steps-trending-button' aria-label="steps-trending-button"></button>
+            <h3 id='steps-user-steps-today'></h3>
+
+          </div>
+          <div class='main-card-row'>
+
             <button type='button' name='button' class='new-input-button steps-new-input-button' aria-label="steps-new-input-button"></button>
             <h2>STEPS TODAY</h2>
             <button type='button' name='button' class='calendar-button steps-calendar-button' aria-label="steps-calendar-button"></button>
@@ -105,13 +111,13 @@
       </section>
       <section class='card-container' id='hydration-card-container'>
         <section class='main-card' id='hydration-main-card'>
-          <div class='main-card-top-row'>
+          <div class='main-card-row'>
             <button type='button' name='button' class='info-button hydration-info-button' aria-label="hydration-info-button"></button>
             <h2>YOU HAVE HAD</h2>
             <button type='button' name='button' class='friends-button hydration-friends-button' aria-label="hydration-friends-button"></button>
           </div>
           <h3 id='hydration-user-ounces-today'></h3>
-          <div class='main-card-bottom-row'>
+          <div class='main-card-row'>
             <button type='button' name='button' class='new-input-button hydration-new-input-button' aria-label="hydration-new-input-button"></button>
             <h2>OZ OF WATER TODAY</h2>
             <button type='button' name='button' class='calendar-button hydration-calendar-button' aria-label="hydration-calendar-button"></button>
@@ -177,14 +183,16 @@
       </section>
       <section class='card-container' id='stairs-card-container'>
         <section class='main-card' id='stairs-main-card'>
-          <div class='main-card-top-row'>
+          <div class='main-card-row'>
             <button type='button' name='button' class='info-button stairs-info-button' aria-label="stairs-info-button"></button>
             <h2>YOU HAVE CLIMBED</h2>
             <button type='button' name='button' class='friends-button stairs-friends-button' aria-label="stairs-friends-button"></button>
           </div>
-          <h3 id='stairs-user-stairs-today'></h3>
-          <div class='main-card-top-row'>
+          <div class="main-card-middle">
             <button type='button' name='button' class='trending-button stairs-trending-button' aria-label="stairs-trending-button"></button>
+            <h3 id='stairs-user-stairs-today'></h3>
+          </div>
+          <div class='main-card-row'>
             <button type='button' name='button' class='new-input-button stairs-new-input-button' aria-label="stairs-new-input-button"></button>
 
             <h2>STAIRS TODAY</h2>
@@ -239,13 +247,13 @@
       </section>
       <section class='card-container' id='sleep-card-container'>
         <section class='main-card' id='sleep-main-card'>
-          <div class='main-card-top-row'>
+          <div class='main-card-row'>
             <button type='button' name='button' class='info-button sleep-info-button' aria-label="sleep-info-button"></button>
             <h2>YOU SLEPT</h2>
             <button type='button' name='button' class='friends-button sleep-friends-button'aria-label="sleep-friends-button"></button>
           </div>
           <h3 id='sleep-user-hours-today'></h3>
-          <div class='main-card-bottom-row'>
+          <div class='main-card-row'>
             <button type='button' name='button' class='new-input-button sleep-new-input-button' aria-label="sleep-new-input-button"></button>
 
             <h2>HOURS LAST NIGHT</h2>

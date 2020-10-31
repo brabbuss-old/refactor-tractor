@@ -156,6 +156,10 @@ import ParentRepository from './ParentRepository';
     return this.sleepRecord.getAverageDataByWeekAndKey(date, 'sleepQuality', 1)
   }
 
+  calculateAverageHoursThisWeek(date) {
+      return this.sleepRecord.getAverageDataByWeekAndKey(date, 'hoursSlept', 1)
+    }
+    
   findFriendsNames(friends) {
     this.friendObjects.forEach(friend => {
       this.friendsNames.push(friend.getFirstName());
