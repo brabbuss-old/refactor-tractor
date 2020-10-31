@@ -31,6 +31,11 @@ import {
   sleepMainCard,
   sleepUserHoursToday,
   sleepNewInputCard,
+  sleepInputDate,
+  sleepInputHours,
+  sleepInputQuality,
+  inputFeedback,
+  sleepSubmitButton,
   stairsCalendarCard,
   stairsCalendarFlightsAverageWeekly,
   stairsCalendarStairsAverageWeekly,
@@ -76,6 +81,41 @@ let sortedHydrationDataByDate;
 
 // const userRepository = new UserRepository();
 const todayDate = "2020/01/22"
+
+const getSleepInput = (date, hours, quality) => {
+  // let id = Number(user.id);
+  hours = Number(hours);
+  quality = Number(quality);
+  submitSleepData(id, date, hours, quality);
+}
+
+sleepSubmitButton.addEventListener('click', function () {
+
+  getSleepInput(sleepInputDate.value, sleepInputHours.value, sleepInputQuality.value);
+})
+
+const showInputFeedback = (message) => {
+  inputFeedback.innerText = message;
+  inputFeedback.classList.remove('hide');
+  setTimeout(() => {inputFeedback.classList.add('hide')}, 5000);
+}
+
+const submitSleepData = (id, date, hours, quality) => {
+  fetch("https://fe-apps.herokuapp.com/api/v1/fitlit/1908/sleep/sleepData", {
+    method: "POST",
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({"userID": id, "date": date, "hoursSlept": hours, "sleepQuality": quality})
+  })
+    .then(resp => resp.json())
+    .then(() => {
+      showInputFeedback("Input success.  Great job!");
+    })
+    .catch(() => {
+      showInputFeedback("There was an error.  Please try again.")
+    })
+}
 
 const userPromise = fetch("https://fe-apps.herokuapp.com/api/v1/fitlit/1908/users/userData")
   .then(resp => resp.json())
@@ -259,6 +299,7 @@ mainPage.addEventListener('click', showInfo);
 profileButton.addEventListener('click', showDropdown);
 stairsTrendingButton.addEventListener('click', updateTrendingStairsDays);
 stepsTrendingButton.addEventListener('click', updateTrendingStepDays);
+
 
 function flipCard(cardToHide, cardToShow) {
   cardToHide.classList.add('hide');
