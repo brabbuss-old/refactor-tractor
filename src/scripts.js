@@ -83,24 +83,26 @@ let sortedHydrationDataByDate;
 const date = "2020/01/22"
 
 const getSleepInput = (date, hours, quality) => {
-  // let id = Number(user.id);
+  let id = Number(user.id);
+  date = date.replaceAll("-", "/");
   hours = Number(hours);
   quality = Number(quality);
   submitSleepData(id, date, hours, quality);
 }
 
 sleepSubmitButton.addEventListener('click', function () {
-
   getSleepInput(sleepInputDate.value, sleepInputHours.value, sleepInputQuality.value);
 })
 
 const showInputFeedback = (message) => {
   inputFeedback.innerText = message;
+  console.log(message);
   inputFeedback.classList.remove('hide');
-  setTimeout(() => {inputFeedback.classList.add('hide')}, 5000);
+  // setTimeout(() => {inputFeedback.classList.add('hide')}, 5000);
 }
 
 const submitSleepData = (id, date, hours, quality) => {
+  console.log(id, date, hours, quality);
   fetch("https://fe-apps.herokuapp.com/api/v1/fitlit/1908/sleep/sleepData", {
     method: "POST",
     headers: {
