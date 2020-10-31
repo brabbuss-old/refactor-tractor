@@ -63,7 +63,7 @@ h1 {
 h2 {
   display: inline;
   font-family: $main-box-font-family;
-  @include font-style(3vw, .2em, 700);
+  @include font-style(2.75vw, .2em, 700);
 }
 
 h3 {
@@ -121,15 +121,18 @@ main {
   height: 20vw;
 }
 
-.main-card-top-row {
-  @include display(space-between);
+.main-card-middle {
+  display: flex;
   align-items: center;
+  justify-content: center;
   width: 100%;
 }
 
-.main-card-bottom-row {
-  text-align: center;
+.main-card-row {
+  @include display(space-between);
+  align-items: center;
   width: 100%;
+
 }
 
 #steps-card-container {
@@ -246,7 +249,9 @@ input {
 
 .trending-button {
   @include main-button-style($trending-button);
-  margin-left: 1vw;
+  margin-left: .5vw;
+  position: absolute;
+  left: 1vw;
   &:hover {
     @include button-hover();
   }
