@@ -44,12 +44,12 @@ Promise.all([userPromise, activityPromise, hydrationPromise, sleepPromise])
     userRepository = new UserRepository(userData, activityData, hydrationData, sleepData, date);
   })
   .then(() => {
-    loadApp();
+    loadApp(userData, activityData, hydrationData, sleepData, date);
   })
 
-const loadApp = () => {
+const loadApp = (userData, activityData, hydrationData, sleepData, date) => {
   user = userRepository.getRandomUser();
-  user.getUserAverageData();
+  user.populateUserData(userData, activityData, hydrationData, sleepData, date);
   user.findFriendsNames(userRepository.dataObjectArray); //TODO goes inside user as method
   defineHydrationByDate();
   updateText();
