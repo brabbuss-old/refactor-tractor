@@ -1,69 +1,46 @@
 import { expect } from 'chai';
 
 import UserRepository from '../src/classes/UserRepository';
+import ActivityRepository from '../src/classes/ActivityRepository';
+import HydrationRepository from '../src/classes/HydrationRepository';
 import SleepRepository from '../src/classes/SleepRepository';
 import User from '../src/classes/User';
 import {sleepSampleData, hydrationSampleData, userSampleData, activitySampleData} from "../src/data/test-sample-data"
 
 describe('UserRepository', function() {
+  let sleepData;
   let sleep1;
   let sleep2;
   let sleep3;
   let user1;
   let user2;
   let user3;
+  let user4;
   let userRepository;
-  let sleepData;
   beforeEach(() => {
-    user1 = new User({
-      'id': 1,
-      'name': 'Luisa Hane',
-      'address': '15195 Nakia Tunnel, Erdmanport VA 19901-1697',
-      'email': 'Diana.Hayes1@hotmail.com',
-      'strideLength': 4.3,
-      'dailyStepGoal': 10000,
-      'friends': [
-        16,
-        4,
-        8
-      ]
-    })
-    user2 = new User({
-      "id": 2,
-      "name": "Jarvis Considine",
-      "address": "30086 Kathryn Port, Ciceroland NE 07273",
-      "email": "Dimitri.Bechtelar11@gmail.com",
-      "strideLength": 4.5,
-      "dailyStepGoal": 5000,
-      "friends": [
-        9,
-        18,
-        24,
-        19
-      ]
-    })
-    user3 = new User({
-      "id": 3,
-      "name": "Herminia Witting",
-      "address": "85823 Bosco Fork, East Oscarstad MI 85126-5660",
-      "email": "Elwin.Tromp@yahoo.com",
-      "strideLength": 4.4,
-      "dailyStepGoal": 15000,
-      "friends": [
-        19,
-        11,
-        42,
-        33
-      ]
-    })
-    userRepository = new UserRepository([user1, user2, user3]);
-    // userRepository.users.push(user1, user2, user3);
+  // user1 = userSampleData[0]
+  // user2 = userSampleData[1]
+  // user3 = userSampleData[2]
+  // user4 = userSampleData[3]
+
+  userRepository = new UserRepository(userSampleData, activitySampleData, hydrationSampleData, sleepSampleData, '2020/06/10');
+  // userRepository.userObjectArray.forEach(user => user.populateUserData(activitySampleData, hydrationSampleData, sleepSampleData, '2020/06/10'))
   })
+
   it('should be a function', function() {
     expect(UserRepository).to.be.a('function');
   });
   it('should be an instance of user repository', function() {
     expect(userRepository).to.be.an.instanceof(UserRepository);
+  });
+  it('should have a date', function() {
+    expect(userRepository.date).to.equal('2020/06/10');
+  });
+  it('should avg step goal of all users', function() {
+    expect(userRepository.globalStepGoal).to.equal(9000);
+  });
+  it('should avg sleep quality of all users', function() {
+    expect(userRepository.globalSleepQuality).to.equal(3.5);
   });
   it('should hold an array of user objects', function() {
     expect(userRepository.usersRecord).to.deep.equal([user1, user2, user3]);
