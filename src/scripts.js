@@ -129,7 +129,6 @@ const showInputFeedback = (message) => {
 };
 
 const submitSleepData = (id, date, hours, quality) => {
-  // console.log(id, date, hours, quality);
   fetch("https://fe-apps.herokuapp.com/api/v1/fitlit/1908/sleep/sleepData", {
     method: "POST",
     headers: {
@@ -144,7 +143,7 @@ const submitSleepData = (id, date, hours, quality) => {
   })
     .then((resp) => resp.json())
     .then(() => {
-      showInputFeedback("Input success.  Great job!");
+      showInputFeedback("Update successful.  Great job!");
     })
     .catch(() => {
       showInputFeedback("There was an error.  Please try again.");
@@ -259,17 +258,7 @@ const loadApp = () => {
 
 const defineHydrationByDate = () => {
   sortedHydrationDataByDate = user.ouncesRecord.dataObjectArray;
-  //user.ouncesRecord.sort((a, b) => { //TODO is the hydration lifetime
-  //   if (Object.keys(a)[0] > Object.keys(b)[0]) {
-  //     return -1;
-  //   }
-  //   if (Object.keys(a)[0] < Object.keys(b)[0]) {
-  //     return 1;
-  //   }
-  //   return 0;
-  // });
 };
-
 const updateText = () => {
   displayDailyOz();
   displayUserInfo();
@@ -315,23 +304,17 @@ const displaySleepInfo = () => {
     date
   );
 
-  sleepFriendLongestSleeper.innerText = userRepository.userObjectArray
-    .find((user) => {
-      return user.id === userRepository.getLongestSleepers(date);
-    })
-    .getFirstName();
+  sleepFriendLongestSleeper.innerText = userRepository.userObjectArray.find(user => {
+    return user.id === userRepository.getLongestSleepers(date)
+  }).getFirstName();
 
-  sleepFriendWorstSleeper.innerText = userRepository.userObjectArray
-    .find((user) => {
-      return user.id === userRepository.getWorstSleepers(date);
-    })
-    .getFirstName();
+  sleepFriendWorstSleeper.innerText = userRepository.userObjectArray.find(user => {
+    return user.id === userRepository.getWorstSleepers(date)
+  }).getFirstName();
 
   sleepInfoHoursAverageAlltime.innerText = user.hoursSleptAverage;
 
-  stepsInfoMilesWalkedToday.innerText = user.activityRecord.getMilesWalked(
-    date
-  );
+  stepsInfoMilesWalkedToday.innerText = user.activityRecord.getMilesWalked(date);
 
   sleepInfoQualityAverageAlltime.innerText = user.sleepQualityAverage;
 
