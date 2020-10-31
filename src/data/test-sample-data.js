@@ -22,28 +22,49 @@ export const activitySampleData = [
   },
   {
     "userID": 1,
-    "date": "2020/06/01",
+    "date": "2020/06/04",
     "numSteps": 3486,
     "minutesActive": 114,
     "flightsOfStairs": 32
   },
   {
     "userID": 1,
-    "date": "2020/06/02",
+    "date": "2020/06/05",
     "numSteps": 11374,
     "minutesActive": 213,
     "flightsOfStairs": 13
   },
   {
     "userID": 1,
-    "date": "2020/06/03",
+    "date": "2020/06/06",
     "numSteps": 14810,
     "minutesActive": 287,
     "flightsOfStairs": 18
   },
   {
     "userID": 1,
-    "date": "2020/06/01",
+    "date": "2020/06/07",
+    "numSteps": 2634,
+    "minutesActive": 107,
+    "flightsOfStairs": 5
+  },
+  {
+    "userID": 1,
+    "date": "2020/06/08",
+    "numSteps": 10333,
+    "minutesActive": 114,
+    "flightsOfStairs": 31
+  },
+  {
+    "userID": 1,
+    "date": "2020/06/09",
+    "numSteps": 6389,
+    "minutesActive": 41,
+    "flightsOfStairs": 33
+  },
+  {
+    "userID": 1,
+    "date": "2020/06/10",
     "numSteps": 2634,
     "minutesActive": 107,
     "flightsOfStairs": 5
@@ -63,21 +84,252 @@ export const activitySampleData = [
     "flightsOfStairs": 33
   },
   {
-    "userID": 1,
+    "userID": 13,
     "date": "2020/06/01",
+    "numSteps": 3577,
+    "minutesActive": 140,
+    "flightsOfStairs": 16
+  },
+  {
+    "userID": 13,
+    "date": "2020/06/02",
+    "numSteps": 4294,
+    "minutesActive": 138,
+    "flightsOfStairs": 10
+  },
+  {
+    "userID": 13,
+    "date": "2020/06/03",
+    "numSteps": 7402,
+    "minutesActive": 116,
+    "flightsOfStairs": 33
+  },
+  {
+    "userID": 13,
+    "date": "2020/06/04",
+    "numSteps": 3486,
+    "minutesActive": 114,
+    "flightsOfStairs": 32
+  },
+  {
+    "userID": 13,
+    "date": "2020/06/05",
+    "numSteps": 11374,
+    "minutesActive": 213,
+    "flightsOfStairs": 13
+  },
+  {
+    "userID": 13,
+    "date": "2020/06/06",
+    "numSteps": 14810,
+    "minutesActive": 287,
+    "flightsOfStairs": 18
+  },
+  {
+    "userID": 13,
+    "date": "2020/06/07",
     "numSteps": 2634,
     "minutesActive": 107,
     "flightsOfStairs": 5
   },
   {
-    "userID": 1,
+    "userID": 13,
+    "date": "2020/06/08",
+    "numSteps": 10333,
+    "minutesActive": 114,
+    "flightsOfStairs": 31
+  },
+  {
+    "userID": 13,
+    "date": "2020/06/09",
+    "numSteps": 6389,
+    "minutesActive": 41,
+    "flightsOfStairs": 33
+  },
+  {
+    "userID": 13,
+    "date": "2020/06/10",
+    "numSteps": 2634,
+    "minutesActive": 107,
+    "flightsOfStairs": 5
+  },
+  {
+    "userID": 13,
     "date": "2020/06/02",
     "numSteps": 10333,
     "minutesActive": 114,
     "flightsOfStairs": 31
   },
   {
-    "userID": 1,
+    "userID": 13,
+    "date": "2020/06/03",
+    "numSteps": 6389,
+    "minutesActive": 41,
+    "flightsOfStairs": 33
+  },
+  {
+    "userID": 29,
+    "date": "2020/06/01",
+    "numSteps": 3577,
+    "minutesActive": 140,
+    "flightsOfStairs": 16
+  },
+  {
+    "userID": 29,
+    "date": "2020/06/02",
+    "numSteps": 4294,
+    "minutesActive": 138,
+    "flightsOfStairs": 10
+  },
+  {
+    "userID": 29,
+    "date": "2020/06/03",
+    "numSteps": 7402,
+    "minutesActive": 116,
+    "flightsOfStairs": 33
+  },
+  {
+    "userID": 29,
+    "date": "2020/06/04",
+    "numSteps": 3486,
+    "minutesActive": 114,
+    "flightsOfStairs": 32
+  },
+  {
+    "userID": 29,
+    "date": "2020/06/05",
+    "numSteps": 11374,
+    "minutesActive": 213,
+    "flightsOfStairs": 13
+  },
+  {
+    "userID": 29,
+    "date": "2020/06/06",
+    "numSteps": 14810,
+    "minutesActive": 287,
+    "flightsOfStairs": 18
+  },
+  {
+    "userID": 29,
+    "date": "2020/06/07",
+    "numSteps": 2634,
+    "minutesActive": 107,
+    "flightsOfStairs": 5
+  },
+  {
+    "userID": 29,
+    "date": "2020/06/08",
+    "numSteps": 10333,
+    "minutesActive": 114,
+    "flightsOfStairs": 31
+  },
+  {
+    "userID": 29,
+    "date": "2020/06/09",
+    "numSteps": 6389,
+    "minutesActive": 41,
+    "flightsOfStairs": 33
+  },
+  {
+    "userID": 29,
+    "date": "2020/06/10",
+    "numSteps": 2634,
+    "minutesActive": 107,
+    "flightsOfStairs": 5
+  },
+  {
+    "userID": 29,
+    "date": "2020/06/02",
+    "numSteps": 10333,
+    "minutesActive": 114,
+    "flightsOfStairs": 31
+  },
+  {
+    "userID": 29,
+    "date": "2020/06/03",
+    "numSteps": 6389,
+    "minutesActive": 41,
+    "flightsOfStairs": 33
+  },
+  {
+    "userID": 9,
+    "date": "2020/06/01",
+    "numSteps": 3577,
+    "minutesActive": 140,
+    "flightsOfStairs": 16
+  },
+  {
+    "userID": 9,
+    "date": "2020/06/02",
+    "numSteps": 4294,
+    "minutesActive": 138,
+    "flightsOfStairs": 10
+  },
+  {
+    "userID": 9,
+    "date": "2020/06/03",
+    "numSteps": 7402,
+    "minutesActive": 116,
+    "flightsOfStairs": 33
+  },
+  {
+    "userID": 9,
+    "date": "2020/06/04",
+    "numSteps": 3486,
+    "minutesActive": 114,
+    "flightsOfStairs": 32
+  },
+  {
+    "userID": 9,
+    "date": "2020/06/05",
+    "numSteps": 11374,
+    "minutesActive": 213,
+    "flightsOfStairs": 13
+  },
+  {
+    "userID": 9,
+    "date": "2020/06/06",
+    "numSteps": 14810,
+    "minutesActive": 287,
+    "flightsOfStairs": 18
+  },
+  {
+    "userID": 9,
+    "date": "2020/06/07",
+    "numSteps": 2634,
+    "minutesActive": 107,
+    "flightsOfStairs": 5
+  },
+  {
+    "userID": 9,
+    "date": "2020/06/08",
+    "numSteps": 10333,
+    "minutesActive": 114,
+    "flightsOfStairs": 31
+  },
+  {
+    "userID": 9,
+    "date": "2020/06/09",
+    "numSteps": 6389,
+    "minutesActive": 41,
+    "flightsOfStairs": 33
+  },
+  {
+    "userID": 9,
+    "date": "2020/06/10",
+    "numSteps": 2634,
+    "minutesActive": 107,
+    "flightsOfStairs": 5
+  },
+  {
+    "userID": 9,
+    "date": "2020/06/02",
+    "numSteps": 10333,
+    "minutesActive": 114,
+    "flightsOfStairs": 31
+  },
+  {
+    "userID": 9,
     "date": "2020/06/03",
     "numSteps": 6389,
     "minutesActive": 41,
@@ -143,6 +395,186 @@ export const hydrationSampleData = [
   },
   {
     "userID": 1,
+    "date": "2020/06/15",
+    "numOunces": 39
+  },
+  {
+    "userID": 13,
+    "date": "2020/06/01",
+    "numOunces": 37
+  },
+  {
+    "userID": 13,
+    "date": "2020/06/15",
+    "numOunces": 75
+  },
+  {
+    "userID": 13,
+    "date": "2020/06/15",
+    "numOunces": 47
+  },
+  {
+    "userID": 13,
+    "date": "2020/06/01",
+    "numOunces": 85
+  },
+  {
+    "userID": 13,
+    "date": "2020/06/15",
+    "numOunces": 42
+  },
+  {
+    "userID": 13,
+    "date": "2020/06/15",
+    "numOunces": 87
+  },
+  {
+    "userID": 13,
+    "date": "2020/06/01",
+    "numOunces": 94
+  },
+  {
+    "userID": 13,
+    "date": "2020/06/15",
+    "numOunces": 84
+  },
+  {
+    "userID": 13,
+    "date": "2020/06/15",
+    "numOunces": 39
+  },
+  {
+    "userID": 13,
+    "date": "2020/06/01",
+    "numOunces": 94
+  },
+  {
+    "userID": 13,
+    "date": "2020/06/15",
+    "numOunces": 84
+  },
+  {
+    "userID": 13,
+    "date": "2020/06/15",
+    "numOunces": 39
+  },
+  {
+    "userID": 29,
+    "date": "2020/06/01",
+    "numOunces": 37
+  },
+  {
+    "userID": 29,
+    "date": "2020/06/15",
+    "numOunces": 75
+  },
+  {
+    "userID": 29,
+    "date": "2020/06/15",
+    "numOunces": 47
+  },
+  {
+    "userID": 29,
+    "date": "2020/06/01",
+    "numOunces": 85
+  },
+  {
+    "userID": 29,
+    "date": "2020/06/15",
+    "numOunces": 42
+  },
+  {
+    "userID": 29,
+    "date": "2020/06/15",
+    "numOunces": 87
+  },
+  {
+    "userID": 29,
+    "date": "2020/06/01",
+    "numOunces": 94
+  },
+  {
+    "userID": 29,
+    "date": "2020/06/15",
+    "numOunces": 84
+  },
+  {
+    "userID": 29,
+    "date": "2020/06/15",
+    "numOunces": 39
+  },
+  {
+    "userID": 29,
+    "date": "2020/06/01",
+    "numOunces": 94
+  },
+  {
+    "userID": 29,
+    "date": "2020/06/15",
+    "numOunces": 84
+  },
+  {
+    "userID": 29,
+    "date": "2020/06/15",
+    "numOunces": 39
+  },
+  {
+    "userID": 9,
+    "date": "2020/06/01",
+    "numOunces": 37
+  },
+  {
+    "userID": 9,
+    "date": "2020/06/15",
+    "numOunces": 75
+  },
+  {
+    "userID": 9,
+    "date": "2020/06/15",
+    "numOunces": 47
+  },
+  {
+    "userID": 9,
+    "date": "2020/06/01",
+    "numOunces": 85
+  },
+  {
+    "userID": 9,
+    "date": "2020/06/15",
+    "numOunces": 42
+  },
+  {
+    "userID": 9,
+    "date": "2020/06/15",
+    "numOunces": 87
+  },
+  {
+    "userID": 9,
+    "date": "2020/06/01",
+    "numOunces": 94
+  },
+  {
+    "userID": 9,
+    "date": "2020/06/15",
+    "numOunces": 84
+  },
+  {
+    "userID": 9,
+    "date": "2020/06/15",
+    "numOunces": 39
+  },
+  {
+    "userID": 9,
+    "date": "2020/06/01",
+    "numOunces": 94
+  },
+  {
+    "userID": 9,
+    "date": "2020/06/15",
+    "numOunces": 84
+  },
+  {
+    "userID": 9,
     "date": "2020/06/15",
     "numOunces": 39
   }
@@ -217,6 +649,222 @@ export const sleepSampleData = [
   },
   {
     "userID": 1,
+    "date": "2020/06/06",
+    "hoursSlept": 4.7,
+    "sleepQuality": 4
+  },
+  {
+    "userID": 13,
+    "date": "2020/06/01",
+    "hoursSlept": 6,
+    "sleepQuality": 2.2
+  },
+  {
+    "userID": 13,
+    "date": "2020/10/16",
+    "hoursSlept": 7,
+    "sleepQuality": 4.7
+  },
+  {
+    "userID": 13,
+    "date": "2020/10/17",
+    "hoursSlept": 10.8,
+    "sleepQuality": 4.7
+  },
+  {
+    "userID": 13,
+    "date": "2020/06/01",
+    "hoursSlept": 8.1,
+    "sleepQuality": 3.5
+  },
+  {
+    "userID": 13,
+    "date": "2020/06/02",
+    "hoursSlept": 8.9,
+    "sleepQuality": 2.2
+  },
+  {
+    "userID": 13,
+    "date": "2020/07/03",
+    "hoursSlept": 4.4,
+    "sleepQuality": 1.6
+  },
+  {
+    "userID": 13,
+    "date": "2020/06/01",
+    "hoursSlept": 4.6,
+    "sleepQuality": 2.9
+  },
+  {
+    "userID": 13,
+    "date": "2020/06/05",
+    "hoursSlept": 6.1,
+    "sleepQuality": 3.5
+  },
+  {
+    "userID": 13,
+    "date": "2020/06/06",
+    "hoursSlept": 4.7,
+    "sleepQuality": 4
+  },
+  {
+    "userID": 13,
+    "date": "2020/06/01",
+    "hoursSlept": 4.6,
+    "sleepQuality": 2.9
+  },
+  {
+    "userID": 13,
+    "date": "2020/06/05",
+    "hoursSlept": 6.1,
+    "sleepQuality": 3.5
+  },
+  {
+    "userID": 13,
+    "date": "2020/06/06",
+    "hoursSlept": 4.7,
+    "sleepQuality": 4
+  },
+  {
+    "userID": 29,
+    "date": "2020/06/01",
+    "hoursSlept": 6,
+    "sleepQuality": 2.2
+  },
+  {
+    "userID": 29,
+    "date": "2020/10/16",
+    "hoursSlept": 7,
+    "sleepQuality": 4.7
+  },
+  {
+    "userID": 29,
+    "date": "2020/10/17",
+    "hoursSlept": 10.8,
+    "sleepQuality": 4.7
+  },
+  {
+    "userID": 29,
+    "date": "2020/06/01",
+    "hoursSlept": 8.1,
+    "sleepQuality": 3.5
+  },
+  {
+    "userID": 29,
+    "date": "2020/06/02",
+    "hoursSlept": 8.9,
+    "sleepQuality": 2.2
+  },
+  {
+    "userID": 29,
+    "date": "2020/07/03",
+    "hoursSlept": 4.4,
+    "sleepQuality": 1.6
+  },
+  {
+    "userID": 29,
+    "date": "2020/06/01",
+    "hoursSlept": 4.6,
+    "sleepQuality": 2.9
+  },
+  {
+    "userID": 29,
+    "date": "2020/06/05",
+    "hoursSlept": 6.1,
+    "sleepQuality": 3.5
+  },
+  {
+    "userID": 29,
+    "date": "2020/06/06",
+    "hoursSlept": 4.7,
+    "sleepQuality": 4
+  },
+  {
+    "userID": 29,
+    "date": "2020/06/01",
+    "hoursSlept": 4.6,
+    "sleepQuality": 2.9
+  },
+  {
+    "userID": 29,
+    "date": "2020/06/05",
+    "hoursSlept": 6.1,
+    "sleepQuality": 3.5
+  },
+  {
+    "userID": 29,
+    "date": "2020/06/06",
+    "hoursSlept": 4.7,
+    "sleepQuality": 4
+  },
+  {
+    "userID": 9,
+    "date": "2020/06/01",
+    "hoursSlept": 6,
+    "sleepQuality": 2.2
+  },
+  {
+    "userID": 9,
+    "date": "2020/10/16",
+    "hoursSlept": 7,
+    "sleepQuality": 4.7
+  },
+  {
+    "userID": 9,
+    "date": "2020/10/17",
+    "hoursSlept": 10.8,
+    "sleepQuality": 4.7
+  },
+  {
+    "userID": 9,
+    "date": "2020/06/01",
+    "hoursSlept": 8.1,
+    "sleepQuality": 3.5
+  },
+  {
+    "userID": 9,
+    "date": "2020/06/02",
+    "hoursSlept": 8.9,
+    "sleepQuality": 2.2
+  },
+  {
+    "userID": 9,
+    "date": "2020/07/03",
+    "hoursSlept": 4.4,
+    "sleepQuality": 1.6
+  },
+  {
+    "userID": 9,
+    "date": "2020/06/01",
+    "hoursSlept": 4.6,
+    "sleepQuality": 2.9
+  },
+  {
+    "userID": 9,
+    "date": "2020/06/05",
+    "hoursSlept": 6.1,
+    "sleepQuality": 3.5
+  },
+  {
+    "userID": 9,
+    "date": "2020/06/06",
+    "hoursSlept": 4.7,
+    "sleepQuality": 4
+  },
+  {
+    "userID": 9,
+    "date": "2020/06/01",
+    "hoursSlept": 4.6,
+    "sleepQuality": 2.9
+  },
+  {
+    "userID": 9,
+    "date": "2020/06/05",
+    "hoursSlept": 6.1,
+    "sleepQuality": 3.5
+  },
+  {
+    "userID": 9,
     "date": "2020/06/06",
     "hoursSlept": 4.7,
     "sleepQuality": 4

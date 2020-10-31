@@ -7,8 +7,20 @@ import {sleepSampleData, hydrationSampleData, userSampleData, activitySampleData
 
 describe.only('User', function() {
   let user, user2;
+  let friend1
+  let friend2
+  let friend3
+  let friends
+
+
   beforeEach(() => {
-    user = new User(userSampleData[0], activitySampleData, hydrationSampleData, sleepSampleData, '2019/09/15')
+    friend1 = new User(userSampleData[1], userSampleData, activitySampleData, hydrationSampleData, sleepSampleData, '2019/09/15')
+    friend2 = new User(userSampleData[2], userSampleData, activitySampleData, hydrationSampleData, sleepSampleData, '2019/09/15')
+    friend3 = new User(userSampleData[3], userSampleData, activitySampleData, hydrationSampleData, sleepSampleData, '2019/09/15')
+    friends = [friend1, friend2, friend3];
+
+    user = new User(userSampleData[0], userSampleData, activitySampleData, hydrationSampleData, sleepSampleData, '2019/09/15')
+    user.populateUserData(userSampleData, activitySampleData, hydrationSampleData, sleepSampleData, '2019/09/15')
     user2 = new User(userSampleData[1])
 
     user.updateActivities("2019/09/11", 1111, 3, 1)
@@ -46,7 +58,9 @@ describe.only('User', function() {
     expect(user.dailyStepGoal).to.equal(15000);
   });
   it('should have friends', function() {
-    expect(user.friends).to.deep.equal([29, 13, 9])
+    // console.log(user);
+    expect(user.friends).to.deep.equal([ 29, 13, 9 ]);
+    expect(user.friendObjects.length).to.equal(3);
   });
   it('should have an array of Activity class objects', function() {
     expect(user.activityRecord.dataObjectArray[0] instanceof Activity).to.equal(true)
@@ -147,121 +161,52 @@ describe.only('User', function() {
     expect(user.calculateAverageStepsThisWeek("2019/09/18")).to.equal(1010)
   });
   it('calculateAverageFlightsThisWeek should calculate the average flights of stairs taken in a given week', function() {
-
     expect(user.calculateAverageFlightsThisWeek("2019/09/17")).to.equal(28)
   });
-
-  it('updateAccomplishedDays should create an array of good days', function() {
-    user.updateActivities({
-      "userID": 33,
-      "date": "2019/06/15",
-      "numSteps": 20000,
-      "minutesActive": 140,
-      "flightsOfStairs": 16
-    });
-    user.updateActivities({
-      "userID": 33,
-      "date": "2019/07/15",
-      "numSteps": 15000,
-      "minutesActive": 300,
-      "flightsOfStairs": 54
-    });
-    user.updateActivities({
-      "userID": 33,
-      "date": "2020/07/15",
-      "numSteps": 11301,
-      "minutesActive": 130,
-      "flightsOfStairs": 11
-    });
-    expect(user.accomplishedDays.length).to.equal(2);
-  })
-  it('findTrendingStepDays should find 3+ days with positive trend', function() {
-    user.activityRecord = [{
-    "date": "2019/06/29", "steps": 2},
-    {"date": "2019/06/28", "steps": 1},
-    {"date": "2019/06/27", "steps": 4},
-    {"date": "2019/06/26", "steps": 3},
-    {"date": "2019/06/25", "steps": 1},
-    {"date": "2019/06/24", "steps": 12},
-    {"date": "2019/06/23", "steps": 11},
-    {"date": "2019/06/22", "steps": 10},
-    {"date": "2019/06/21", "steps": 9},
-    {"date": "2019/06/20", "steps": 8},
-    {"date": "2019/06/19", "steps": 11},
-    {"date": "2019/06/18", "steps": 10}];
-    user.findTrendingStepDays()
-    expect(user.trendingStepDays).to.deep.equal(['Your most recent positive step streak was 2019/06/26 - 2019/06/29!', 'Your most recent positive step streak was 2019/06/21 - 2019/06/24!']);
-  });
-  it('findTrendingStairsDays should find 3+ days with positive trend', function() {
-    user.activityRecord = [{
-    "date": "2019/06/29", "flightsOfStairs": 4},
-    {"date": "2019/06/28", "flightsOfStairs": 1},
-    {"date": "2019/06/27", "flightsOfStairs": 16},
-    {"date": "2019/06/26", "flightsOfStairs": 15},
-    {"date": "2019/06/25", "flightsOfStairs": 1},
-    {"date": "2019/06/24", "flightsOfStairs": 9},
-    {"date": "2019/06/23", "flightsOfStairs": 3},
-    {"date": "2019/06/22", "flightsOfStairs": 10},
-    {"date": "2019/06/21", "flightsOfStairs": 4},
-    {"date": "2019/06/20", "flightsOfStairs": 3},
-    {"date": "2019/06/19", "flightsOfStairs": 2},
-    {"date": "2019/06/18", "flightsOfStairs": 1}];
-    user.findTrendingStairsDays()
-    expect(user.trendingStairsDays).to.deep.equal(['Your most recent positive climbing streak was 2019/06/26 - 2019/06/29!', 'Your most recent positive climbing streak was 2019/06/19 - 2019/06/24!']);
-  });
   it('findFriendsNames should find the first names of friends', function() {
-    let user2 = new User({
-      'id': 16,
-      'name': 'Ben Nist',
-    })
-    let user3 = new User({
-      'id': 4,
-      'name': 'John Firth',
-    })
-    let user4 = new User(userSampleData[1])
-    let users = [user2, user3, user4];
-    user.findFriendsNames(users);
-    expect(user.friendsNames).to.deep.equal(['BRUCE']);
+    user.findFriendsNames(friends);
+    expect(user.friendsNames).to.deep.equal(['ESTELLE','BRUCE','BOB']);
   });
   it('calculateTotalStepsThisWeek should add users steps for week', function() {
-
     user.getUserAverageData();
     expect(user.totalStepsThisWeek).to.equal(21367);
   });
   it('findFriendsTotalStepsForWeek should find friends\' total steps', function() {
-    let user2 = new User({
-      'id': 9,
-      'name': 'Bob N Forapples',
-    })
-    let user3 = new User({
-      'id': 13,
-      'name': 'Bruce Gordyman',
-    })
-    let user4 = new User({
-      'id': 29,
-      'name': 'Estelle Hoffenhoffer',
-    })
-  user2.activityRecord.dataObjectArray = [{
-    "date": "2019/06/29", "steps": 1},
-    {"date": "2019/06/28", "steps": 1},
-    {"date": "2019/06/27", "steps": 1},
-    {"date": "2019/06/26", "steps": 1},
-    {"date": "2019/06/25", "steps": 1}];
-  user3.activityRecord.dataObjectArray = [{
-    "date": "2019/06/29", "steps": 20},
-    {"date": "2019/06/28", "steps": 20},
-    {"date": "2019/06/27", "steps": 20},
-    {"date": "2019/06/26", "steps": 20},
-    {"date": "2019/06/25", "steps": 20}];
-  user4.activityRecord.dataObjectArray = [{
-    "date": "2019/06/29", "steps": 5},
-    {"date": "2019/06/28", "steps": 5},
-    {"date": "2019/06/27", "steps": 5},
-    {"date": "2019/06/26", "steps": 5},
-    {"date": "2019/06/25", "steps": 5}];
-    console.log(user);
-    let users = [user2, user3, user4];
-    user.findFriendsTotalStepsForWeek(users, '2019/06/29');
-    expect(user.friendsActivityRecords).to.deep.equal([{"id": 13, "firstName": "BRUCE", "totalWeeklySteps": 100}, {"id": 29, "firstName": "ESTELLE", "totalWeeklySteps": 25}, {"id": 9, "firstName": "BOB", "totalWeeklySteps": 5}]);
+    user.findFriendsTotalStepsForWeek('2020/06/07');
+    expect(user.friendsActivityRecords).to.deep.equal([{"id": 13, "firstName": "BRUCE", "totalWeeklySteps": 47577}, {"id": 29, "firstName": "ESTELLE", "totalWeeklySteps": 47577}, {"id": 9, "firstName": "BOB", "totalWeeklySteps": 47577}]);
+  });
+  it('updateAccomplishedDays should create an array of good days', function() {
+    user.updateActivities("2019/09/16", 11178, 3, 1)
+    user.updateActivities("2019/09/17", 11478, 3, 11)
+    user.updateActivities("2019/09/18", 33378, 30, 1)
+    expect(user.accomplishedDays.length).to.equal(1);
+  })
+  it('findTrendingStepDays should find 3+ days with positive trend', function() {
+    user.updateActivities("2019/09/16", 33, 3, 1)
+    user.updateActivities("2019/09/17", 55, 3, 11)
+    user.updateActivities("2019/09/18", 88, 30, 1)
+    user.updateActivities("2019/09/19", 97, 3, 1)
+    user.updateActivities("2019/09/20", 66, 3, 22)
+    user.updateActivities("2019/09/21", 44, 30, 23)
+    user.updateActivities("2019/09/22", 5, 3, 24)
+    user.updateActivities("2019/09/23", 2, 3, 26)
+    user.updateActivities("2019/09/24", 1, 30, 1)
+
+    user.findTrendingStepDays()
+    expect(user.trendingStepDays).to.deep.equal(["Your most recent positive step streak was 2020/06/09 - 2020/06/03!", "Your most recent positive step streak was 2019/09/13 - 2020/06/02!", "Your most recent positive step streak was 2019/09/23 - 2019/09/18!"]);
+  });
+  it('findTrendingStairsDays should find 3+ days with positive trend', function() {
+    user.updateActivities("2019/09/16", 33, 3, 1)
+    user.updateActivities("2019/09/17", 55, 3, 11)
+    user.updateActivities("2019/09/18", 88, 30, 1)
+    user.updateActivities("2019/09/19", 97, 3, 1)
+    user.updateActivities("2019/09/20", 66, 3, 22)
+    user.updateActivities("2019/09/21", 44, 30, 23)
+    user.updateActivities("2019/09/22", 5, 3, 24)
+    user.updateActivities("2019/09/23", 2, 3, 26)
+    user.updateActivities("2019/09/24", 1, 30, 1)
+
+    user.findTrendingStairsDays()
+    expect(user.trendingStairsDays).to.deep.equal(["Your most recent positive climbing streak was 2020/06/04 - 2020/06/01!", "Your most recent positive climbing streak was 2020/06/03 - 2020/06/06!", "Your most recent positive climbing streak was 2019/09/17 - 2019/09/14!"]);
   });
 });
