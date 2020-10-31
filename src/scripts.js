@@ -90,10 +90,6 @@ const getSleepInput = (date, hours, quality) => {
   submitSleepData(id, date, hours, quality);
 }
 
-sleepSubmitButton.addEventListener('click', function () {
-  getSleepInput(sleepInputDate.value, sleepInputHours.value, sleepInputQuality.value);
-})
-
 const showInputFeedback = (message) => {
   inputFeedback.innerText = message;
   console.log(message);
@@ -303,6 +299,9 @@ mainPage.addEventListener('click', showInfo);
 profileButton.addEventListener('click', showDropdown);
 stairsTrendingButton.addEventListener('click', updateTrendingStairsDays);
 stepsTrendingButton.addEventListener('click', updateTrendingStepDays);
+sleepSubmitButton.addEventListener('click', function () {
+  getSleepInput(sleepInputDate.value, sleepInputHours.value, sleepInputQuality.value);
+})
 
 
 function flipCard(cardToHide, cardToShow) {
