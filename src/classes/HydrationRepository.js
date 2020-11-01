@@ -8,11 +8,11 @@ export default class HydrationRepository extends ParentRepository {
   }
   //      this is for the input forms
   addNewHydrationData(date, ounces) {
-    let hydrationDataObject = {
+    let hydrationData = {
     "userID": this.userID,
     "date": date,
     "numOunces": ounces
     }
-    this.addNewDataObject(hydrationDataObject)
+    this.addNewDataObject(hydrationData)
   }
 }

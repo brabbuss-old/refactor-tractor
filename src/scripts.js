@@ -87,16 +87,19 @@ let user;
 let userRepository;
 let sortedHydrationDataByDate;
 
-// const userRepository = new UserRepository();
 const date = "2020/01/22";
 
-const getSleepInput = (date, hours, quality) => {
-  let id = Number(user.id);
-  date = date.replaceAll("-", "/");
-  hours = Number(hours);
-  quality = Number(quality);
-  submitSleepData(id, date, hours, quality);
-};
+//        ****        EVENT LISTENERS       ****
+
+stairsTrendingButton.addEventListener("click", function () {
+  user.findTrendingStairsDays();
+  trendingStairsPhraseContainer.innerHTML = `<p class='trend-line'>${user.trendingStairsDays[0]}</p>`;
+});
+
+stepsTrendingButton.addEventListener("click", function () {
+  user.findTrendingStepDays();
+  trendingStepsPhraseContainer.innerHTML = `<p class='trend-line'>${user.trendingStepDays[0]}</p>`;
+});
 
 sleepSubmitButton.addEventListener("click", function () {
   getSleepInput(
@@ -121,10 +124,48 @@ hydrationSubmitbutton.addEventListener("click", function () {
     numOuncesInput.value
   );
 });
+
+mainPage.addEventListener("click", showInfo);
+
+profileButton.addEventListener("click", showDropdown);
+
+stairsTrendingButton.addEventListener("click", updateTrendingStairsDays);
+
+stepsTrendingButton.addEventListener("click", updateTrendingStepDays);
+
+
+//        ****        USER DATA INPUT FUNCTIONS       ****
+
+const getSleepInput = (date, hours, quality) => {
+  let id = Number(user.id);
+  date = date.replaceAll("-", "/");
+  hours = Number(hours);
+  quality = Number(quality);
+  submitSleepData(id, date, hours, quality);
+  user.updateSleep(date, hours, quality);
+};
+
+const getActivityInput = (date, numSteps, minutesActive, flightsOfStairs) => {
+  let id = Number(user.id);
+  date = date.replaceAll("-", "/");
+  numSteps = Number(numSteps);
+  minutesActive = Number(minutesActive);
+  flightsOfStairs = Number(flightsOfStairs);
+  submitActivityData(id, date, numSteps, minutesActive, flightsOfStairs);
+  user.updateActivities(date, numSteps, minutesActive, flightsOfStairs);
+};
+
+const getHydrationInput = (date, numOunces) => {
+  let id = Number(user.id);
+  date = date.replaceAll("-", "/");
+  numOunces = Number(numOunces);
+  submitHydrationData(id, date, numOunces);
+  user.updateHydration(date, numOunces)
+};
+
 const showInputFeedback = (message) => {
   inputFeedback.innerText = message;
   inputFeedback.classList.remove("hide");
-  // setTimeout(() => {inputFeedback.classList.add('hide')}, 5000);
 };
 
 const submitSleepData = (id, date, hours, quality) => {
@@ -148,14 +189,6 @@ const submitSleepData = (id, date, hours, quality) => {
       showInputFeedback("There was an error.  Please try again.");
     });
 };
-const getActivityInput = (date, numSteps, minutesActive, flightsOfStairs) => {
-  let id = Number(user.id);
-  date = date.replaceAll("-", "/");
-  numSteps = Number(numSteps);
-  minutesActive = Number(minutesActive);
-  flightsOfStairs = Number(flightsOfStairs);
-  submitActivityData(id, date, numSteps, minutesActive, flightsOfStairs);
-};
 
 const submitActivityData = (id, date, numSteps, minutesActive, flightsOfStairs) => {
   fetch("https://fe-apps.herokuapp.com/api/v1/fitlit/1908/activity/ActivityData", {
@@ -178,13 +211,6 @@ const submitActivityData = (id, date, numSteps, minutesActive, flightsOfStairs) 
     .catch(() => {
       showInputFeedback("There was an error.  Please try again.");
     });
-};
-
-const getHydrationInput = (date, numOunces) => {
-  let id = Number(user.id);
-  date = date.replaceAll("-", "/");
-  numOunces = Number(numOunces);
-  submitHydrationData(id, date, numOunces);
 };
 
 const submitHydrationData = (id, date, numOunces) => {
@@ -211,8 +237,10 @@ const submitHydrationData = (id, date, numOunces) => {
     });
 };
 
+//        ****        FETCH DATA FUNCTIONS / LOAD DATA FUNCTIONS       ****
+
 const userPromise = fetch(
-  "https://fe-apps.herokuapp.com/api/v1/fitlit/1908/users/userData"
+"https://fe-apps.herokuapp.com/api/v1/fitlit/1908/users/userData"
 ).then((resp) => resp.json());
 
 const activityPromise = fetch(
@@ -249,154 +277,17 @@ const loadApp = () => {
   user = userRepository.getRandomUser();
   user.populateUserData();
   user.findFriendsNames(userRepository.dataObjectArray); //TODO goes inside user as method
-  defineHydrationByDate();
   updateText();
 };
 
-const defineHydrationByDate = () => {
-  sortedHydrationDataByDate = user.ouncesRecord.dataObjectArray;
-};
-const updateText = () => {
-  displayDailyOz();
-  displayUserInfo();
-  displayHydrationInfo();
-  displaySleepInfo();
-  displayStairsInfo();
-  displayStepsInfo();
-};
-
-const displayDailyOz = () => {
-  dailyOz.forEach((day, i) => {
-    day.innerText = user.sumDailyOunces(
-      Object.keys(sortedHydrationDataByDate[i])[0]
-    );
-  });
-};
-
-const displayUserInfo = () => {
-  dropdownGoal.innerText = `DAILY STEP GOAL | ${user.dailyStepGoal}`;
-  dropdownEmail.innerText = `EMAIL | ${user.email}`;
-  dropdownName.innerText = user.name.toUpperCase();
-  headerName.innerText = `${user.getFirstName()}'S `;
-};
-
-const displayHydrationInfo = () => {
-  let hydroNum = hydrationData.find((hydration) => {
-    return hydration.userID === user.id && hydration.date === date;
-  }).numOunces;
-  hydrationUserOuncesToday.innerText = user.sumDailyOunces(date);
-  hydrationAllUsersToday.innerText = userRepository.getGlobalWaterAvgByDate(date);
-  hydrationInfoGlassesToday.innerText =
-    (hydrationData.find((hydration) => {
-      return hydration.userID === user.id && hydration.date === date
-    }).numOunces / 8).toFixed(1);
-};
-
-const displaySleepInfo = () => {
-  sleepCalendarHoursAverageWeekly.innerText = user.calculateAverageHoursThisWeek(
-    date
-  );
-
-  sleepCalendarQualityAverageWeekly.innerText = user.calculateAverageQualityThisWeek(
-    date
-  );
-
-  sleepFriendLongestSleeper.innerText = userRepository.userObjectArray.find(user => {
-    return user.id === userRepository.getLongestSleepers(date)
-  }).getFirstName();
-
-  sleepFriendWorstSleeper.innerText = userRepository.userObjectArray.find(user => {
-    return user.id === userRepository.getWorstSleepers(date)
-  }).getFirstName();
-
-  sleepInfoHoursAverageAlltime.innerText = user.hoursSleptAverage;
-
-  stepsInfoMilesWalkedToday.innerText = user.activityRecord.getMilesWalked(date);
-
-  sleepInfoQualityAverageAlltime.innerText = user.sleepQualityAverage;
-
-  sleepInfoQualityToday.innerText = sleepData.find((sleep) => {
-    return sleep.userID === user.id && sleep.date === date;
-  }).sleepQuality;
-
-  sleepUserHoursToday.innerText = sleepData.find((sleep) => {
-    return sleep.userID === user.id && sleep.date === date;
-  }).hoursSlept;
-};
-
-const displayStairsInfo = () => {
-  stairsCalendarFlightsAverageWeekly.innerText = user.calculateAverageFlightsThisWeek(
-    date
-  );
-
-  stairsCalendarStairsAverageWeekly.innerText = (
-    user.calculateAverageFlightsThisWeek(date) * 12
-  ).toFixed(0);
-
-  stairsFriendFlightsAverageToday.innerText = (
-    userRepository.getGlobalStairAvgByDate(date) / 12
-  ).toFixed(1);
-
-  stairsInfoFlightsToday.innerText = user.getActivityDataByDate(date, 'flightsOfStairs');
-
-  stairsUserStairsToday.innerText = user.getActivityDataByDate(date, 'flightsOfStairs') * 12;
-
-  stairsCalendarFlightsAverageWeekly.innerText = user.calculateAverageFlightsThisWeek(
-    date
-  );
-
-  stairsCalendarStairsAverageWeekly.innerText = (
-    user.calculateAverageFlightsThisWeek(date) * 12
-  ).toFixed(0);
-
-  stairsTrendingButton.addEventListener("click", function () {
-    user.findTrendingStairsDays();
-    trendingStairsPhraseContainer.innerHTML = `<p class='trend-line'>${user.trendingStairsDays[0]}</p>`;
-  });
-};
-
-const displayStepsInfo = () => {
-  stepsCalendarTotalActiveMinutesWeekly.innerText = user.calculateAverageMinutesActiveThisWeek(
-    date
-  );
-
-  stepsCalendarTotalStepsWeekly.innerText = user.activityRecord.getStepsThisWeek(
-    date
-  );
-
-  stepsTrendingButton.addEventListener("click", function () {
-    user.findTrendingStepDays();
-    trendingStepsPhraseContainer.innerHTML = `<p class='trend-line'>${user.trendingStepDays[0]}</p>`;
-  });
-
-  stepsFriendActiveMinutesAverageToday.innerText = userRepository.getGlobalActiveAvgByDate(
-    date
-  );
-
-  stepsFriendAverageStepGoal.innerText = `${userRepository.getGlobalStepGoal()}`;
-
-  stepsFriendStepsAverageToday.innerText = userRepository.getGlobalStepAvgByDate(
-    date
-  );
-
-  stepsInfoActiveMinutesToday.innerText = activityData.find((activity) => {
-    return activity.userID === user.id && activity.date === date;
-  }).minutesActive;
-
-  stepsUserStepsToday.innerText = activityData.find((activity) => {
-    return activity.userID === user.id && activity.date === date;
-  }).numSteps;
-
-  user.findFriendsTotalStepsForWeek(userRepository.users, date);
-
-  user.friendsActivityRecords.forEach((friend) => {
+function loadFriendsActivityRecords() {
+  user.findFriendsTotalStepsForWeek(date).sort((a,b)=>b.totalWeeklySteps-a.totalWeeklySteps);
+  user.friendsActivityRecords.forEach(friend => {
     dropdownFriendsStepsContainer.innerHTML += `
     <p class='dropdown-p friends-steps'>${friend.firstName} |  ${friend.totalWeeklySteps}</p>
     `;
   });
-
   let friendsStepsParagraphs = document.querySelectorAll(".friends-steps");
-
   friendsStepsParagraphs.forEach((paragraph) => {
     if (friendsStepsParagraphs[0] === paragraph) {
       paragraph.classList.add("green-text");
@@ -410,12 +301,90 @@ const displayStepsInfo = () => {
       paragraph.classList.add("yellow-text");
     }
   });
+}
+
+//        ****        UI DISPLAY FUNCTIONS       ****
+
+const updateText = () => {
+  displayUserInfo();
+  displayHydrationInfo();
+  displaySleepInfo();
+  displayStairsInfo();
+  displayStepsInfo();
 };
 
-mainPage.addEventListener("click", showInfo);
-profileButton.addEventListener("click", showDropdown);
-stairsTrendingButton.addEventListener("click", updateTrendingStairsDays);
-stepsTrendingButton.addEventListener("click", updateTrendingStepDays);
+const displayUserInfo = () => {
+  dropdownGoal.innerText = `DAILY STEP GOAL | ${user.dailyStepGoal}`;
+  dropdownEmail.innerText = `EMAIL | ${user.email}`;
+  dropdownName.innerText = user.name.toUpperCase();
+  headerName.innerText = `${user.getFirstName()}'S `;
+};
+
+const displayHydrationInfo = () => {
+  let pastWeekHydration = user.ouncesRecord.getPastWeekData(date)
+  hydrationUserOuncesToday.innerText = pastWeekHydration[6].numOunces;
+  hydrationAllUsersToday.innerText = userRepository.getGlobalWaterAvgByDate(date);
+  hydrationInfoGlassesToday.innerText = (pastWeekHydration[6].numOunces / 8).toFixed(1);
+  pastWeekHydration.forEach((day, i) => {
+    if(dailyOz[i]) {
+      dailyOz[i].innerText = day.numOunces
+    }
+  });
+};
+
+const displaySleepInfo = () => {
+  sleepCalendarHoursAverageWeekly.innerText = user.calculateAverageHoursThisWeek(date);
+  sleepCalendarQualityAverageWeekly.innerText = user.calculateAverageQualityThisWeek(date);
+  sleepFriendLongestSleeper.innerText = userRepository.userObjectArray.find(user => {
+    return user.id === userRepository.getLongestSleepers(date)
+  }).getFirstName();
+  sleepFriendWorstSleeper.innerText = userRepository.userObjectArray.find(user => {
+    return user.id === userRepository.getWorstSleepers(date)
+  }).getFirstName();
+  sleepInfoHoursAverageAlltime.innerText = user.hoursSleptAverage;
+  stepsInfoMilesWalkedToday.innerText = user.activityRecord.getMilesWalked(date);
+  sleepInfoQualityAverageAlltime.innerText = user.sleepQualityAverage;
+  sleepInfoQualityToday.innerText = user.getSleepDataByDate(date, 'sleepQuality');
+  sleepUserHoursToday.innerText = sleepUserHoursToday.innerText = user.getSleepDataByDate(date, 'hoursSlept');
+};
+
+const displayStairsInfo = () => {
+  stairsCalendarFlightsAverageWeekly.innerText = user.calculateAverageFlightsThisWeek(date);
+  stairsCalendarStairsAverageWeekly.innerText = (user.calculateAverageFlightsThisWeek(date) * 12).toFixed(0);
+  stairsFriendFlightsAverageToday.innerText = (userRepository.getGlobalStairAvgByDate(date) / 12).toFixed(1);
+  stairsInfoFlightsToday.innerText = user.getActivityDataByDate(date, 'flightsOfStairs');
+  stairsUserStairsToday.innerText = user.getActivityDataByDate(date, 'flightsOfStairs') * 12;
+  stairsCalendarFlightsAverageWeekly.innerText = user.calculateAverageFlightsThisWeek(date);
+  stairsCalendarStairsAverageWeekly.innerText = (user.calculateAverageFlightsThisWeek(date) * 12).toFixed(0);
+};
+
+const displayStepsInfo = () => {
+  stepsUserStepsToday.innerText = user.getActivityDataByDate(date, 'numSteps')
+  stepsInfoActiveMinutesToday.innerText = user.getActivityDataByDate(date, 'minutesActive')
+  stepsCalendarTotalStepsWeekly.innerText = user.activityRecord.getStepsThisWeek(date);
+  stepsCalendarTotalActiveMinutesWeekly.innerText = user.calculateAverageMinutesActiveThisWeek(date);
+  loadFriendsActivityRecords()
+  displayStepsInfoFriends()
+};
+
+function displayStepsInfoFriends() {
+  stepsFriendAverageStepGoal.innerText = userRepository.getGlobalStepGoal().toFixed(0);
+  stepsFriendStepsAverageToday.innerText = userRepository.getGlobalStepAvgByDate(date).toFixed(0);
+  stepsFriendActiveMinutesAverageToday.innerText = userRepository.getGlobalActiveAvgByDate(date).toFixed(0);
+}
+
+function updateTrendingStairsDays() {
+  user.findTrendingStairsDays();
+  trendingStairsPhraseContainer.innerHTML = `<p class='trend-line'>${user.trendingStairsDays[0]}</p>`;
+}
+
+function updateTrendingStepDays() {
+  user.findTrendingStepDays();
+  trendingStepsPhraseContainer.innerHTML = `<p class='trend-line'>${user.trendingStepDays[0]}</p>`;
+}
+
+//        ****        UI INTERACTION FUNCTIONS       ****
+
 
 function flipCard(cardToHide, cardToShow) {
   cardToHide.classList.add("hide");
@@ -493,14 +462,4 @@ function showInfo() {
   if (event.target.classList.contains("sleep-go-back-button")) {
     flipCard(event.target.parentNode, sleepMainCard);
   }
-}
-
-function updateTrendingStairsDays() {
-  user.findTrendingStairsDays();
-  trendingStairsPhraseContainer.innerHTML = `<p class='trend-line'>${user.trendingStairsDays[0]}</p>`;
-}
-
-function updateTrendingStepDays() {
-  user.findTrendingStepDays();
-  trendingStepsPhraseContainer.innerHTML = `<p class='trend-line'>${user.trendingStepDays[0]}</p>`;
 }
