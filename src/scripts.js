@@ -124,9 +124,7 @@ hydrationSubmitbutton.addEventListener("click", function () {
 });
 const showInputFeedback = (message) => {
   inputFeedback.innerText = message;
-  console.log(message);
   inputFeedback.classList.remove("hide");
-  // setTimeout(() => {inputFeedback.classList.add('hide')}, 5000);
 };
 
 const submitSleepData = (id, date, hours, quality) => {
@@ -150,6 +148,7 @@ const submitSleepData = (id, date, hours, quality) => {
       showInputFeedback("There was an error.  Please try again.");
     });
 };
+
 const getActivityInput = (date, numSteps, minutesActive, flightsOfStairs) => {
   let id = Number(user.id);
   date = date.replaceAll("-", "/");
@@ -217,7 +216,7 @@ const submitHydrationData = (id, date, numOunces) => {
 };
 
 const userPromise = fetch(
-  "https://fe-apps.herokuapp.com/api/v1/fitlit/1908/users/userData"
+"https://fe-apps.herokuapp.com/api/v1/fitlit/1908/users/userData"
 ).then((resp) => resp.json());
 
 const activityPromise = fetch(
@@ -254,29 +253,15 @@ const loadApp = () => {
   user = userRepository.getRandomUser();
   user.populateUserData();
   user.findFriendsNames(userRepository.dataObjectArray); //TODO goes inside user as method
-  defineHydrationByDate();
   updateText();
 };
 
-const defineHydrationByDate = () => {
-  sortedHydrationDataByDate = user.ouncesRecord.dataObjectArray;
-};
 const updateText = () => {
-  displayDailyOz();
   displayUserInfo();
   displayHydrationInfo();
   displaySleepInfo();
   displayStairsInfo();
   displayStepsInfo();
-};
-
-const displayDailyOz = () => {
-  console.log(dailyOz);
-  dailyOz.forEach((day, i) => {
-    day.innerText = user.sumDailyOunces(
-      Object.keys(sortedHydrationDataByDate[i])[0]
-    );
-  });
 };
 
 const displayUserInfo = () => {
@@ -287,26 +272,20 @@ const displayUserInfo = () => {
 };
 
 const displayHydrationInfo = () => {
-  let hydroNum = hydrationData.find((hydration) => {
-    return hydration.userID === user.id && hydration.date === date;
-  }).numOunces;
-  hydrationUserOuncesToday.innerText = user.sumDailyOunces(date);
+  let pastWeekHydration = user.ouncesRecord.getPastWeekData(date)
+  hydrationUserOuncesToday.innerText = pastWeekHydration[6].numOunces;
   hydrationAllUsersToday.innerText = userRepository.getGlobalWaterAvgByDate(date);
-  hydrationInfoGlassesToday.innerText =
-    (hydrationData.find((hydration) => {
-      return hydration.userID === user.id && hydration.date === date
-    }).numOunces / 8).toFixed(1);
+  hydrationInfoGlassesToday.innerText = (pastWeekHydration[6].numOunces / 8).toFixed(1);
+  pastWeekHydration.forEach((day, i) => {
+    if(dailyOz[i]) {
+      dailyOz[i].innerText = day.numOunces
+    }
+  });
 };
 
 const displaySleepInfo = () => {
-  sleepCalendarHoursAverageWeekly.innerText = user.calculateAverageHoursThisWeek(
-    date
-  );
-
-  sleepCalendarQualityAverageWeekly.innerText = user.calculateAverageQualityThisWeek(
-    date
-  );
-
+  sleepCalendarHoursAverageWeekly.innerText = user.calculateAverageHoursThisWeek(date);
+  sleepCalendarQualityAverageWeekly.innerText = user.calculateAverageQualityThisWeek(date);
   sleepFriendLongestSleeper.innerText = userRepository.userObjectArray.find(user => {
     return user.id === userRepository.getLongestSleepers(date)
   }).getFirstName();
