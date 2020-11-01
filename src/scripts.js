@@ -296,13 +296,9 @@ const displayHydrationInfo = () => {
 };
 
 const displaySleepInfo = () => {
-  sleepCalendarHoursAverageWeekly.innerText = user.calculateAverageHoursThisWeek(
-    date
-  );
+  sleepCalendarHoursAverageWeekly.innerText = user.calculateAverageHoursThisWeek(date);
 
-  sleepCalendarQualityAverageWeekly.innerText = user.calculateAverageQualityThisWeek(
-    date
-  );
+  sleepCalendarQualityAverageWeekly.innerText = user.calculateAverageQualityThisWeek(date);
 
   sleepFriendLongestSleeper.innerText = userRepository.userObjectArray.find(user => {
     return user.id === userRepository.getLongestSleepers(date)
@@ -421,7 +417,7 @@ profileButton.addEventListener("click", showDropdown);
 stairsTrendingButton.addEventListener("click", updateTrendingStairsDays);
 stepsTrendingButton.addEventListener("click", updateTrendingStepDays);
 
-function flipCard(cardToHide, cardToShow) {
+const flipCard = (cardToHide, cardToShow) => {
   cardToHide.classList.add("hide");
   cardToShow.classList.remove("hide");
 }
