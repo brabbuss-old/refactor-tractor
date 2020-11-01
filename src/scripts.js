@@ -123,7 +123,6 @@ hydrationSubmitbutton.addEventListener("click", function () {
 });
 const showInputFeedback = (message) => {
   inputFeedback.innerText = message;
-  console.log(message);
   inputFeedback.classList.remove("hide");
   // setTimeout(() => {inputFeedback.classList.add('hide')}, 5000);
 };
@@ -159,7 +158,6 @@ const getActivityInput = (date, numSteps, minutesActive, flightsOfStairs) => {
 };
 
 const submitActivityData = (id, date, numSteps, minutesActive, flightsOfStairs) => {
-  console.log(id, date, numSteps, minutesActive, flightsOfStairs);
   fetch("https://fe-apps.herokuapp.com/api/v1/fitlit/1908/activity/ActivityData", {
     method: "POST",
     headers: {
@@ -190,7 +188,6 @@ const getHydrationInput = (date, numOunces) => {
 };
 
 const submitHydrationData = (id, date, numOunces) => {
-  console.log(id, date, numOunces);
   fetch(
     "https://fe-apps.herokuapp.com/api/v1/fitlit/1908/hydration/hydrationData",
     {
@@ -341,7 +338,6 @@ const displayStairsInfo = () => {
   ).toFixed(1);
 
   stairsInfoFlightsToday.innerText = user.getActivityDataByDate(date, 'flightsOfStairs');
-  console.log(user.activityRecord.findDataObjectByDate(date));
 
   stairsUserStairsToday.innerText = user.getActivityDataByDate(date, 'flightsOfStairs') * 12;
 
