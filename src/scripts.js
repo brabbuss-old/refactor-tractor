@@ -282,8 +282,7 @@ const loadApp = () => {
 };
 
 function loadFriendsActivityRecords() {
-  user.findFriendsTotalStepsForWeek(date);
-
+  user.findFriendsTotalStepsForWeek(date).sort((a,b)=>b.totalWeeklySteps-a.totalWeeklySteps);
   user.friendsActivityRecords.forEach(friend => {
     dropdownFriendsStepsContainer.innerHTML += `
     <p class='dropdown-p friends-steps'>${friend.firstName} |  ${friend.totalWeeklySteps}</p>
