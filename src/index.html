@@ -26,24 +26,24 @@
       <section class='card-container' id='steps-card-container'>
         <section class='main-card' id='steps-main-card'>
           <div class='main-card-row'>
-            <button type='button' name='button' class='info-button steps-info-button' aria-label="steps-info-button"></button>
+            <button type='button' name='button' class='info-button steps-info-button' aria-label="steps-more-info"></button>
             <h2>YOU HAVE WALKED</h2>
-            <button type='button' name='button' class='friends-button steps-friends-button' aria-label="steps-friends-button"></button>
+            <button type='button' name='button' class='friends-button steps-friends-button' aria-label="steps-friends-steps-info"></button>
           </div>
           <div class="main-card-middle">
-            <button type='button' name='button' class='trending-button steps-trending-button' aria-label="steps-trending-button"></button>
+            <button type='button' name='button' class='trending-button steps-trending-button' aria-label="steps-trending-info"></button>
             <h3 id='steps-user-steps-today'></h3>
 
           </div>
           <div class='main-card-row'>
 
-            <button type='button' name='button' class='new-input-button steps-new-input-button' aria-label="steps-new-input-button"></button>
+            <button type='button' name='button' class='new-input-button steps-new-input-button' aria-label="steps-add-new-input"></button>
             <h2>STEPS TODAY</h2>
-            <button type='button' name='button' class='calendar-button steps-calendar-button' aria-label="steps-calendar-button"></button>
+            <button type='button' name='button' class='calendar-button steps-calendar-button' aria-label="steps-weekly-info"></button>
           </div>
         </section>
         <section class='info-card hide' id='steps-info-card'>
-          <button type='button' name='button' class='go-back-button steps-go-back-button' aria-label="steps-go-back-button"></button>
+          <button type='button' name='button' class='go-back-button steps-go-back-button' aria-label="steps-go-back"></button>
           <div class='card-data-line'>
             <p>TOTAL ACTIVE MINUTES TODAY:</p>
             <h4 id='steps-info-active-minutes-today'></h4>
@@ -284,18 +284,16 @@
           <button type='button' name='button' class='go-back-button sleep-go-back-button' aria-label="sleep-input-go-back-button"></button>
           <form class="input-form" action="" method="post" aria-label="sleep-input-form">
             <div class='input-container'>
-              <label for="date">DATE:</label>
+              <label for="sleep-input-date">DATE:</label>
               <input id="sleep-input-date" type="date" required aria-required="true"></input>
             </div>
             <div class='input-container'>
               <label for= "hours slept">HOURS SLEPT:</label>
               <input id="hours-slept" type="number" min="0" max="24" required aria-required="true" aria-label="hours-slept-input-field"></input>
-              <h4 id='sleep-calendar-hours-average-weekly'></h4>
             </div>
             <div class='input-container'>
               <label for="sleep quality">SLEEP QUALITY:</label>
               <input id="sleep-quality" type="number" min="0" max="5" required aria-required="true" aria-label="quality-of-sleep-input-field"></input>
-              <h4 id='sleep-calendar-quality-average-weekly'></h4>
             </div>
               <button type='button' name='button' class='submit-button sleep-submit-button' aria-label="sleep-submit-button">SUBMIT</button>
           </form>
