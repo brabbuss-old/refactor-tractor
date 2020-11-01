@@ -364,14 +364,8 @@ const displaySleepInfo = () => {
     date
   );
   sleepInfoQualityAverageAlltime.innerText = user.sleepQualityAverage;
-  sleepInfoQualityToday.innerText = user.getSleepDataByDate(
-    date,
-    "sleepQuality"
-  );
-  sleepUserHoursToday.innerText = sleepUserHoursToday.innerText = user.getSleepDataByDate(
-    date,
-    "hoursSlept"
-  );
+  sleepInfoQualityToday.innerText = user.getSleepDataByDate(date, "sleepQuality");
+  sleepUserHoursToday.innerText = sleepUserHoursToday.innerText = user.getSleepDataByDate(date, "hoursSlept");
 };
 
 const displayStairsInfo = () => {

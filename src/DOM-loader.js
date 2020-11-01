@@ -60,6 +60,7 @@ export const stepsFriendActiveMinutesAverageToday = document.querySelector('#ste
 export const stepsFriendStepsAverageToday = document.querySelector('#steps-friend-steps-average-today');
 export const stepsTrendingButton = document.querySelector('.steps-trending-button');
 export const stepsUserStepsToday = document.querySelector('#steps-user-steps-today');
+export const stepsNewInputCard = document.querySelector(".steps-new-input-card");
 export const stepsSubmitButton = document.querySelector(".steps-submit-button");
 export const stepsInputDate = document.querySelector("#steps-input-date");
 export const stepsInputSteps = document.querySelector("#steps-input");
