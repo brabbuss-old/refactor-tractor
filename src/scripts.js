@@ -96,6 +96,7 @@ const getSleepInput = (date, hours, quality) => {
   hours = Number(hours);
   quality = Number(quality);
   submitSleepData(id, date, hours, quality);
+  user.updateSleep(date, hours, quality);
 };
 
 sleepSubmitButton.addEventListener("click", function () {
@@ -148,7 +149,6 @@ const submitSleepData = (id, date, hours, quality) => {
     .catch(() => {
       showInputFeedback("There was an error.  Please try again.");
     });
-  user.updateSleep(date, hours, quality);
 };
 const getActivityInput = (date, numSteps, minutesActive, flightsOfStairs) => {
   let id = Number(user.id);
@@ -157,6 +157,7 @@ const getActivityInput = (date, numSteps, minutesActive, flightsOfStairs) => {
   minutesActive = Number(minutesActive);
   flightsOfStairs = Number(flightsOfStairs);
   submitActivityData(id, date, numSteps, minutesActive, flightsOfStairs);
+  user.updateActivities(date, numSteps, minutesActive, flightsOfStairs);
 };
 
 const submitActivityData = (id, date, numSteps, minutesActive, flightsOfStairs) => {
@@ -181,7 +182,6 @@ const submitActivityData = (id, date, numSteps, minutesActive, flightsOfStairs) 
     .catch(() => {
       showInputFeedback("There was an error.  Please try again.");
     });
-  user.updateActivities(date, numSteps, minutesActive, flightsOfStairs);
 };
 
 const getHydrationInput = (date, numOunces) => {
@@ -189,6 +189,7 @@ const getHydrationInput = (date, numOunces) => {
   date = date.replaceAll("-", "/");
   numOunces = Number(numOunces);
   submitHydrationData(id, date, numOunces);
+  user.updateHydration(date, numOunces)
 };
 
 const submitHydrationData = (id, date, numOunces) => {
@@ -213,7 +214,6 @@ const submitHydrationData = (id, date, numOunces) => {
     .catch(() => {
       showInputFeedback("There was an error.  Please try again.");
     });
-  user.updateHydration(date, numOunces)
 };
 
 const userPromise = fetch(
@@ -271,6 +271,7 @@ const updateText = () => {
 };
 
 const displayDailyOz = () => {
+  console.log(dailyOz);
   dailyOz.forEach((day, i) => {
     day.innerText = user.sumDailyOunces(
       Object.keys(sortedHydrationDataByDate[i])[0]
@@ -385,7 +386,7 @@ const displayStepsInfo = () => {
     return activity.userID === user.id && activity.date === date;
   }).numSteps;
 
-  user.findFriendsTotalStepsForWeek(userRepository.users, date);
+  user.findFriendsTotalStepsForWeek(date);
 
   user.friendsActivityRecords.forEach((friend) => {
     dropdownFriendsStepsContainer.innerHTML += `
