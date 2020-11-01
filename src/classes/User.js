@@ -224,7 +224,7 @@ import ParentRepository from './ParentRepository';
     })
   }
   findFriendsTotalStepsForWeek(date) {
-    return this.friendsActivityRecords = this.friendObjects.map(friendObject => {
+    this.friendsActivityRecords = this.friendObjects.map(friendObject => {
       return {
         'id': friendObject.id,
         'firstName': friendObject.getFirstName(),
