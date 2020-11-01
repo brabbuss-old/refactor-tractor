@@ -177,6 +177,9 @@ import ParentRepository from './ParentRepository';
    getActivityDataByDate(date, dataType) {
      return this.activityRecord.findDataObjectByDate(date)[dataType];
    }
+   getSleepDataByDate(date, dataType) {
+     return this.sleepRecord.findDataObjectByDate(date)[dataType];
+   }
    calculateDailyCalories(date) {
      let totalMinutes = this.activityRecord.getTotalByDateAndKey(
        date,
@@ -214,7 +217,7 @@ import ParentRepository from './ParentRepository';
   calculateAverageHoursThisWeek(date) {
       return this.sleepRecord.getAverageDataByWeekAndKey(date, 'hoursSlept', 1)
     }
-    
+
   findFriendsNames(friends) {
     this.friendObjects.forEach(friend => {
       this.friendsNames.push(friend.getFirstName());
