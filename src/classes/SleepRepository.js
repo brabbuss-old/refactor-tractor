@@ -7,6 +7,7 @@ export default class SleepRepository extends ParentRepository {
     this.weeklySleepHours;
     this.weeklySleepQuality;
   }
+
   addNewSleepData(date, hours, quality) {
     let sleepDataObject = {
       "userID": this.userID,
@@ -16,6 +17,7 @@ export default class SleepRepository extends ParentRepository {
     }
     this.addNewDataObject(sleepDataObject)
   }
+  
   getDayByDayQualityOrHours(date, qualityOrHours) {
     return this.getPastWeekData(date).map(sleepObject => {
       return qualityOrHours === 'hours' ? {date: [sleepObject.date], sleepHours: sleepObject.hoursSlept}
