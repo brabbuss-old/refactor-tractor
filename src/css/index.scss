@@ -250,7 +250,15 @@ input {
 .trending-button {
   @include main-button-style($trending-button);
   margin-left: .5vw;
-  position: absolute;
+  left: 1vw;
+  &:hover {
+    @include button-hover();
+  }
+}
+
+.stairs-trending-button {
+  @include main-button-style($trending-button);
+  margin-left: 1vw;
   left: 1vw;
   &:hover {
     @include button-hover();
