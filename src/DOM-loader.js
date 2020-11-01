@@ -51,7 +51,6 @@ export const stairsMainCard = document.querySelector('#stairs-main-card');
 export const stairsTrendingButton = document.querySelector('.stairs-trending-button');
 export const stairsTrendingCard = document.querySelector('#stairs-trending-card');
 export const stairsUserStairsToday = document.querySelector('#stairs-user-stairs-today');
-export const stepsNewInputCard = document.querySelector(".steps-new-input-card");
 export const stepsCalendarTotalActiveMinutesWeekly = document.querySelector('#steps-calendar-total-active-minutes-weekly');
 export const stepsCalendarTotalStepsWeekly = document.querySelector('#steps-calendar-total-steps-weekly');
 export const stepsFriendAverageStepGoal = document.querySelector('#steps-friend-average-step-goal');
