@@ -148,6 +148,7 @@ const submitSleepData = (id, date, hours, quality) => {
     .catch(() => {
       showInputFeedback("There was an error.  Please try again.");
     });
+  user.updateSleep(date, hours, quality);
 };
 const getActivityInput = (date, numSteps, minutesActive, flightsOfStairs) => {
   let id = Number(user.id);
@@ -180,6 +181,7 @@ const submitActivityData = (id, date, numSteps, minutesActive, flightsOfStairs) 
     .catch(() => {
       showInputFeedback("There was an error.  Please try again.");
     });
+  user.updateActivities(date, numSteps, minutesActive, flightsOfStairs);
 };
 
 const getHydrationInput = (date, numOunces) => {
@@ -190,7 +192,6 @@ const getHydrationInput = (date, numOunces) => {
 };
 
 const submitHydrationData = (id, date, numOunces) => {
-  console.log(id, date, numOunces);
   fetch(
     "https://fe-apps.herokuapp.com/api/v1/fitlit/1908/hydration/hydrationData",
     {
@@ -212,6 +213,7 @@ const submitHydrationData = (id, date, numOunces) => {
     .catch(() => {
       showInputFeedback("There was an error.  Please try again.");
     });
+  user.updateHydration(date, numOunces)
 };
 
 const userPromise = fetch(
