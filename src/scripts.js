@@ -349,9 +349,7 @@ const displayStairsInfo = () => {
     date
   );
 
-  stairsCalendarStairsAverageWeekly.innerText = (
-    user.calculateAverageFlightsThisWeek(date) * 12
-  ).toFixed(0);
+  stairsCalendarStairsAverageWeekly.innerText = (user.calculateAverageFlightsThisWeek(date) * 12).toFixed(0);
 
   stairsTrendingButton.addEventListener("click", function () {
     user.findTrendingStairsDays();
@@ -360,9 +358,7 @@ const displayStairsInfo = () => {
 };
 
 const displayStepsInfo = () => {
-  stepsCalendarTotalActiveMinutesWeekly.innerText = user.calculateAverageMinutesActiveThisWeek(
-    date
-  );
+  stepsCalendarTotalActiveMinutesWeekly.innerText = user.calculateAverageMinutesActiveThisWeek(date);
 
   stepsCalendarTotalStepsWeekly.innerText = user.activityRecord.getStepsThisWeek(
     date
@@ -373,15 +369,11 @@ const displayStepsInfo = () => {
     trendingStepsPhraseContainer.innerHTML = `<p class='trend-line'>${user.trendingStepDays[0]}</p>`;
   });
 
-  stepsFriendActiveMinutesAverageToday.innerText = userRepository.getGlobalActiveAvgByDate(
-    date
-  );
+  stepsFriendActiveMinutesAverageToday.innerText = userRepository.getGlobalActiveAvgByDate(date).toFixed(0);
 
-  stepsFriendAverageStepGoal.innerText = `${userRepository.getGlobalStepGoal()}`;
+  stepsFriendAverageStepGoal.innerText = userRepository.getGlobalStepGoal().toFixed(0);
 
-  stepsFriendStepsAverageToday.innerText = userRepository.getGlobalStepAvgByDate(
-    date
-  );
+  stepsFriendStepsAverageToday.innerText = userRepository.getGlobalStepAvgByDate(date).toFixed(0);
 
   stepsInfoActiveMinutesToday.innerText = activityData.find((activity) => {
     return activity.userID === user.id && activity.date === date;
