@@ -57,7 +57,6 @@ import {
   stairsTrendingButton,
   stairsTrendingCard,
   stairsUserStairsToday,
-  stairsNewInputCard,
   stepsCalendarTotalActiveMinutesWeekly,
   stepsCalendarTotalStepsWeekly,
   stepsFriendAverageStepGoal,
@@ -469,9 +468,6 @@ function showInfo() {
   }
   if (event.target.classList.contains("stairs-calendar-button")) {
     flipCard(stairsMainCard, stairsCalendarCard);
-  }
-  if (event.target.classList.contains("stairs-new-input-button")) {
-    flipCard(stairsMainCard, stairsNewInputCard);
   }
   if (event.target.classList.contains("sleep-info-button")) {
     flipCard(sleepMainCard, sleepInfoCard);
