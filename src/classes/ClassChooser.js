@@ -8,6 +8,7 @@ class ClassChooser {
     this.dataClassName = dataClassName;
     this.date = date;
   }
+  
   instantiateClass(dataObject) {
     if (this.dataClassName === 'activities') {
       return new Activity(dataObject)

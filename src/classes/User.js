@@ -36,6 +36,7 @@ import ParentRepository from './ParentRepository';
      this.friendsNames = []; // can check an array of users by id to see if they match your friends id. if yes, push STRING into friuendnames
      this.friendsActivityRecords = [];
    }
+
    populateSleepData(sleepData) {
      if (sleepData) {
        this.sleepRecord = new SleepRepository(
@@ -49,6 +50,7 @@ import ParentRepository from './ParentRepository';
        return [];
      }
    }
+
    populateHydrationData(hydrationData) {
      if (hydrationData) {
        this.ouncesRecord = new HydrationRepository(
@@ -61,6 +63,7 @@ import ParentRepository from './ParentRepository';
        return [];
      }
    }
+
    populateActivityData(activityData) {
      if (activityData) {
        this.activityRecord = new ActivityRepository(
@@ -73,6 +76,7 @@ import ParentRepository from './ParentRepository';
        return [];
      }
    }
+
    populateFriendsData(userData, activityData, hydrationData, sleepData, date) {
      if (userData) {
        let matchedFriends = userData.filter((user) =>
@@ -95,6 +99,7 @@ import ParentRepository from './ParentRepository';
        return [];
      }
    }
+
    populateFriendsRepos(activityData, hydrationData, sleepData) {
      this.friendObjects.forEach((friend) => {
        friend.populateSleepData(sleepData);
@@ -102,6 +107,7 @@ import ParentRepository from './ParentRepository';
        friend.populateActivityData(activityData);
      });
    }
+
    populateUserData(userData, activityData, hydrationData, sleepData, date) {
      this.populateSleepData(sleepData);
      this.populateHydrationData(hydrationData);
@@ -116,6 +122,7 @@ import ParentRepository from './ParentRepository';
      );
      this.populateFriendsRepos(activityData, hydrationData, sleepData);
    }
+
    getUserAverageData() {
      this.sleepQualityAverage = this.sleepRecord.getAllTimeAverageByKey(
        "sleepQuality"
@@ -134,6 +141,7 @@ import ParentRepository from './ParentRepository';
      let parsedName = this.name.split(" ");
      return parsedName[0].toUpperCase();
    }
+
    updateHydration(date, ounces) {
      this.ouncesRecord.addNewHydrationData(date, ounces);
      if (this.ouncesRecord.dataObjectArray.length) {
@@ -144,6 +152,7 @@ import ParentRepository from './ParentRepository';
        this.ouncesAverage = ounces;
      }
    }
+
    updateSleep(date, hours, quality) {
      this.sleepRecord.addNewSleepData(date, hours, quality);
      if (this.sleepRecord.dataObjectArray.length) {
@@ -158,12 +167,14 @@ import ParentRepository from './ParentRepository';
        this.sleepQualityAverage = quality;
      }
    }
+
    updateActivities(date, steps, minutes, stairs) {
      this.activityRecord.addNewActivityData(date, steps, minutes, stairs);
      if (steps >= this.dailyStepGoal) {
        this.accomplishedDays.push(date);
      }
    }
+
    sumDailyOunces(date) {
      return this.ouncesRecord.getTotalByDateAndKey(date, "numOunces");
    }
@@ -174,12 +185,15 @@ import ParentRepository from './ParentRepository';
        "high"
      ).flightsOfStairs;
    }
+
    getActivityDataByDate(date, dataType) {
      return this.activityRecord.findDataObjectByDate(date)[dataType];
    }
+   
    getSleepDataByDate(date, dataType) {
      return this.sleepRecord.findDataObjectByDate(date)[dataType];
    }
+   
    calculateDailyCalories(date) {
      let totalMinutes = this.activityRecord.getTotalByDateAndKey(
        date,
@@ -187,6 +201,7 @@ import ParentRepository from './ParentRepository';
      );
      return Math.round(totalMinutes * 7.6);
    }
+
    calculateAverageMinutesActiveThisWeek(date) {
      return this.activityRecord.getAverageDataByWeekAndKey(
        date,
@@ -194,15 +209,18 @@ import ParentRepository from './ParentRepository';
        0
      );
    }
+
    calculateAverageStepsThisWeek(date) {
      return this.activityRecord.getAverageDataByWeekAndKey(date, "numSteps");
    }
+
    calculateAverageFlightsThisWeek(date) {
      return this.activityRecord.getAverageDataByWeekAndKey(
        date,
        "flightsOfStairs"
      );
    }
+
    calculateTotalStepsThisWeek(date) {
      return this.totalStepsThisWeek;
    }
@@ -214,6 +232,7 @@ import ParentRepository from './ParentRepository';
        1
      );
    }
+
   calculateAverageHoursThisWeek(date) {
       return this.sleepRecord.getAverageDataByWeekAndKey(date, 'hoursSlept', 1)
     }
@@ -223,6 +242,7 @@ import ParentRepository from './ParentRepository';
       this.friendsNames.push(friend.getFirstName());
     })
   }
+
   findFriendsTotalStepsForWeek(date) {
     this.friendsActivityRecords = this.friendObjects.map(friendObject => {
       return {
@@ -232,11 +252,13 @@ import ParentRepository from './ParentRepository';
       }
     })
   }
+
    findFriendsNames(friends) {
      this.friendObjects.forEach((friend) => {
        this.friendsNames.push(friend.getFirstName());
      });
    }
+   
    findFriendsTotalStepsForWeek(date) {
      return (this.friendsActivityRecords = this.friendObjects.map(
        (friendObject) => {

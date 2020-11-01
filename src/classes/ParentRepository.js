@@ -21,7 +21,7 @@ export default class ParentRepository {
       return parsedData
     }, [])
   }
-  
+
   addNewDataObject(dataObject) {
     this.dataObjectArray.push(this.classChooser.instantiateClass(dataObject));
   }
@@ -31,6 +31,7 @@ export default class ParentRepository {
   findDataObjectByDate(date) {
     return this.dataObjectArray.find(dataObject => dataObject.date === date);
   }
+
   getAllTimeAverageByKey(dataObjectKey) {
     let dataTotal = this.dataObjectArray.reduce((dataTotal, dataObject) => {
       dataTotal += dataObject[dataObjectKey]
@@ -38,13 +39,16 @@ export default class ParentRepository {
     }, 0)
     return Number((dataTotal / this.dataObjectArray.length).toFixed(1))
   }
+
   getPastWeekData(date) {
     let index = this.dataObjectArray.indexOf(this.findDataObjectByDate(date))
     return this.dataObjectArray.slice(index - 6, index + 1)
   }
+
   getDataByDateAndKey(date, dataObjectKey) {
     return this.findDataObjectByDate(date)[dataObjectKey];
   }
+
   getAverageDataByWeekAndKey(date, dataObjectKey, decimals) {
     let weeklyAverage = (this.getPastWeekData(date).reduce((dataTotal, dataObject) => {
       dataTotal += dataObject[dataObjectKey];
@@ -52,17 +56,20 @@ export default class ParentRepository {
     }, 0)/7);
     return decimals ? Number(weeklyAverage.toFixed(decimals)) : Number(weeklyAverage.toFixed(0))
   }
+
   getHighLowDataPointByKey(dataObjectKey, highOrLow) {
     let sortedData = this.dataObjectArray.sort((a, b) => {
       return highOrLow === 'low' ? a[dataObjectKey] - b[dataObjectKey] : b[dataObjectKey] - a[dataObjectKey];
     })
     return sortedData[0]
   }
+
   getAllDataObjectsOnDate(date) {
     return this.dataObjectArray.filter(dataObject => {
       return dataObject.date === date;
     })
   }
+
   getTotalByDateAndKey(date, key) {
     let matchedData = this.getAllDataObjectsOnDate(date);
     if (matchedData) {
@@ -72,6 +79,7 @@ export default class ParentRepository {
       }, 0)
     }
   }
+  
   getWeeklyTotalByDateAndKey(date, key) {
     return this.getPastWeekData(date).reduce((dataTotal, dataObject) => {
       dataTotal += dataObject[key];

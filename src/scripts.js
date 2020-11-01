@@ -191,7 +191,6 @@ const submitSleepData = (id, date, hours, quality) => {
 };
 
 const submitActivityData = (id, date, numSteps, minutesActive, flightsOfStairs) => {
-  console.log(id, date, numSteps, minutesActive, flightsOfStairs);
   fetch("https://fe-apps.herokuapp.com/api/v1/fitlit/1908/activity/ActivityData", {
     method: "POST",
     headers: {
