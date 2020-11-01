@@ -7,6 +7,7 @@
 box-sizing: border-box;
 margin: 0;
 padding: 0;
+border: 1px solid white;
 }
 
 body {
@@ -155,9 +156,19 @@ main {
   padding-bottom: 10%;
 }
 
+
 .card-data-line {
   @include display(center);
+  flex-direction: row;
   margin: -4vw 0 2vw 0;
+}
+
+.info-text {
+  width: 25%;
+}
+
+.info-number {
+  width: 25%;
 }
 
 // Input
