@@ -93,12 +93,12 @@ const date = "2020/01/22";
 
 stairsTrendingButton.addEventListener("click", function () {
   user.findTrendingStairsDays();
-  trendingStairsPhraseContainer.innerHTML = `<p class='trend-line'>${user.trendingStairsDays[0]}</p>`;
+  trendingStairsPhraseContainer.innerHTML = `<p tabindex="0" class='trend-line'>${user.trendingStairsDays[0]}</p>`;
 });
 
 stepsTrendingButton.addEventListener("click", function () {
   user.findTrendingStepDays();
-  trendingStepsPhraseContainer.innerHTML = `<p class='trend-line'>${user.trendingStepDays[0]}</p>`;
+  trendingStepsPhraseContainer.innerHTML = `<p tabindex="0" class='trend-line'>${user.trendingStepDays[0]}</p>`;
 });
 
 sleepSubmitButton.addEventListener("click", function () {
@@ -380,12 +380,12 @@ function displayStepsInfoFriends() {
 
 function updateTrendingStairsDays() {
   user.findTrendingStairsDays();
-  trendingStairsPhraseContainer.innerHTML = `<p class='trend-line'>${user.trendingStairsDays[0]}</p>`;
+  trendingStairsPhraseContainer.innerHTML = `<p tabindex="0" class='trend-line'>${user.trendingStairsDays[0]}</p>`;
 }
 
 function updateTrendingStepDays() {
   user.findTrendingStepDays();
-  trendingStepsPhraseContainer.innerHTML = `<p class='trend-line'>${user.trendingStepDays[0]}</p>`;
+  trendingStepsPhraseContainer.innerHTML = `<p tabindex="0"class='trend-line'>${user.trendingStepDays[0]}</p>`;
 }
 
 //        ****        UI INTERACTION FUNCTIONS       ****
