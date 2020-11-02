@@ -121,11 +121,11 @@ hydrationSubmitbutton.addEventListener("click", function () {
     numOuncesInput.value
   );
 });
+
 const showInputFeedback = (message) => {
   inputFeedback.innerText = message;
-  console.log(message);
   inputFeedback.classList.remove("hide");
-  // setTimeout(() => {inputFeedback.classList.add('hide')}, 5000);
+  setTimeout(() => {inputFeedback.classList.add('hide')}, 5000);
 };
 
 const submitSleepData = (id, date, hours, quality) => {
@@ -159,7 +159,6 @@ const getActivityInput = (date, numSteps, minutesActive, flightsOfStairs) => {
 };
 
 const submitActivityData = (id, date, numSteps, minutesActive, flightsOfStairs) => {
-  console.log(id, date, numSteps, minutesActive, flightsOfStairs);
   fetch("https://fe-apps.herokuapp.com/api/v1/fitlit/1908/activity/ActivityData", {
     method: "POST",
     headers: {
@@ -175,7 +174,7 @@ const submitActivityData = (id, date, numSteps, minutesActive, flightsOfStairs) 
   })
     .then((resp) => resp.json())
     .then(() => {
-      showInputFeedback("Input success.  Great job!");
+      showInputFeedback("Update successful.  Great job!");
     })
     .catch(() => {
       showInputFeedback("There was an error.  Please try again.");
@@ -190,7 +189,6 @@ const getHydrationInput = (date, numOunces) => {
 };
 
 const submitHydrationData = (id, date, numOunces) => {
-  console.log(id, date, numOunces);
   fetch(
     "https://fe-apps.herokuapp.com/api/v1/fitlit/1908/hydration/hydrationData",
     {
@@ -207,7 +205,7 @@ const submitHydrationData = (id, date, numOunces) => {
   )
     .then((resp) => resp.json())
     .then(() => {
-      showInputFeedback("Input success.  Great job!");
+      showInputFeedback("Update successful.  Great job!");
     })
     .catch(() => {
       showInputFeedback("There was an error.  Please try again.");
@@ -337,7 +335,6 @@ const displayStairsInfo = () => {
   ).toFixed(1);
 
   stairsInfoFlightsToday.innerText = user.getActivityDataByDate(date, 'flightsOfStairs');
-  console.log(user.activityRecord.findDataObjectByDate(date));
 
   stairsUserStairsToday.innerText = user.getActivityDataByDate(date, 'flightsOfStairs') * 12;
 

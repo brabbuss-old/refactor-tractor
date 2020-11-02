@@ -47,7 +47,7 @@ export default class ParentRepository {
     let weeklyAverage = (this.getPastWeekData(date).reduce((dataTotal, dataObject) => {
       dataTotal += dataObject[dataObjectKey];
       return dataTotal;
-    }, 0)/7);
+    }, 0) / 7);
     return decimals ? Number(weeklyAverage.toFixed(decimals)) : Number(weeklyAverage.toFixed(0))
   }
 
@@ -73,7 +73,7 @@ export default class ParentRepository {
       }, 0)
     }
   }
-  
+
   getWeeklyTotalByDateAndKey(date, key) {
     return this.getPastWeekData(date).reduce((dataTotal, dataObject) => {
       dataTotal += dataObject[key];
