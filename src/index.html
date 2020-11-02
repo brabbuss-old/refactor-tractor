@@ -7,16 +7,18 @@
     <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,600,700&display=swap" rel="stylesheet">
   </head>
   <body>
-    <header>
+    <header tabindex="0" aria-label="Welcome to your fitlit dashboard">
       <h1><span id='header-name'></span>FITLIT</h1>
       <button type='button' name='button' aria-label="User Profile dropdown" id='profile-button'></button>
-      <section tabindex="0" class='hide' id='user-info-dropdown'>
-        <h2 tabindex="0" id='dropdown-name'></h2>
-        <p tabindex="0" class='dropdown-p' id='dropdown-email'></p>
-        <p tabindex="0" class='dropdown-p' id='dropdown-goal'></p>
-        <br/>
-        <p tabindex="0" class='dropdown-p' id='dropdown-friends'>FRIENDS TOTAL STEPS THIS WEEK</p>
-        <div tabindex="0" id='dropdown-friends-steps-container'></div>
+      <section tabindex="0" class='hide' id='user-info-dropdown' aria-label="User-information and friends steps">
+        <ul>
+          <li><h2 tabindex="0" id='dropdown-name'></h2></li>
+          <li><p tabindex="0" class='dropdown-p' id='dropdown-email'></p></li>
+          <li><p tabindex="0" class='dropdown-p' id='dropdown-goal'></p></li>
+          <br/>
+          <p tabindex="0" class='dropdown-p' id='dropdown-friends'>FRIENDS TOTAL STEPS THIS WEEK</p>
+          <div tabindex="0" id='dropdown-friends-steps-container'></div>
+        </ul>
       </section>
     </header>
     <div class="feedback-container">
