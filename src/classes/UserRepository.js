@@ -45,16 +45,16 @@ export default class UserRepository {
     return this.userObjectArray.map(user => {
       return user.sleepRecord.findDataObjectByDate(date);
     }).sort((a, b) => {
-        return b.hoursSlept - a.hoursSlept;
-      })[0].userID;
+      return b.hoursSlept - a.hoursSlept;
+    })[0].userID;
   }
 
   getWorstSleepers(date) {
     return this.userObjectArray.map(user => {
       return user.sleepRecord.findDataObjectByDate(date);
     }).sort((a, b) => {
-        return a.hoursSlept - b.hoursSlept;
-      })[0].userID;
+      return a.hoursSlept - b.hoursSlept;
+    })[0].userID;
   }
 
   getGlobalStepGoal() {  //rename from calculateAverageStepGoal

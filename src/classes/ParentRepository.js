@@ -7,13 +7,9 @@ export default class ParentRepository {
     this.classChooser = new ClassChooser(this.dataClass, date)
     this.userID = user.id;
     this.dataObjectArray = this.parseData(fetchedData);
-    // console.log(fetchedData);
   }
 
-  // Methods to add to data array of given class objects
-
   parseData(fetchedData) {
-    // console.log(fetchedData);
     return fetchedData.reduce((parsedData, dataObject) => {
       if (dataObject.userID === this.userID) {
         parsedData.push(this.classChooser.instantiateClass(dataObject))
@@ -25,8 +21,6 @@ export default class ParentRepository {
   addNewDataObject(dataObject) {
     this.dataObjectArray.push(this.classChooser.instantiateClass(dataObject));
   }
-
-  // Data Array Parsing Methods
 
   findDataObjectByDate(date) {
     return this.dataObjectArray.find(dataObject => dataObject.date === date);
@@ -53,7 +47,7 @@ export default class ParentRepository {
     let weeklyAverage = (this.getPastWeekData(date).reduce((dataTotal, dataObject) => {
       dataTotal += dataObject[dataObjectKey];
       return dataTotal;
-    }, 0)/7);
+    }, 0) / 7);
     return decimals ? Number(weeklyAverage.toFixed(decimals)) : Number(weeklyAverage.toFixed(0))
   }
 
@@ -79,7 +73,7 @@ export default class ParentRepository {
       }, 0)
     }
   }
-  
+
   getWeeklyTotalByDateAndKey(date, key) {
     return this.getPastWeekData(date).reduce((dataTotal, dataObject) => {
       dataTotal += dataObject[key];

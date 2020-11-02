@@ -4,9 +4,8 @@ import HydrationRepository from './HydrationRepository';
 import ParentRepository from './ParentRepository';
 
 
- export default class User {
+export default class User {
    constructor(user, userData, activityData, hydrationData, sleepData, date) {
-     // this.activityData = activityData;
 
      this.date = date;
      this.id = user.id;
@@ -27,13 +26,13 @@ import ParentRepository from './ParentRepository';
 
      this.totalStepsThisWeek = 0;
      this.activityRecord = [];
-     this.accomplishedDays = []; // if steps >= stepgoal
-     this.trendingStepDays = []; // looks like list reads in only one direction, bottom up sequentially to determine if 'trending day'
+     this.accomplishedDays = []; 
+     this.trendingStepDays = []; 
      this.trendingStairsDays = [];
 
      this.friends = user.friends;
      this.friendObjects;
-     this.friendsNames = []; // can check an array of users by id to see if they match your friends id. if yes, push STRING into friuendnames
+     this.friendsNames = []; 
      this.friendsActivityRecords = [];
    }
 
@@ -45,7 +44,6 @@ import ParentRepository from './ParentRepository';
          "sleep",
          this.date
        );
-       // console.log(this.sleepRecord);
      } else {
        return [];
      }
@@ -126,7 +124,7 @@ import ParentRepository from './ParentRepository';
    getUserAverageData() {
      this.sleepQualityAverage = this.sleepRecord.getAllTimeAverageByKey(
        "sleepQuality"
-     ); // need to come before populating and RETURN
+     ); 
      this.hoursSleptAverage = this.sleepRecord.getAllTimeAverageByKey(
        "hoursSlept"
      );
@@ -253,7 +251,7 @@ import ParentRepository from './ParentRepository';
     })
   }
 
-   findFriendsNames(friends) {
+  findFriendsNames(friends) {
      this.friendObjects.forEach((friend) => {
        this.friendsNames.push(friend.getFirstName());
      });

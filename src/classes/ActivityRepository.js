@@ -7,7 +7,7 @@ export default class ActivityRepository extends ParentRepository {
     this.strideLength = user.strideLength;
     this.dailyStepGoal = user.dailyStepGoal;
   }
-  //      this is for the input forms
+  
   addNewActivityData(date, steps, minutes, stairs) {
     let activityDataObject = {
       "userID": this.userID,
@@ -45,7 +45,7 @@ export default class ActivityRepository extends ParentRepository {
       return dataObject.numSteps >= this.dailyStepGoal;
     })
   }
-  
+
   getBestStairDay() {
     let bestDay = this.getHighLowDataPointByKey('flightsOfStairs', 'high')
     return {date: bestDay.date, flightsOfStairs: bestDay.flightsOfStairs}

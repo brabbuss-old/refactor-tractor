@@ -125,7 +125,12 @@ hydrationSubmitbutton.addEventListener("click", function () {
   );
 });
 
-mainPage.addEventListener("click", showInfo);
+const showInputFeedback = (message) => {
+  inputFeedback.innerText = message;
+  inputFeedback.classList.remove("hide");
+  setTimeout(() => {inputFeedback.classList.add('hide')}, 5000);
+
+  mainPage.addEventListener("click", showInfo);
 
 profileButton.addEventListener("click", showDropdown);
 
@@ -206,7 +211,7 @@ const submitActivityData = (id, date, numSteps, minutesActive, flightsOfStairs) 
   })
     .then((resp) => resp.json())
     .then(() => {
-      showInputFeedback("Input success.  Great job!");
+      showInputFeedback("Update successful.  Great job!");
     })
     .catch(() => {
       showInputFeedback("There was an error.  Please try again.");
@@ -230,7 +235,7 @@ const submitHydrationData = (id, date, numOunces) => {
   )
     .then((resp) => resp.json())
     .then(() => {
-      showInputFeedback("Input success.  Great job!");
+      showInputFeedback("Update successful.  Great job!");
     })
     .catch(() => {
       showInputFeedback("There was an error.  Please try again.");
@@ -386,7 +391,7 @@ function updateTrendingStepDays() {
 //        ****        UI INTERACTION FUNCTIONS       ****
 
 
-function flipCard(cardToHide, cardToShow) {
+const flipCard = (cardToHide, cardToShow) => {
   cardToHide.classList.add("hide");
   cardToShow.classList.remove("hide");
 }
