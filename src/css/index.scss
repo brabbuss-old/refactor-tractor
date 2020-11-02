@@ -63,16 +63,16 @@ h1 {
 h2 {
   display: inline;
   font-family: $main-box-font-family;
-  @include font-style(2.75vw, .2em, 700);
+  @include font-style(2.4vw, .2em, 700);
 }
 
 h3 {
-  @include font-style(7vw, .1em, bold);
+  @include font-style(6.75vw, .1em, bold);
 }
 
 
 h4 {
-  font-size: 6vw;
+  font-size: 5.6vw;
 }
 
 h5 {
@@ -155,9 +155,23 @@ main {
   padding-bottom: 10%;
 }
 
+
 .card-data-line {
   @include display(center);
+  flex-direction: row;
   margin: -4vw 0 2vw 0;
+}
+
+.info-text {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: $text-info-width;
+  padding: 0;
+}
+
+.info-number {
+  width: $text-info-width;
 }
 
 // Input

@@ -93,7 +93,7 @@ export default class UserRepository {
       return totalSteps
     }, 0) / this.userObjectArray.length
   }
-
+  
   getGlobalWaterAvgByDate(date) {
     return Number((this.userObjectArray.reduce((totalH2O, user) => {
       totalH2O += user.sumDailyOunces(date)
