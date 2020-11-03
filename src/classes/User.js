@@ -6,7 +6,6 @@ import ParentRepository from './ParentRepository';
 
 export default class User {
    constructor(user, userData, activityData, hydrationData, sleepData, date) {
-
      this.date = date;
      this.id = user.id;
      this.name = user.name;
@@ -233,22 +232,6 @@ export default class User {
 
   calculateAverageHoursThisWeek(date) {
       return this.sleepRecord.getAverageDataByWeekAndKey(date, 'hoursSlept', 1)
-    }
-
-  findFriendsNames(friends) {
-    this.friendObjects.forEach(friend => {
-      this.friendsNames.push(friend.getFirstName());
-    })
-  }
-
-  findFriendsTotalStepsForWeek(date) {
-    this.friendsActivityRecords = this.friendObjects.map(friendObject => {
-      return {
-        'id': friendObject.id,
-        'firstName': friendObject.getFirstName(),
-        'totalWeeklySteps': friendObject.activityRecord.getStepsThisWeek(date)
-      }
-    })
   }
 
   findFriendsNames(friends) {

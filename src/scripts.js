@@ -93,15 +93,16 @@ const date = "2020/01/22";
 
 stairsTrendingButton.addEventListener("click", function () {
   user.findTrendingStairsDays();
-  trendingStairsPhraseContainer.innerHTML = `<p class='trend-line'>${user.trendingStairsDays[0]}</p>`;
+  trendingStairsPhraseContainer.innerHTML = `<p tabindex="0" class='trend-line'>${user.trendingStairsDays[0]}</p>`;
 });
 
 stepsTrendingButton.addEventListener("click", function () {
   user.findTrendingStepDays();
-  trendingStepsPhraseContainer.innerHTML = `<p class='trend-line'>${user.trendingStepDays[0]}</p>`;
+  trendingStepsPhraseContainer.innerHTML = `<p tabindex="0" class='trend-line'>${user.trendingStepDays[0]}</p>`;
 });
 
 sleepSubmitButton.addEventListener("click", function () {
+  event.preventDefault()
   getSleepInput(
     sleepInputDate.value,
     sleepInputHours.value,
@@ -110,6 +111,7 @@ sleepSubmitButton.addEventListener("click", function () {
 });
 
 stepsSubmitButton.addEventListener("click", function () {
+  event.preventDefault();
   getActivityInput(
     stepsInputDate.value,
     stepsInputSteps.value,
@@ -119,6 +121,7 @@ stepsSubmitButton.addEventListener("click", function () {
 });
 
 hydrationSubmitbutton.addEventListener("click", function () {
+  event.preventDefault();
   getHydrationInput(
     hydrationInputDate.value,
     numOuncesInput.value
@@ -182,7 +185,8 @@ const submitSleepData = (id, date, hours, quality) => {
     }),
   })
     .then((resp) => resp.json())
-    .then(() => {
+    .then((resp) => {
+      console.log(resp)
       showInputFeedback("Update successful.  Great job!");
     })
     .catch(() => {
@@ -191,7 +195,7 @@ const submitSleepData = (id, date, hours, quality) => {
 };
 
 const submitActivityData = (id, date, numSteps, minutesActive, flightsOfStairs) => {
-  fetch("https://fe-apps.herokuapp.com/api/v1/fitlit/1908/activity/ActivityData", {
+  fetch("https://fe-apps.herokuapp.com/api/v1/fitlit/1908/activity/activityData", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -224,7 +228,7 @@ const submitHydrationData = (id, date, numOunces) => {
       body: JSON.stringify({
         userID: id,
         date: date,
-        numOunces: numOunces
+        numOunces: numOunces,
       }),
     }
   )
@@ -375,6 +379,7 @@ function displayStepsInfoFriends() {
 
 function updateTrendingStairsDays() {
   user.findTrendingStairsDays();
+<<<<<<< HEAD
   trendingStairsPhraseContainer.innerHTML = `<p class='trend-line'>${user.trendingStairsDays[0]}</p>`;
 };
 
@@ -382,9 +387,17 @@ function updateTrendingStepDays() {
   user.findTrendingStepDays();
   trendingStepsPhraseContainer.innerHTML = `<p class='trend-line'>${user.trendingStepDays[0]}</p>`;
 };
+=======
+  trendingStairsPhraseContainer.innerHTML = `<p tabindex="0" class='trend-line'>${user.trendingStairsDays[0]}</p>`;
+}
+
+function updateTrendingStepDays() {
+  user.findTrendingStepDays();
+  trendingStepsPhraseContainer.innerHTML = `<p tabindex="0"class='trend-line'>${user.trendingStepDays[0]}</p>`;
+}
+>>>>>>> 7ca79347285310b44018cf1bfbd5df8f7265f587
 
 //        ****        UI INTERACTION FUNCTIONS       ****
-
 
 const flipCard = (cardToHide, cardToShow) => {
   cardToHide.classList.add("hide");

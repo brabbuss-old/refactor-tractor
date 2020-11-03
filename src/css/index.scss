@@ -32,23 +32,25 @@ button:active {
 }
 
 #user-info-dropdown {
-  background-color: $black;
-  color: $soft-white;
+  background-color: $soft-white;
+  color: $black;
   margin: -1.2% 0 0 60%;
   position: relative;
   text-align: center;
   z-index: 100;
-  border: 2px solid white;
+  border: 2px solid $black;
 }
 
 #dropdown-name {
-  text-align: left;
-  margin-left: 1vw;
+  font-size: 1.8vw;
+  padding-bottom: 1vw;
+  text-align: center;
+  margin-left: 6vw;
 }
 
 .dropdown-p {
-  @include font-style(1.5vw, normal, 300);
-  padding: 0 0 1vw 0;
+  @include font-style(1.5vw, normal, 500);
+  padding: 1vw 0 1vw 0;
   text-align: center;
   width: 100%;
 }
@@ -66,6 +68,7 @@ h2 {
   @include font-style(2.4vw, .2em, 700);
 }
 
+
 h3 {
   @include font-style(6.75vw, .1em, bold);
 }
@@ -73,12 +76,6 @@ h3 {
 
 h4 {
   font-size: 5.6vw;
-}
-
-h5 {
-  font-size: 1.8vw;
-  padding-bottom: 1vw;
-  text-align: center;
 }
 
 p {
@@ -96,13 +93,12 @@ p {
   height: auto;
 }
 
-.input-feedback{
+.input-feedback {
   color: $soft-white;
   @include font-style(2vw, .2vw, 400);
   width: 100%;
   padding: .5vw 0 .5vw 0;
   text-align: center;
-
 }
 
 /* MAIN */
@@ -132,7 +128,6 @@ main {
   @include display(space-between);
   align-items: center;
   width: 100%;
-
 }
 
 #steps-card-container {
@@ -172,6 +167,7 @@ main {
 
 .info-number {
   width: $text-info-width;
+  font-size: 5.6vw;
 }
 
 // Input
@@ -293,11 +289,11 @@ input {
 }
 
 .green-text {
-  color: green;
+  color: $contrast-green;
 }
 
 .red-text {
-  color: red;
+  color: $contrast-red;
 }
 
 .yellow-text {
