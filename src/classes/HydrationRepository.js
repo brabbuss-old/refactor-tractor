@@ -6,7 +6,7 @@ export default class HydrationRepository extends ParentRepository {
     super(fetchedData, user, dataClass)
     this.numOunces;
   }
-  //      this is for the input forms
+
   addNewHydrationData(date, ounces) {
     let hydrationData = {
     "userID": this.userID,
