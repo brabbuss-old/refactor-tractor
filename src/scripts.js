@@ -186,7 +186,6 @@ const submitSleepData = (id, date, hours, quality) => {
   })
     .then((resp) => resp.json())
     .then((resp) => {
-      console.log(resp)
       showInputFeedback("Update successful.  Great job!");
     })
     .catch(() => {

@@ -170,6 +170,10 @@ main {
   font-size: 5.6vw;
 }
 
+.stairs-today{
+  margin-left: 26%;
+}
+
 // Input
 label {
   @include font-style(6vh, normal, 600);
