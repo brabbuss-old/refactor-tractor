@@ -137,10 +137,6 @@ stairsTrendingButton.addEventListener("click", updateTrendingStairsDays);
 stepsTrendingButton.addEventListener("click", updateTrendingStepDays);
 
 //        ****        USER DATA INPUT FUNCTIONS       ****
-const showInputFeedback = (message) => {
-  inputFeedback.innerText = message;
-  inputFeedback.classList.remove("hide");
-  setTimeout(() => {inputFeedback.classList.add('hide')}, 5000);
 
 const showInputFeedback = (message) => {
   inputFeedback.innerText = message;
@@ -383,12 +379,12 @@ function displayStepsInfoFriends() {
 
 function updateTrendingStairsDays() {
   user.findTrendingStairsDays();
-  trendingStairsPhraseContainer.innerHTML = `<p tabindex="0" class='trend-line'>${user.trendingStairsDays[0]}</p>`;
-}
+  trendingStairsPhraseContainer.innerHTML = `<p class='trend-line'>${user.trendingStairsDays[0]}</p>`;
+};
 
 function updateTrendingStepDays() {
   user.findTrendingStepDays();
-  trendingStepsPhraseContainer.innerHTML = `<p tabindex="0"class='trend-line'>${user.trendingStepDays[0]}</p>`;
+  trendingStairsPhraseContainer.innerHTML = `<p tabindex="0" class='trend-line'>${user.trendingStairsDays[0]}</p>`;
 }
 
 //        ****        UI INTERACTION FUNCTIONS       ****
@@ -441,9 +437,6 @@ function showInfo() {
   }
   if (event.target.classList.contains("stairs-calendar-button")) {
     flipCard(stairsMainCard, stairsCalendarCard);
-  }
-  if (event.target.classList.contains("stairs-new-input-button")) {
-    flipCard(stairsMainCard, stairsNewInputCard);
   }
   if (event.target.classList.contains("sleep-info-button")) {
     flipCard(sleepMainCard, sleepInfoCard);
