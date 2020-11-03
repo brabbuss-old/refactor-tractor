@@ -136,12 +136,17 @@ stairsTrendingButton.addEventListener("click", updateTrendingStairsDays);
 
 stepsTrendingButton.addEventListener("click", updateTrendingStepDays);
 
-
 //        ****        USER DATA INPUT FUNCTIONS       ****
 const showInputFeedback = (message) => {
   inputFeedback.innerText = message;
   inputFeedback.classList.remove("hide");
   setTimeout(() => {inputFeedback.classList.add('hide')}, 5000);
+
+const showInputFeedback = (message) => {
+  inputFeedback.innerText = message;
+  inputFeedback.classList.remove("hide");
+  setTimeout(() => {inputFeedback.classList.add('hide')}, 5000);
+};
 
 const getSleepInput = (date, hours, quality) => {
   let id = Number(user.id);
@@ -374,7 +379,7 @@ function displayStepsInfoFriends() {
   stepsFriendAverageStepGoal.innerText = userRepository.getGlobalStepGoal().toFixed(0);
   stepsFriendStepsAverageToday.innerText = userRepository.getGlobalStepAvgByDate(date).toFixed(0);
   stepsFriendActiveMinutesAverageToday.innerText = userRepository.getGlobalActiveAvgByDate(date).toFixed(0);
-}
+};
 
 function updateTrendingStairsDays() {
   user.findTrendingStairsDays();
@@ -391,11 +396,11 @@ function updateTrendingStepDays() {
 const flipCard = (cardToHide, cardToShow) => {
   cardToHide.classList.add("hide");
   cardToShow.classList.remove("hide");
-}
+};
 
 function showDropdown() {
   userInfoDropdown.classList.toggle("hide");
-}
+};
 
 function showInfo() {
   if (event.target.classList.contains("steps-info-button")) {
@@ -464,4 +469,4 @@ function showInfo() {
   if (event.target.classList.contains("sleep-go-back-button")) {
     flipCard(event.target.parentNode, sleepMainCard);
   }
-}
+};
