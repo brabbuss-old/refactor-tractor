@@ -125,12 +125,7 @@ hydrationSubmitbutton.addEventListener("click", function () {
   );
 });
 
-const showInputFeedback = (message) => {
-  inputFeedback.innerText = message;
-  inputFeedback.classList.remove("hide");
-  setTimeout(() => {inputFeedback.classList.add('hide')}, 5000);
-
-  mainPage.addEventListener("click", showInfo);
+mainPage.addEventListener("click", showInfo);
 
 profileButton.addEventListener("click", showDropdown);
 
@@ -138,8 +133,13 @@ stairsTrendingButton.addEventListener("click", updateTrendingStairsDays);
 
 stepsTrendingButton.addEventListener("click", updateTrendingStepDays);
 
-
 //        ****        USER DATA INPUT FUNCTIONS       ****
+
+const showInputFeedback = (message) => {
+  inputFeedback.innerText = message;
+  inputFeedback.classList.remove("hide");
+  setTimeout(() => {inputFeedback.classList.add('hide')}, 5000);
+};
 
 const getSleepInput = (date, hours, quality) => {
   let id = Number(user.id);
@@ -166,11 +166,6 @@ const getHydrationInput = (date, numOunces) => {
   numOunces = Number(numOunces);
   submitHydrationData(id, date, numOunces);
   user.updateHydration(date, numOunces)
-};
-
-const showInputFeedback = (message) => {
-  inputFeedback.innerText = message;
-  inputFeedback.classList.remove("hide");
 };
 
 const submitSleepData = (id, date, hours, quality) => {
@@ -376,17 +371,17 @@ function displayStepsInfoFriends() {
   stepsFriendAverageStepGoal.innerText = userRepository.getGlobalStepGoal().toFixed(0);
   stepsFriendStepsAverageToday.innerText = userRepository.getGlobalStepAvgByDate(date).toFixed(0);
   stepsFriendActiveMinutesAverageToday.innerText = userRepository.getGlobalActiveAvgByDate(date).toFixed(0);
-}
+};
 
 function updateTrendingStairsDays() {
   user.findTrendingStairsDays();
   trendingStairsPhraseContainer.innerHTML = `<p class='trend-line'>${user.trendingStairsDays[0]}</p>`;
-}
+};
 
 function updateTrendingStepDays() {
   user.findTrendingStepDays();
   trendingStepsPhraseContainer.innerHTML = `<p class='trend-line'>${user.trendingStepDays[0]}</p>`;
-}
+};
 
 //        ****        UI INTERACTION FUNCTIONS       ****
 
@@ -394,11 +389,11 @@ function updateTrendingStepDays() {
 const flipCard = (cardToHide, cardToShow) => {
   cardToHide.classList.add("hide");
   cardToShow.classList.remove("hide");
-}
+};
 
 function showDropdown() {
   userInfoDropdown.classList.toggle("hide");
-}
+};
 
 function showInfo() {
   if (event.target.classList.contains("steps-info-button")) {
@@ -467,4 +462,4 @@ function showInfo() {
   if (event.target.classList.contains("sleep-go-back-button")) {
     flipCard(event.target.parentNode, sleepMainCard);
   }
-}
+};
