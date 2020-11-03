@@ -12,9 +12,9 @@ The details of the original FitLit project are outlined in the [Turing project p
 [Will Mitchell](https://github.com/wvmitchell)
 
 ## Developers
-[Bruce Gordon](https://github.com/bruce-gordon)
-[Estelle Staffieri](https://github.com/Estaffieri)
-[Scott Brabson](https://github.com/brabbuss)
+- [Bruce Gordon](https://github.com/bruce-gordon)
+- [Estelle Staffieri](https://github.com/Estaffieri)
+- [Scott Brabson](https://github.com/brabbuss)
 
 ## Set Up 
 After cloning down the repo, run `npm start` in your terminal. Go to `http://localhost:8080/` to view the app.
