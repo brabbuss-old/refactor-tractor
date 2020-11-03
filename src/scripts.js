@@ -379,23 +379,13 @@ function displayStepsInfoFriends() {
 
 function updateTrendingStairsDays() {
   user.findTrendingStairsDays();
-<<<<<<< HEAD
   trendingStairsPhraseContainer.innerHTML = `<p class='trend-line'>${user.trendingStairsDays[0]}</p>`;
 };
 
 function updateTrendingStepDays() {
   user.findTrendingStepDays();
-  trendingStepsPhraseContainer.innerHTML = `<p class='trend-line'>${user.trendingStepDays[0]}</p>`;
-};
-=======
   trendingStairsPhraseContainer.innerHTML = `<p tabindex="0" class='trend-line'>${user.trendingStairsDays[0]}</p>`;
 }
-
-function updateTrendingStepDays() {
-  user.findTrendingStepDays();
-  trendingStepsPhraseContainer.innerHTML = `<p tabindex="0"class='trend-line'>${user.trendingStepDays[0]}</p>`;
-}
->>>>>>> 7ca79347285310b44018cf1bfbd5df8f7265f587
 
 //        ****        UI INTERACTION FUNCTIONS       ****
 
@@ -447,9 +437,6 @@ function showInfo() {
   }
   if (event.target.classList.contains("stairs-calendar-button")) {
     flipCard(stairsMainCard, stairsCalendarCard);
-  }
-  if (event.target.classList.contains("stairs-new-input-button")) {
-    flipCard(stairsMainCard, stairsNewInputCard);
   }
   if (event.target.classList.contains("sleep-info-button")) {
     flipCard(sleepMainCard, sleepInfoCard);
