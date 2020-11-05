@@ -34,7 +34,7 @@ The major challenge for the students was to step into a pre-existing codebase th
 
 In an effort to code as DRY as possible and employ object inheritance as dictated by the project rubric, the decision was made to implement two parent classes - one for 'data objects' and one for the 'data repositories'. Given the heavy 'cost' of a fetch call, the decision was made to make only one GET request upon page load. The information gathered in that request would then serve to instantiate all required classes and populate all necessary information.
 
-The demand for object inheritance provided some high hurdles, though that may have been exacerbated by unintentional overengineering - a major piece of learning from this project. To that, we have provided a diagram below to help explain the class architecture settled on and employed on the site.
+The demand for object inheritance provided some high hurdles, though that may have been exacerbated by unintentional overengineering - a **major piece of learning from this project**. To that, we have provided a diagram below to help explain the class architecture settled on and employed on the site.
 
 <img src="https://user-images.githubusercontent.com/66697338/97934647-7d709580-1d33-11eb-8177-5c7239adf3f3.png" width="800" />
 The initial fetch call grabs the raw data that details our user profiles, as well as data for each user regarding their sleep, hydration, and activity information. Once the information is gathered, it is passed into an argument instantiating a new User Repository - essentially a class object that holds onto a database of users with their own properties and methods.
